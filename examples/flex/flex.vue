@@ -2,79 +2,79 @@
   <div class="flex-view">
     <h1>flex</h1>
     <div id="container">
-      <flex justifyContent="center" alignItems="center" class="face">
+      <vg-flex justifyContent="center" alignItems="center" class="face">
         <transition>
           <!-- 加一层<transition>也是可以的，其他元素就不行了哦，暂时不支持<transition-group> -->
-          <flex-item class="dot"></flex-item>
+          <vg-flex-item class="dot"></vg-flex-item>
         </transition>
-      </flex>
+      </vg-flex>
       <hr />
-      <flex justifyContent="spaceBetween" class="face">
-        <flex-item class="dot"></flex-item>
-        <flex-item class="dot" align-self="flex-end"></flex-item>
-      </flex>
+      <vg-flex justifyContent="spaceBetween" class="face">
+        <vg-flex-item class="dot"></vg-flex-item>
+        <vg-flex-item class="dot" align-self="flex-end"></vg-flex-item>
+      </vg-flex>
       <hr />
-      <flex justifyContent="spaceBetween" class="face">
-        <flex-item class="dot"></flex-item>
-        <flex-item class="dot" align-self="center"></flex-item>
-        <flex-item class="dot" align-self="flex-end"></flex-item>
-      </flex>
+      <vg-flex justifyContent="spaceBetween" class="face">
+        <vg-flex-item class="dot"></vg-flex-item>
+        <vg-flex-item class="dot" align-self="center"></vg-flex-item>
+        <vg-flex-item class="dot" align-self="flex-end"></vg-flex-item>
+      </vg-flex>
       <hr />
-      <flex justifyContent="spaceBetween" flexDirection="column" class="face">
-        <flex-item>
-          <flex justifyContent="spaceBetween">
-            <flex-item class="dot"></flex-item>
-            <flex-item class="dot"></flex-item>
-          </flex>
-        </flex-item>
-        <flex-item>
-          <flex justifyContent="spaceBetween">
-            <flex-item class="dot"></flex-item>
-            <flex-item class="dot"></flex-item>
-          </flex>
-        </flex-item>
-      </flex>
+      <vg-flex justifyContent="spaceBetween" flexDirection="column" class="face">
+        <vg-flex-item>
+          <vg-flex justifyContent="spaceBetween">
+            <vg-flex-item class="dot"></vg-flex-item>
+            <vg-flex-item class="dot"></vg-flex-item>
+          </vg-flex>
+        </vg-flex-item>
+        <vg-flex-item>
+          <vg-flex justifyContent="spaceBetween">
+            <vg-flex-item class="dot"></vg-flex-item>
+            <vg-flex-item class="dot"></vg-flex-item>
+          </vg-flex>
+        </vg-flex-item>
+      </vg-flex>
       <hr />
-      <flex justifyContent="spaceBetween" flexDirection="column" class="face">
-        <flex-item>
-          <flex justifyContent="spaceBetween">
-            <flex-item class="dot"></flex-item>
-            <flex-item class="dot"></flex-item>
-          </flex>
-        </flex-item>
-        <flex-item>
-          <flex justify-content="center">
-            <flex-item class="dot"></flex-item>
-          </flex>
-        </flex-item>
-        <flex-item>
-          <flex justifyContent="spaceBetween">
-            <flex-item class="dot"></flex-item>
-            <flex-item class="dot"></flex-item>
-          </flex>
-        </flex-item>
-      </flex>
+      <vg-flex justifyContent="spaceBetween" flexDirection="column" class="face">
+        <vg-flex-item>
+          <vg-flex justifyContent="spaceBetween">
+            <vg-flex-item class="dot"></vg-flex-item>
+            <vg-flex-item class="dot"></vg-flex-item>
+          </vg-flex>
+        </vg-flex-item>
+        <vg-flex-item>
+          <vg-flex justify-content="center">
+            <vg-flex-item class="dot"></vg-flex-item>
+          </vg-flex>
+        </vg-flex-item>
+        <vg-flex-item>
+          <vg-flex justifyContent="spaceBetween">
+            <vg-flex-item class="dot"></vg-flex-item>
+            <vg-flex-item class="dot"></vg-flex-item>
+          </vg-flex>
+        </vg-flex-item>
+      </vg-flex>
       <hr />
-      <flex justifyContent="spaceBetween" flexDirection="column" class="face">
-        <flex-item>
-          <flex justifyContent="spaceBetween">
-            <flex-item class="dot"></flex-item>
-            <flex-item class="dot"></flex-item>
-          </flex>
-        </flex-item>
-        <flex-item>
-          <flex justify-content="spaceBetween">
-            <flex-item class="dot"></flex-item>
-            <flex-item class="dot"></flex-item>
-          </flex>
-        </flex-item>
-        <flex-item>
-          <flex justifyContent="spaceBetween">
-            <flex-item class="dot"></flex-item>
-            <flex-item class="dot"></flex-item>
-          </flex>
-        </flex-item>
-      </flex>
+      <vg-flex justifyContent="spaceBetween" flexDirection="column" class="face">
+        <vg-flex-item>
+          <vg-flex justifyContent="spaceBetween">
+            <vg-flex-item class="dot"></vg-flex-item>
+            <vg-flex-item class="dot"></vg-flex-item>
+          </vg-flex>
+        </vg-flex-item>
+        <vg-flex-item>
+          <vg-flex justify-content="spaceBetween">
+            <vg-flex-item class="dot"></vg-flex-item>
+            <vg-flex-item class="dot"></vg-flex-item>
+          </vg-flex>
+        </vg-flex-item>
+        <vg-flex-item>
+          <vg-flex justifyContent="spaceBetween">
+            <vg-flex-item class="dot"></vg-flex-item>
+            <vg-flex-item class="dot"></vg-flex-item>
+          </vg-flex>
+        </vg-flex-item>
+      </vg-flex>
     </div>
   </div>
 </template>
