@@ -2,11 +2,11 @@
 * @Author: Just be free
 * @Date:   2020-09-22 15:24:40
 * @Last Modified by:   Just be free
-* @Last Modified time: 2020-09-23 11:54:22
+* @Last Modified time: 2020-09-23 14:24:42
 * @E-mail: justbefree@126.com
 */
 import { props, mixins, Vue } from "vue-class-component";
-import { capitalize, camelize, isString } from "../utils";
+import { hyphenate, camelize } from "../utils";
 import { ValidFlexAttribute } from "./types";
 import { h } from "vue";
 const Props = props({
@@ -65,7 +65,7 @@ export default class VgFlex extends mixins(Vue, Props) {
         }
       } else {
         if (this.isValidFlexAttributeAndValue(attribute as ValidFlexAttribute, camelize(value as string))) {
-          className.push(`${prefix}${capitalize(attribute as string)}-${capitalize(value as string)}`);
+          className.push(`${prefix}${hyphenate(attribute as string)}-${hyphenate(value as string)}`);
         }
       }
     }
@@ -75,8 +75,6 @@ export default class VgFlex extends mixins(Vue, Props) {
     const className = this.translateAttrsToClassName();
     const fix = this.fixBottomLine ? "yn-flex-fix-bottom-line" : "";
     const slots = this.$slots.default && (typeof this.$slots.default === "function") && this.$slots.default();
-    console.log("slots ----- ", slots);
-    // console.log("this.options", this.$options.name);
     return h("div", { class: ["yn-flex", ...className, fix] }, [slots]);
   }
 }
