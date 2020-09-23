@@ -2,7 +2,7 @@
 * @Author: Just be free
 * @Date:   2020-05-06 14:45:16
 * @Last Modified by:   Just be free
-* @Last Modified time: 2020-09-22 14:56:00
+* @Last Modified time: 2020-09-23 11:51:00
 * @E-mail: justbefree@126.com
 */
 process.env.VUE_APP_VERSION = require('./package.json').version;
@@ -42,7 +42,7 @@ module.exports = {
       entry: "examples/main.ts",
       template: "examples/index.html",
       filename: "index.html",
-      title: "Examples for YN components"
+      title: "Examples for vueggy components"
     }
   }
 };
