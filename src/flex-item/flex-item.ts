@@ -2,7 +2,7 @@
 * @Author: Just be free
 * @Date:   2020-09-22 16:00:52
 * @Last Modified by:   Just be free
-* @Last Modified time: 2020-09-23 10:40:30
+* @Last Modified time: 2020-09-23 11:54:33
 * @E-mail: justbefree@126.com
 */
 import { props, mixins, Vue } from "vue-class-component";
@@ -22,7 +22,7 @@ const Props = props({
     default: 0
   }
 });
-export default class FlexItem extends mixins(Vue, Props) {
+export default class VgFlexItem extends mixins(Vue, Props) {
   isValidAlignSelfValue(): boolean {
     const VALIDE_ALIGN_SELF_VALUE = [
       "auto",

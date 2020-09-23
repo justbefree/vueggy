@@ -2,7 +2,7 @@
 * @Author: Just be free
 * @Date:   2020-09-22 15:24:40
 * @Last Modified by:   Just be free
-* @Last Modified time: 2020-09-23 11:09:04
+* @Last Modified time: 2020-09-23 11:54:22
 * @E-mail: justbefree@126.com
 */
 import { props, mixins, Vue } from "vue-class-component";
@@ -24,7 +24,7 @@ const Props = props({
     default: false
   }
 });
-export default class Flex extends mixins(Vue, Props) {
+export default class VgFlex extends mixins(Vue, Props) {
   isValidColumnsAttribute(key: ValidFlexAttribute): boolean {
     const validates = ["xs", "sm", "md", "lg"];
     return validates.indexOf(key) > -1;
