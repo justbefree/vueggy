@@ -2,10 +2,10 @@
 * @Author: Just be free
 * @Date:   2020-09-22 16:00:52
 * @Last Modified by:   Just be free
-* @Last Modified time: 2020-09-23 14:17:27
+* @Last Modified time: 2020-09-28 14:48:27
 * @E-mail: justbefree@126.com
 */
-import { props, mixins, Vue } from "vue-class-component";
+import VueGgy, { mixins, props } from "../component/VueGgy";
 import { hyphenate, camelize } from "../utils";
 import { h } from "vue";
 const Props = props({
@@ -22,7 +22,7 @@ const Props = props({
     default: 0
   }
 });
-export default class VgFlexItem extends mixins(Vue, Props) {
+export default class VgFlexItem extends mixins(VueGgy, Props) {
   isValidAlignSelfValue(): boolean {
     const VALIDE_ALIGN_SELF_VALUE = [
       "auto",
@@ -39,6 +39,6 @@ export default class VgFlexItem extends mixins(Vue, Props) {
     const className = this.isValidAlignSelfValue()
       ? `align-self-${hyphenate(this.alignSelf)}`
       : "align-self-auto";
-    return h("div", { class: ["yn-flex-item", className], style: { flex: this.flex, order: this.order } }, [slots]);
+    return h("div", { class: ["vg-flex-item", className], style: { flex: this.flex, order: this.order } }, [slots]);
   }
 }

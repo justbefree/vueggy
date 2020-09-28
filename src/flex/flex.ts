@@ -2,10 +2,10 @@
 * @Author: Just be free
 * @Date:   2020-09-22 15:24:40
 * @Last Modified by:   Just be free
-* @Last Modified time: 2020-09-23 14:24:42
+* @Last Modified time: 2020-09-28 14:49:42
 * @E-mail: justbefree@126.com
 */
-import { props, mixins, Vue } from "vue-class-component";
+import VueGgy, { mixins, props } from "../component/VueGgy";
 import { hyphenate, camelize } from "../utils";
 import { ValidFlexAttribute } from "./types";
 import { h } from "vue";
@@ -24,7 +24,7 @@ const Props = props({
     default: false
   }
 });
-export default class VgFlex extends mixins(Vue, Props) {
+export default class VgFlex extends mixins(VueGgy, Props) {
   isValidColumnsAttribute(key: ValidFlexAttribute): boolean {
     const validates = ["xs", "sm", "md", "lg"];
     return validates.indexOf(key) > -1;
@@ -56,7 +56,7 @@ export default class VgFlex extends mixins(Vue, Props) {
     };
     return (key in validates) && validates[key].indexOf(value) > -1;
   }
-  translateAttrsToClassName(prefix = "yn-"): Array<string> {
+  translateAttrsToClassName(prefix = "vg-"): Array<string> {
     const className: string[] = [];
     for (let [attribute, value] of Object.entries(this.$props)) {
       if (this.isValidColumnsAttribute(attribute as ValidFlexAttribute)) {
@@ -73,8 +73,8 @@ export default class VgFlex extends mixins(Vue, Props) {
   }
   render() {
     const className = this.translateAttrsToClassName();
-    const fix = this.fixBottomLine ? "yn-flex-fix-bottom-line" : "";
+    const fix = this.fixBottomLine ? "vg-flex-fix-bottom-line" : "";
     const slots = this.$slots.default && (typeof this.$slots.default === "function") && this.$slots.default();
-    return h("div", { class: ["yn-flex", ...className, fix] }, [slots]);
+    return h("div", { class: ["vg-flex", ...className, fix] }, [slots]);
   }
 }
