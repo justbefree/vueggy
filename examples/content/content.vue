@@ -3,7 +3,7 @@
     <h1>Components</h1>
     <ul>
       <li @click="listClick('Flex')">flex</li>
-      <li>flex</li>
+      <li @click="listClick('Toast')">toast</li>
       <li>flex</li>
       <li>flex</li>
       <li>flex</li>
