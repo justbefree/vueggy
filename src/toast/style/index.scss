@@ -1,0 +1,68 @@
+/*
+* @Author: Just be free
+* @Date:   2020-09-23 16:16:34
+* @Last Modified by:   Just be free
+* @Last Modified time: 2020-09-28 10:01:44
+*/
+
+.yn-toast-container {
+  position: fixed;
+  min-width: 20px;
+  max-width: 80%;
+  box-sizing: border-box;
+  text-align: center;
+  color: #fff;
+  min-height: 35px;
+  z-index: 10000;
+  background: rgba(0, 0, 0, 0.7);
+  transition: opacity 0.2s linear;
+  border-radius: 5px;
+  padding: 10px;
+  .toast-text {
+    display: block;
+    text-align: center;
+    font-size: 14px;
+  }
+}
+.yn-toast-container.located-at-top {
+  top: 50px;
+  left: 50%;
+  transform: translate(-50%, 0);
+}
+.yn-toast-container.located-at-bottom {
+  bottom: 50px;
+  left: 50%;
+  transform: translate(-50%, 0);
+}
+.yn-toast-container.located-at-middle {
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+// .yn-toast-pop-enter-from,
+// .yn-toast-pop-leave-to,
+// .yn-toast-pop-enter-active,
+// .yn-toast-pop-leave-active {
+//   transition: opacity 0.2s linear;
+//   opacity: 0;
+// }
+// .yn-toast-pop-leave-from,
+// .yn-toast-pop-enter-to,
+// .yn-toast-pop-leave-active {
+//   transition: opacity 0.2s linear;
+//   opacity: 0;
+// }
+// .yn-toast-pop-enter-active,
+// .yn-toast-pop-leave-active {
+//   transition: opacity 0.2s linear;
+// }
+.yn-toast-pop-enter-active,
+.yn-toast-pop-leave-active {
+  transition: opacity 0.2s ease;
+}
+.yn-toast-pop-enter-from,
+.yn-toast-pop-leave-active,
+.yn-toast-pop-leave-to {
+  transition: opacity 0.2s ease;
+  opacity: 0;
+}
