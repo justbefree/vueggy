@@ -1,6 +1,6 @@
 {
   "name": "vueggy",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "private": false,
   "scripts": {
     "serve": "vue-cli-service serve",
@@ -29,6 +29,7 @@
     "sass-loader": "^10.0.2",
     "typescript": "~3.9.3"
   },
+  "typings": "types/index.d.ts",
   "files": ["lib"],
   "eslintConfig": {
     "root": true,
