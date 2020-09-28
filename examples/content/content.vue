@@ -4,7 +4,7 @@
     <ul>
       <li @click="listClick('Flex')">flex</li>
       <li @click="listClick('Toast')">toast</li>
-      <li>flex</li>
+      <li @click="listClick('Spin')">spin</li>
       <li>flex</li>
       <li>flex</li>
       <li>flex</li>
