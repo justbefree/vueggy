@@ -1,0 +1,19 @@
+/*
+* @Author: Just be free
+* @Date:   2020-09-28 13:52:46
+* @Last Modified by:   Just be free
+* @Last Modified time: 2020-09-28 14:31:46
+*/
+.vg-spin-snake {
+  animation: vg-spin-rotate 0.8s infinite linear;
+  border: 4px solid transparent;
+  border-radius: 50%;
+}
+@keyframes vg-spin-rotate {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
