@@ -1,0 +1,28 @@
+language: node_js
+node_js:
+  - "node"
+
+cache:
+  directories:
+    - node_modules
+
+branches:
+  only:
+    - master
+
+script:
+  - npm install
+  - npm run build
+  - cd docs
+  - git init
+  - git add -A
+  - git commit -m 'deploy'
+  - git push -f https://${GITHUB_TOKEN}@github.com/justbefree/vueggy.git master:gh-pages
+
+deploy:
+provider: pages
+skip_cleanup: true
+github_token: $GITHUB_TOKEN
+local_dir: docs
+on:
+  branch: master
