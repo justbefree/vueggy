@@ -2,13 +2,15 @@
 * @Author: Just be free
 * @Date:   2020-05-06 14:45:16
 * @Last Modified by:   Just be free
-* @Last Modified time: 2020-09-23 11:51:00
+* @Last Modified time: 2020-09-29 18:30:04
 * @E-mail: justbefree@126.com
 */
 process.env.VUE_APP_VERSION = require('./package.json').version;
 // const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const publicPath = process.env.NODE_ENV === 'production' ? "/vueggy/" : "/";
 module.exports = {
-  publicPath: "./",
+  publicPath,
+  outputDir: "docs",
   assetsDir: "static",
   configureWebpack: {
     devtool: "source-map",
