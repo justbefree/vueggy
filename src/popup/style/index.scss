@@ -1,0 +1,102 @@
+.v-vgpopup-modal {
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.7);
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+.vg-popup {
+  width: 100%;
+  max-height: 100%;
+  position: fixed;
+  background: #ffffff;
+  overflow: auto;
+  -webkit-overflow-scrolling: touch;
+  top: 50%;
+  left: 50%;
+  transform: translate3d(-50%, -50%, 0);
+  backface-visibility: hidden;
+  transition: all 0.2s ease-out;
+  .vg-popup-closeicon {
+    height: 44px;
+    text-align: right;
+    // margin-right: 8px;
+    // margin-top: 8px;
+    &.fixed{
+      margin: 0;
+      top: 8px;
+      right: 8px;
+      position: fixed;
+    }
+    img {
+      width: 26px;
+      height: 26px;
+      cursor: pointer;
+      margin: 10px;
+    }
+  }
+}
+.vg-popup-top {
+  top: 0;
+  right: auto;
+  bottom: auto;
+  left: 50%;
+  transform: translate3d(-50%, 0, 0);
+}
+.vg-popup-right {
+  top: 50%;
+  right: 0;
+  bottom: auto;
+  left: auto;
+  transform: translate3d(0, -50%, 0);
+}
+.vg-popup-bottom {
+  top: auto;
+  right: auto;
+  bottom: 0;
+  left: 50%;
+  transform: translate3d(-50%, 0, 0);
+}
+.vg-popup-left {
+  top: 50%;
+  right: auto;
+  bottom: auto;
+  left: 0;
+  transform: translate3d(0, -50%, 0);
+}
+.vg-popup-middle {
+  top: 50%;
+  right: auto;
+  bottom: auto;
+  left: 50%;
+  opacity: 1;
+}
+.vg-popup-slide-top-enter-to,
+.vg-popup-slide-top-enter-active,
+.vg-popup-slide-top-leave-active {
+  transform: translate3d(-50%, -100%, 0);
+}
+.vg-popup-slide-right-enter-to,
+.vg-popup-slide-right-enter-active,
+.vg-popup-slide-right-leave-active {
+  transform: translate3d(100%, -50%, 0);
+}
+.vg-popup-slide-bottom-enter-to,
+.vg-popup-slide-bottom-enter-active,
+.vg-popup-slide-bottom-leave-active {
+  transform: translate3d(-50%, 100%, 0);
+}
+.vg-popup-slide-left-enter,
+.vg-popup-slide-left-leave-active {
+  transform: translate3d(-100%, -50%, 0);
+}
+.vg-popup-slide-middle-enter-to,
+.vg-popup-slide-middle-enter-active,
+.vg-popup-slide-middle-leave-active {
+  opacity: 0;
+  transform: translate3d(-50%, 0, 0);
+}
