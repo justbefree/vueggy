@@ -1,6 +1,6 @@
 <template>
   <div class="spin-view">
-    <h1>spin</h1>
+    <h1>popup</h1>
     <div id="container">
       <ul>
         <li @click="showPopup1()">底部</li>
