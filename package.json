@@ -3,6 +3,7 @@
   "version": "0.2.0",
   "private": false,
   "scripts": {
+    "build:components": "vue-cli-service build --mode production --target lib --name vueggy --dest lib src/index.ts",
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint"
@@ -29,6 +30,7 @@
     "sass-loader": "^10.0.2",
     "typescript": "~3.9.3"
   },
+  "main": "lib/vueggy.umd.min.js",
   "typings": "types/index.d.ts",
   "files": ["lib"],
   "eslintConfig": {
