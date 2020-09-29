@@ -2,11 +2,12 @@
 * @Author: Just be free
 * @Date:   2020-09-28 11:35:23
 * @Last Modified by:   Just be free
-* @Last Modified time: 2020-09-28 14:31:59
+* @Last Modified time: 2020-09-28 16:27:02
 * @E-mail: justbefree@126.com
 */
 import VueGgy, { mixins, props } from "../../../component/VueGgy";
-import loadingIcon from "./loading.svg";
+// import loadingIcon from "./loading.svg";
+const loadingIcon = require("./loading.svg");
 import { h, computed, ref } from "vue";
 const Props = props({
   color: String,
