@@ -2,7 +2,7 @@
 * @Author: Just be free
 * @Date:   2020-09-23 16:16:39
 * @Last Modified by:   Just be free
-* @Last Modified time: 2020-09-30 15:41:31
+* @Last Modified time: 2020-09-30 15:55:43
 * @E-mail: justbefree@126.com
 */
 import VgToast from "./toast";
@@ -28,7 +28,6 @@ const Toast = (options: ToastOptions) => {
   ctx.setClosed(false);
   clearTimeout(ctx.timer);
   document.body.appendChild(ctx.getDomTree() as HTMLElement);
-  console.log("ctx = ", ctx);
   nextTick(() => {
     ctx.setVisiable(true);
     ctx.getDomTree().removeEventListener("transitionend", removeDom, false);
