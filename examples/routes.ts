@@ -2,7 +2,7 @@
 * @Author: Just be free
 * @Date:   2020-09-22 14:17:59
 * @Last Modified by:   Just be free
-* @Last Modified time: 2020-09-29 18:50:45
+* @Last Modified time: 2020-09-30 16:31:24
 * @E-mail: justbefree@126.com
 */
 import { createRouter, createWebHashHistory } from "vue-router";
@@ -11,6 +11,7 @@ import Flex from "./flex/flex.vue";
 import Toast from "./toast/toast.vue";
 import Spin from "./spin/spin.vue";
 import Popup from "./popup/popup.vue";
+import Icon from "./icon/icon.vue";
 const routes = [
   {
     path: "/",
@@ -36,6 +37,11 @@ const routes = [
     path: "/popup",
     name: "Popup",
     component: Popup
+  },
+  {
+    path: "/icon",
+    name: "Icon",
+    component: Icon
   }
 ];
 const router = createRouter({

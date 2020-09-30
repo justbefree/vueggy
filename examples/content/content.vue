@@ -6,9 +6,7 @@
       <li @click="listClick('Toast')">toast</li>
       <li @click="listClick('Spin')">spin</li>
       <li @click="listClick('Popup')">popup</li>
-      <li>flex</li>
-      <li>flex</li>
-      <li>flex</li>
+      <li @click="listClick('Icon')">icon</li>
     </ul>
   </div>
 </template>
