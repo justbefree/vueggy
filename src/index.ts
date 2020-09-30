@@ -2,16 +2,17 @@
 * @Author: Just be free
 * @Date:   2020-09-22 15:24:16
 * @Last Modified by:   Just be free
-* @Last Modified time: 2020-09-30 10:38:43
+* @Last Modified time: 2020-09-30 10:48:20
 * @E-mail: justbefree@126.com
 */
+import { version } from "../package.json";
 import "./index.scss";
-import Flex from "./flex";
-import FlexItem from "./flex-item";
-import Toast from "./toast";
-import Spin from "./spin";
-import Popup from "./popup";
-const components = [Flex, FlexItem, Spin, Popup];
+import VgFlex from "./flex";
+import VgFlexItem from "./flex-item";
+import VgToast from "./toast";
+import VgSpin from "./spin";
+import VgPopup from "./popup";
+const components = [VgFlex, VgFlexItem, VgSpin, VgPopup];
 const install = (app: any, options: any) => {
   console.log("app", app);
   components.map(component => {
@@ -20,9 +21,9 @@ const install = (app: any, options: any) => {
       app.component(component.name, component);
     }
   });
-  app.config.globalProperties.Toast = Toast;
+  app.config.globalProperties.Toast = VgToast;
   app.config.isCustomElement = (tag: string) => tag.startsWith("vg-");
 };
-export { install };
-export default { install };
-export { Flex, FlexItem, Toast, Spin, Popup };
+const Vueggy = { install, version };
+export { VgFlex, VgFlexItem, VgToast, VgSpin, VgPopup }
+export default Vueggy
