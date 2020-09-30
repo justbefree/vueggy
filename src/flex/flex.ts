@@ -2,10 +2,10 @@
 * @Author: Just be free
 * @Date:   2020-09-22 15:24:40
 * @Last Modified by:   Just be free
-* @Last Modified time: 2020-09-28 14:49:42
+* @Last Modified time: 2020-09-30 11:27:45
 * @E-mail: justbefree@126.com
 */
-import VueGgy, { mixins, props } from "../component/VueGgy";
+import VueGgy, { mixins, props, Options } from "../component/VueGgy";
 import { hyphenate, camelize } from "../utils";
 import { ValidFlexAttribute } from "./types";
 import { h } from "vue";
@@ -24,6 +24,9 @@ const Props = props({
     default: false
   }
 });
+@Options({
+  name: "VgFlex"
+})
 export default class VgFlex extends mixins(VueGgy, Props) {
   isValidColumnsAttribute(key: ValidFlexAttribute): boolean {
     const validates = ["xs", "sm", "md", "lg"];

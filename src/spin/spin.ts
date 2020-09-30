@@ -2,10 +2,10 @@
 * @Author: Just be free
 * @Date:   2020-09-28 11:18:21
 * @Last Modified by:   Just be free
-* @Last Modified time: 2020-09-28 14:45:55
+* @Last Modified time: 2020-09-30 11:28:20
 * @E-mail: justbefree@126.com
 */
-import VueGgy, { mixins, props } from "../component/VueGgy";
+import VueGgy, { mixins, props, Options } from "../component/VueGgy";
 import { hyphenate } from "../utils";
 import { h, VNode } from "vue";
 // export type SpinType = "snake" | "rotate" | "triple-bounce";
@@ -23,7 +23,9 @@ const Props = props({
     default: "#007aff"
   }
 });
-
+@Options({
+  name: "VgSpin"
+})
 export default class VgSpin extends mixins(VueGgy, Props) {
   createSpinner(): VNode {
     const capitalizeName = hyphenate(this.type);

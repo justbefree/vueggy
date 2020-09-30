@@ -2,14 +2,14 @@
 * @Author: Just be free
 * @Date:   2020-09-28 14:57:46
 * @Last Modified by:   Just be free
-* @Last Modified time: 2020-09-29 17:31:46
+* @Last Modified time: 2020-09-30 11:28:05
 * @E-mail: justbefree@126.com
 */
 /**
 references
 https://v3.vuejs.org/guide/migration/v-model.html
 */
-import VueGgy, { mixins, props } from "../component/VueGgy";
+import VueGgy, { mixins, props, Options } from "../component/VueGgy";
 import { h, Transition, withDirectives, vShow, VNode } from "vue";
 const VALIDATE_POSITION_VALUE = ["left", "right", "top", "bottom", "middle"];
 // import PopupManager from "../component/popupManager.js";
@@ -48,6 +48,9 @@ const Props = props({
   },
   fixed: Boolean
 });
+@Options({
+  name: "VgPopup"
+})
 export default class VgPopup extends mixins(VueGgy, Props) {
   public bodyOverflow = "";
   public time = 0;

@@ -2,10 +2,10 @@
 * @Author: Just be free
 * @Date:   2020-09-22 16:00:52
 * @Last Modified by:   Just be free
-* @Last Modified time: 2020-09-28 14:48:27
+* @Last Modified time: 2020-09-30 11:27:10
 * @E-mail: justbefree@126.com
 */
-import VueGgy, { mixins, props } from "../component/VueGgy";
+import VueGgy, { mixins, props, Options } from "../component/VueGgy";
 import { hyphenate, camelize } from "../utils";
 import { h } from "vue";
 const Props = props({
@@ -22,6 +22,9 @@ const Props = props({
     default: 0
   }
 });
+@Options({
+  name: "VgFlexItem"
+})
 export default class VgFlexItem extends mixins(VueGgy, Props) {
   isValidAlignSelfValue(): boolean {
     const VALIDE_ALIGN_SELF_VALUE = [
