@@ -1,0 +1,21 @@
+/*
+* @Author: Just be free
+* @Date:   2020-09-30 16:28:02
+* @Last Modified by:   Just be free
+* @Last Modified time: 2020-09-30 16:59:56
+*/
+i.vg-iconfont-wrap {
+  display: inline-block;
+}
+.vg-iconfont {
+  width: 1em;
+  height: 1em;
+  vertical-align: -0.15em;
+  fill: currentColor;
+  overflow: hidden;
+  @for $i from 0 through 100 {
+    &.vg-iconfont-size-#{$i} {
+      font-size: #{$i}px;
+    }
+  }
+}
