@@ -2,7 +2,7 @@
 * @Author: Just be free
 * @Date:   2020-09-23 16:16:46
 * @Last Modified by:   Just be free
-* @Last Modified time: 2020-09-30 18:04:06
+* @Last Modified time: 2020-09-30 18:11:37
 * @E-mail: justbefree@126.com
 */
 import VueGgy, { Options, mixins, props } from "../component/VueGgy";
@@ -23,9 +23,6 @@ export default class VgIcon extends mixins(VueGgy, Props) {
   public static svgs = svgs;
   public static extend(options: typeof svgs) {
     VgIcon.svgs = { ...VgIcon.svgs, ...options };
-  }
-  handleClick(): void {
-    this.$emit("click");
   }
   render() {
     return h("i", { class: ["vg-iconfont-wrap"] },
