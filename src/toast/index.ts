@@ -2,26 +2,18 @@
 * @Author: Just be free
 * @Date:   2020-09-23 16:16:39
 * @Last Modified by:   Just be free
-* @Last Modified time: 2020-09-30 14:50:02
+* @Last Modified time: 2020-09-30 15:30:41
 * @E-mail: justbefree@126.com
 */
 import VgToast from "./toast";
 import { isString } from "../utils";
 import { renderDOM } from "../component/renderDOM";
+import { ComponentInternalInstance } from "vue";
 export interface ToastOptions {
   message: string;
   position: "middle" | "bottom" | "top";
   duration: number;
 }
-const toastPool: Array<typeof VgToast> = [];
-const getInstance = function() {
-  if (toastPool.length > 0) {
-    const instance = toastPool[0];
-    toastPool.splice(0, 1);
-    return instance;
-  }
-  return renderDOM(VgToast, {}, []);
-};
 const removeDom = (event: Event) => {
   const target = event.target as HTMLElement;
   if (target.parentNode) {
@@ -30,17 +22,12 @@ const removeDom = (event: Event) => {
 };
 const Toast = (options: ToastOptions) => {
   const { message, position, duration = 3000 } = options;
-  const instance = getInstance() as any;
-  console.log("instance", instance);
-  // console.log("refs", instance.refs());
+  const computedMessage = message || (isString(options) ? options : "");
+  const instance = renderDOM(VgToast, { message: computedMessage, position }, []);
   const ctx = instance.ctx;
-  console.log("ctx.getDomTree", ctx.getDomTree())
   ctx.setClosed(false);
   clearTimeout(ctx.timer);
-  ctx.setMessage(message || (isString(options) ? options : ""));
-  ctx.setPosition(position);
-  console.log(ctx, ctx.$el);
-  document.body.appendChild(ctx.$el as HTMLElement);
+  document.body.appendChild(ctx.getDomTree() as HTMLElement);
   ctx.$nextTick(() => {
     ctx.setVisiable(true);
     ctx.$el.removeEventListener("transitionend", removeDom, false);
