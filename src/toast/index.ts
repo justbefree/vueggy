@@ -2,7 +2,7 @@
 * @Author: Just be free
 * @Date:   2020-09-23 16:16:39
 * @Last Modified by:   Just be free
-* @Last Modified time: 2020-09-30 11:57:58
+* @Last Modified time: 2020-09-30 13:11:31
 * @E-mail: justbefree@126.com
 */
 import VgToast from "./toast";
@@ -31,6 +31,7 @@ const removeDom = (event: Event) => {
 const Toast = (options: ToastOptions) => {
   const { message, position, duration = 3000 } = options;
   const instance = getInstance() as any;
+  console.log("instance", instance);
   const ctx = instance.ctx;
   ctx.setClosed(false);
   clearTimeout(ctx.timer);
