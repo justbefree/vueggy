@@ -2,7 +2,7 @@
 * @Author: Just be free
 * @Date:   2020-09-23 16:16:46
 * @Last Modified by:   Just be free
-* @Last Modified time: 2020-09-30 14:34:37
+* @Last Modified time: 2020-09-30 14:48:05
 * @E-mail: justbefree@126.com
 */
 import VueGgy, { Options } from "../component/VueGgy";

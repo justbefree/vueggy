@@ -2,7 +2,7 @@
 * @Author: Just be free
 * @Date:   2020-09-23 16:16:39
 * @Last Modified by:   Just be free
-* @Last Modified time: 2020-09-30 14:40:31
+* @Last Modified time: 2020-09-30 14:50:02
 * @E-mail: justbefree@126.com
 */
 import VgToast from "./toast";
@@ -34,6 +34,7 @@ const Toast = (options: ToastOptions) => {
   console.log("instance", instance);
   // console.log("refs", instance.refs());
   const ctx = instance.ctx;
+  console.log("ctx.getDomTree", ctx.getDomTree())
   ctx.setClosed(false);
   clearTimeout(ctx.timer);
   ctx.setMessage(message || (isString(options) ? options : ""));
