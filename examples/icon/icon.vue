@@ -3,7 +3,8 @@
     <h1>icon</h1>
     <div id="container">
       <ul>
-        <li><vg-icon name="close" @click="handleClick"></vg-icon></li>
+        <li>我是组件库自带的<vg-icon name="close" @click="handleClick"></vg-icon></li>
+        <li>我是扩展来的<vg-icon name="location" @click="handleClick"></vg-icon></li>
       </ul>
     </div>
   </div>
@@ -23,5 +24,11 @@ export default class Toast extends Vue {
 <style scoped>
 h3 {
   margin: 40px 0 0;
+}
+ul {
+  list-style: none;
+}
+ul li{
+  margin: 20px auto;
 }
 </style>
