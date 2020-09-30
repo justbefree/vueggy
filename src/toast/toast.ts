@@ -2,12 +2,16 @@
 * @Author: Just be free
 * @Date:   2020-09-23 16:16:46
 * @Last Modified by:   Just be free
-* @Last Modified time: 2020-09-28 10:07:50
+* @Last Modified time: 2020-09-30 14:34:37
 * @E-mail: justbefree@126.com
 */
-import VueGgy from "../component/VueGgy";
+import VueGgy, { Options } from "../component/VueGgy";
 import { Transition, h, withDirectives, vShow } from "vue";
+@Options({
+  name: "VgToast"
+})
 export default class VgToast extends VueGgy {
+  public static componentName = "VgToast";
   public visible = false;
   public position = "middle";
   public closed = false;

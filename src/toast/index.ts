@@ -2,7 +2,7 @@
 * @Author: Just be free
 * @Date:   2020-09-23 16:16:39
 * @Last Modified by:   Just be free
-* @Last Modified time: 2020-09-30 13:11:31
+* @Last Modified time: 2020-09-30 14:40:31
 * @E-mail: justbefree@126.com
 */
 import VgToast from "./toast";
@@ -14,7 +14,7 @@ export interface ToastOptions {
   duration: number;
 }
 const toastPool: Array<typeof VgToast> = [];
-const getInstance = () => {
+const getInstance = function() {
   if (toastPool.length > 0) {
     const instance = toastPool[0];
     toastPool.splice(0, 1);
@@ -32,6 +32,7 @@ const Toast = (options: ToastOptions) => {
   const { message, position, duration = 3000 } = options;
   const instance = getInstance() as any;
   console.log("instance", instance);
+  // console.log("refs", instance.refs());
   const ctx = instance.ctx;
   ctx.setClosed(false);
   clearTimeout(ctx.timer);
