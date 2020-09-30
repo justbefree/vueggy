@@ -2,7 +2,7 @@
 * @Author: Just be free
 * @Date:   2020-09-22 15:24:40
 * @Last Modified by:   Just be free
-* @Last Modified time: 2020-09-30 11:27:45
+* @Last Modified time: 2020-09-30 11:35:31
 * @E-mail: justbefree@126.com
 */
 import VueGgy, { mixins, props, Options } from "../component/VueGgy";
@@ -28,6 +28,7 @@ const Props = props({
   name: "VgFlex"
 })
 export default class VgFlex extends mixins(VueGgy, Props) {
+  public static componentName = "VgFlex";
   isValidColumnsAttribute(key: ValidFlexAttribute): boolean {
     const validates = ["xs", "sm", "md", "lg"];
     return validates.indexOf(key) > -1;

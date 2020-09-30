@@ -2,7 +2,7 @@
 * @Author: Just be free
 * @Date:   2020-09-28 11:18:21
 * @Last Modified by:   Just be free
-* @Last Modified time: 2020-09-30 11:28:20
+* @Last Modified time: 2020-09-30 11:36:22
 * @E-mail: justbefree@126.com
 */
 import VueGgy, { mixins, props, Options } from "../component/VueGgy";
@@ -27,6 +27,7 @@ const Props = props({
   name: "VgSpin"
 })
 export default class VgSpin extends mixins(VueGgy, Props) {
+  public static componentName = "VgSpin";
   createSpinner(): VNode {
     const capitalizeName = hyphenate(this.type);
     let component = "span";

@@ -2,7 +2,7 @@
 * @Author: Just be free
 * @Date:   2020-09-22 16:00:52
 * @Last Modified by:   Just be free
-* @Last Modified time: 2020-09-30 11:27:10
+* @Last Modified time: 2020-09-30 11:35:16
 * @E-mail: justbefree@126.com
 */
 import VueGgy, { mixins, props, Options } from "../component/VueGgy";
@@ -26,6 +26,7 @@ const Props = props({
   name: "VgFlexItem"
 })
 export default class VgFlexItem extends mixins(VueGgy, Props) {
+  public static componentName = "VgFlexItem";
   isValidAlignSelfValue(): boolean {
     const VALIDE_ALIGN_SELF_VALUE = [
       "auto",

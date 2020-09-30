@@ -2,7 +2,7 @@
 * @Author: Just be free
 * @Date:   2020-09-28 14:57:46
 * @Last Modified by:   Just be free
-* @Last Modified time: 2020-09-30 11:28:05
+* @Last Modified time: 2020-09-30 11:35:39
 * @E-mail: justbefree@126.com
 */
 /**
@@ -52,6 +52,7 @@ const Props = props({
   name: "VgPopup"
 })
 export default class VgPopup extends mixins(VueGgy, Props) {
+  public static componentName = "VgPopup";
   public bodyOverflow = "";
   public time = 0;
   public diff = 0;
