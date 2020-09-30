@@ -6,7 +6,6 @@
         <li><vg-spin></vg-spin></li>
         <li><vg-spin type="rotate" size="40"></vg-spin></li>
         <li><vg-spin type="triple-bounce" size="40"></vg-spin></li>
-        <li><vg-spin type="triple-bouncwwe" size="40"></vg-spin></li>
       </ul>
     </div>
   </div>
