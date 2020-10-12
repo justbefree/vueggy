@@ -2,7 +2,7 @@
 * @Author: Just be free
 * @Date:   2020-09-23 16:16:46
 * @Last Modified by:   Just be free
-* @Last Modified time: 2020-09-30 18:11:37
+* @Last Modified time: 2020-10-12 12:23:30
 * @E-mail: justbefree@126.com
 */
 import VueGgy, { Options, mixins, props } from "../component/VueGgy";
@@ -13,6 +13,10 @@ const Props = props({
   size: {
     type: [Number, String],
     default: 26
+  },
+  cursor: {
+    type: String,
+    default: "auto"
   }
 });
 @Options({
@@ -25,7 +29,7 @@ export default class VgIcon extends mixins(VueGgy, Props) {
     VgIcon.svgs = { ...VgIcon.svgs, ...options };
   }
   render() {
-    return h("i", { class: ["vg-iconfont-wrap"] },
+    return h("i", { class: ["vg-iconfont-wrap", this.cursor] },
       [
         h("img", { src: VgIcon.svgs[this.name as string], class: ["vg-iconfont", `vg-iconfont-size-${this.size}`] }, [])
       ]

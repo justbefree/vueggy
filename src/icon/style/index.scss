@@ -2,10 +2,59 @@
 * @Author: Just be free
 * @Date:   2020-09-30 16:28:02
 * @Last Modified by:   Just be free
-* @Last Modified time: 2020-09-30 16:59:56
+* @Last Modified time: 2020-10-12 12:26:19
 */
 i.vg-iconfont-wrap {
   display: inline-block;
+  &.pointer{
+    cursor: pointer;
+  }
+  &.default {
+    cursor: default;
+  }
+  &.auto {
+    cursor: auto;
+  }
+  &.w-resize {
+    cursor: w-resize;
+  }
+  &.text {
+    cursor: text;
+  }
+  &.wait {
+    cursor: wait;
+  }
+  &.help {
+    cursor: help;
+  }
+  &.crosshair {
+    cursor: crosshair;
+  }
+  &.move {
+    cursor: move;
+  }
+  &.e-resize {
+    cursor: e-resize;
+  }
+  &.ne-resize {
+    cursor: ne-resize;
+  }
+  &.nw-resize {
+    cursor: nw-resize;
+  }
+  &.n-resize {
+    cursor: n-resize;
+  }
+  &.se-resize {
+    cursor: se-resize;
+  }
+  &.sw-resize {
+    cursor: sw-resize;
+  }
+  &.s-resize {
+    cursor: s-resize;
+  }
+
 }
 .vg-iconfont {
   width: 1em;
