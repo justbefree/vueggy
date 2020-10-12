@@ -2,7 +2,7 @@
 * @Author: Just be free
 * @Date:   2020-09-22 14:17:59
 * @Last Modified by:   Just be free
-* @Last Modified time: 2020-09-30 16:31:24
+* @Last Modified time: 2020-10-12 11:57:00
 * @E-mail: justbefree@126.com
 */
 import { createRouter, createWebHashHistory } from "vue-router";
@@ -12,6 +12,7 @@ import Toast from "./toast/toast.vue";
 import Spin from "./spin/spin.vue";
 import Popup from "./popup/popup.vue";
 import Icon from "./icon/icon.vue";
+import Checkbox from "./checkbox/checkbox.vue";
 const routes = [
   {
     path: "/",
@@ -42,6 +43,11 @@ const routes = [
     path: "/icon",
     name: "Icon",
     component: Icon
+  },
+  {
+    path: "/checkbox",
+    name: "Checkbox",
+    component: Checkbox
   }
 ];
 const router = createRouter({

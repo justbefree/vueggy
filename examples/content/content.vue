@@ -7,6 +7,7 @@
       <li @click="listClick('Spin')">spin</li>
       <li @click="listClick('Popup')">popup</li>
       <li @click="listClick('Icon')">icon</li>
+      <li @click="listClick('Checkbox')">checkbox</li>
     </ul>
   </div>
 </template>
