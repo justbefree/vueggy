@@ -8,6 +8,7 @@
       <li @click="listClick('Popup')">popup</li>
       <li @click="listClick('Icon')">icon</li>
       <li @click="listClick('Checkbox')">checkbox</li>
+      <li @click="listClick('Radiobox')">radiobox</li>
     </ul>
   </div>
 </template>
