@@ -2,7 +2,7 @@
 * @Author: Just be free
 * @Date:   2020-09-22 14:17:59
 * @Last Modified by:   Just be free
-* @Last Modified time: 2020-10-12 15:11:21
+* @Last Modified time: 2020-10-12 15:56:16
 * @E-mail: justbefree@126.com
 */
 import { createRouter, createWebHashHistory } from "vue-router";
@@ -14,6 +14,8 @@ import Popup from "./popup/popup.vue";
 import Icon from "./icon/icon.vue";
 import Checkbox from "./checkbox/checkbox.vue";
 import Radiobox from "./radiobox/radiobox.vue";
+import Dialog from "./dialog/dialog.vue";
+import Button from "./button/button.vue";
 const routes = [
   {
     path: "/",
@@ -54,6 +56,16 @@ const routes = [
     path: "/radiobox",
     name: "Radiobox",
     component: Radiobox
+  },
+  {
+    path: "/dialog",
+    name: "Dialog",
+    component: Dialog
+  },
+  {
+    path: "/button",
+    name: "Button",
+    component: Button
   }
 ];
 const router = createRouter({
