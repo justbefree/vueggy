@@ -2,7 +2,7 @@
 * @Author: Just be free
 * @Date:   2020-09-23 16:16:46
 * @Last Modified by:   Just be free
-* @Last Modified time: 2020-09-30 15:31:45
+* @Last Modified time: 2020-10-13 12:12:51
 * @E-mail: justbefree@126.com
 */
 import VueGgy, { Options, mixins, props } from "../component/VueGgy";
@@ -37,14 +37,16 @@ export default class VgToast extends mixins(VueGgy, Props) {
     callback && (typeof callback === "function") && callback();
   }
   render() {
-    return h(Transition, { name: "vg-toast-pop" }, [
+    return h(Transition, { name: "vg-toast-pop" }, { default: () => [
       withDirectives(h(
         "div",
         {
           class: ["vg-toast-container", `located-at-${this.position}`]
         },
-        [h("span", { class: "toast-text" }, [this.message])]
+        {
+          default: () => [h("span", { class: "toast-text" }, { default: () => this.message })]
+        }
       ), [[vShow, this.visible]])
-    ]);
+    ] });
   }
 }

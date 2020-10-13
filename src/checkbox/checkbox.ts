@@ -2,7 +2,7 @@
 * @Author: Just be free
 * @Date:   2020-09-22 15:24:40
 * @Last Modified by:   Just be free
-* @Last Modified time: 2020-10-12 12:42:58
+* @Last Modified time: 2020-10-13 12:31:27
 * @E-mail: justbefree@126.com
 */
 import VueGgy, { mixins, props, Options } from "../component/VueGgy";
@@ -42,6 +42,6 @@ export default class VgCheckbox extends mixins(VueGgy, Props) {
   render() {
     const modelValue = ref(this.modelValue);
     const nameComputed = computed(() => `checkbox-${modelValue.value ? "" : "un"}checked`);
-    return h(VgIcon, { class: ["vg-checkbox"], size: this.size, name: nameComputed.value, onClick: this.toggle, cursor: "pointer" }, []);
+    return h(VgIcon, { class: ["vg-checkbox"], size: this.size, name: nameComputed.value, onClick: this.toggle, cursor: "pointer" }, { default: () => [] });
   }
 }

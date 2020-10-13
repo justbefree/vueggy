@@ -2,7 +2,7 @@
 * @Author: Just be free
 * @Date:   2020-09-28 14:57:46
 * @Last Modified by:   Just be free
-* @Last Modified time: 2020-09-30 11:35:39
+* @Last Modified time: 2020-10-13 12:21:34
 * @E-mail: justbefree@126.com
 */
 /**
@@ -123,9 +123,11 @@ export default class VgPopup extends mixins(VueGgy, Props) {
     this.$emit("update:modelValue", false);
   }
   createCloseIcon(): VNode {
-    return h("div", { class: ["vg-popup-closeicon", this.fixed ? "fixed" : ""] }, [
-      h("img", { src: closeIcon, onClick: this.close }, [])
-    ]);
+    return h("div", { class: ["vg-popup-closeicon", this.fixed ? "fixed" : ""] }, {
+      default: () => [
+        h("img", { src: closeIcon, onClick: this.close }, { default: () => [] })
+      ]
+    });
   }
   genStyle(position: string) {
     if (position === "bottom") {
@@ -159,16 +161,18 @@ export default class VgPopup extends mixins(VueGgy, Props) {
         onLeave: this.handleLeave,
         onAfterLeave: this.handleAfterLeave
       },
-      [
-        withDirectives(h(
-          "div",
-          {
-            class: ["vg-popup", `vg-popup-${position}`],
-            style: { ...this.genStyle(position) }
-          },
-          [this.createCloseIcon(), slots]
-        ), [[vShow, this.modelValue]])
-      ]
+      {
+        default: () => [
+          withDirectives(h(
+            "div",
+            {
+              class: ["vg-popup", `vg-popup-${position}`],
+              style: { ...this.genStyle(position) }
+            },
+            { default: () => [this.createCloseIcon(), slots] }
+          ), [[vShow, this.modelValue]])
+        ]
+      }
     );
   }
 }

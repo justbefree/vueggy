@@ -2,7 +2,7 @@
 * @Author: Just be free
 * @Date:   2020-09-28 11:18:21
 * @Last Modified by:   Just be free
-* @Last Modified time: 2020-09-30 11:36:22
+* @Last Modified time: 2020-10-13 12:18:24
 * @E-mail: justbefree@126.com
 */
 import VueGgy, { mixins, props, Options } from "../component/VueGgy";
@@ -35,11 +35,11 @@ export default class VgSpin extends mixins(VueGgy, Props) {
       component = require(`./shapes/${capitalizeName}/index.ts`)["default"];
     } catch (err) {
       console.warn(`There is no ${capitalizeName} as VgSpin type's value`);
-      return h(component, {}, []);
+      return h(component, {}, { default: () => [] });
     }
-    return h(component, { size: Number(this.size), color: this.color }, []);
+    return h(component, { size: Number(this.size), color: this.color }, { default: () => [] });
   }
   render() {
-    return h("span", {}, [this.createSpinner()]);
+    return h("span", {}, { default: () => [this.createSpinner()] });
   }
 }

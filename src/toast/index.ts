@@ -2,7 +2,7 @@
 * @Author: Just be free
 * @Date:   2020-09-23 16:16:39
 * @Last Modified by:   Just be free
-* @Last Modified time: 2020-09-30 15:55:43
+* @Last Modified time: 2020-10-13 12:15:22
 * @E-mail: justbefree@126.com
 */
 import VgToast from "./toast";
@@ -23,7 +23,7 @@ const removeDom = (event: Event) => {
 const Toast = (options: ToastOptions) => {
   const { message, position, duration = 3000 } = options;
   const computedMessage = message || (isString(options) ? options : "");
-  const instance = renderDOM(VgToast, { message: computedMessage, position }, []);
+  const instance = renderDOM(VgToast, { message: computedMessage, position }, { default: () => [] });
   const ctx = instance.ctx;
   ctx.setClosed(false);
   clearTimeout(ctx.timer);
