@@ -12,6 +12,8 @@
         <li><vg-button danger type="dashed">danger dashed</vg-button></li>
         <li><vg-button loading type="primary">Loading</vg-button></li>
         <li><vg-button @click="handleClick" :loading="loadingStatus" type="primary">Loading</vg-button></li>
+        <li><vg-button loading danger type="default">danger primary</vg-button></li>
+        <li><vg-button textHideWhenLoading loading type="default">default</vg-button></li>
       </ul>
     </div>
   </div>
