@@ -2,7 +2,7 @@
 * @Author: Just be free
 * @Date:   2020-10-12 15:56:53
 * @Last Modified by:   Just be free
-* @Last Modified time: 2020-10-13 11:54:10
+* @Last Modified time: 2020-10-14 16:19:21
 * @E-mail: justbefree@126.com
 */
 import VueGgy, { mixins, props, Options } from "../component/VueGgy";
@@ -22,6 +22,10 @@ const Props = props({
     default: false
   },
   loading: {
+    type: Boolean,
+    default: false
+  },
+  textHideWhenLoading: {
     type: Boolean,
     default: false
   }
@@ -49,9 +53,11 @@ export default class VgButton extends mixins(VueGgy, Props) {
     return h("button", { type: "button", class: ["vg-button", ...className], disabled: this.disabled }, {
       default: () => [
         this.loading && (
-          h(VgIcon, { name: "loading", size: 15, class: ["vg-button-loading"] }, { default: () => "" })
+          h(VgIcon, { name: "loading", size: 16, adjustColor: true, class: ["vg-button-loading"] }, { default: () => "" })
         ),
-        h("span", {}, { default: () => slots })
+        (!this.textHideWhenLoading || this.textHideWhenLoading && !this.loading) && (
+          h("span", {}, { default: () => slots })
+        )
       ]
     });
   }
