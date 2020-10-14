@@ -2,7 +2,7 @@
 * @Author: Just be free
 * @Date:   2020-09-22 15:24:16
 * @Last Modified by:   Just be free
-* @Last Modified time: 2020-10-12 16:01:48
+* @Last Modified time: 2020-10-13 17:47:47
 * @E-mail: justbefree@126.com
 */
 import { version } from "../package.json";
@@ -16,7 +16,7 @@ import VgPopup from "./popup";
 import VgIcon from "./icon";
 import VgCheckbox from "./checkbox";
 import VgRadiobox from "./radiobox";
-import VgDialog from "./dialog";
+import Dialog, { VgDialog } from "./dialog";
 export interface VueggyConfigOptions {
   [propName: string]: any;
 }
@@ -34,6 +34,7 @@ const install = (app: any, options: any) => {
     }
   });
   app.config.globalProperties.Toast = VgToast;
+  app.config.globalProperties.Dialog = Dialog;
   app.config.isCustomElement = (tag: string) => tag.startsWith("vg-");
 };
 const config = (options: VueggyConfigOptions) => {

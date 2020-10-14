@@ -2,7 +2,7 @@
 * @Author: Just be free
 * @Date:   2020-09-22 16:20:15
 * @Last Modified by:   Just be free
-* @Last Modified time: 2020-09-23 14:23:38
+* @Last Modified time: 2020-10-14 11:21:31
 * @E-mail: justbefree@126.com
 */
 export const hyphenate = (str: string): string => {
@@ -16,4 +16,11 @@ export const capitalize = (str: string): string => {
 };
 export const isString = (value: any): boolean => {
   return Object.prototype.toString.call(value) === "[object String]";
+};
+export const isPromise = (obj: any): boolean => {
+  return (
+    !!obj &&
+    (typeof obj === "object" || typeof obj === "function") &&
+    typeof obj.then === "function"
+  );
 };
