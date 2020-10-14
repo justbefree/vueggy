@@ -2,11 +2,13 @@
 * @Author: Just be free
 * @Date:   2020-09-23 16:16:46
 * @Last Modified by:   Just be free
-* @Last Modified time: 2020-10-13 11:59:27
+* @Last Modified time: 2020-10-14 16:11:27
 * @E-mail: justbefree@126.com
 */
 import VueGgy, { Options, mixins, props } from "../component/VueGgy";
-import { h } from "vue";
+import Base642Svg from "../utils/dom/base642svg";
+import { getStyle } from "../utils/dom/style";
+import { h, nextTick } from "vue";
 import svgs from "./svgs";
 const Props = props({
   name: String,
@@ -17,6 +19,10 @@ const Props = props({
   cursor: {
     type: String,
     default: "auto"
+  },
+  adjustColor: {
+    type: Boolean,
+    default: false
   }
 });
 @Options({
@@ -25,13 +31,23 @@ const Props = props({
 export default class VgIcon extends mixins(VueGgy, Props) {
   public static componentName = "VgIcon";
   public static svgs = svgs;
+  public svgbase64 = VgIcon.svgs[this.name as string];
   public static extend(options: typeof svgs) {
     VgIcon.svgs = { ...VgIcon.svgs, ...options };
+  }
+  adjustColorHandler(): void {
+    if (this.adjustColor) {
+      const color: string = getStyle(this.$el.parentNode, "color");
+      this.svgbase64 = Base642Svg.fill(this.svgbase64, color);
+    }
+  }
+  mounted() {
+    this.adjustColorHandler();
   }
   render() {
     return h("i", { class: ["vg-iconfont-wrap", this.cursor] }, {
       default: () => [
-        h("img", { src: VgIcon.svgs[this.name as string], class: ["vg-iconfont", `vg-iconfont-size-${this.size}`] }, { default: () => "" })
+        h("img", { src: this.svgbase64, class: ["vg-iconfont", `vg-iconfont-size-${this.size}`] }, { default: () => "" })
       ] 
     });
   }
