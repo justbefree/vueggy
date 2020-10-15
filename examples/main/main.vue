@@ -1,20 +1,21 @@
 <template>
   <div class="content-view">
     <div class="logo">
-      <img :src="logo" width="270">
+      <img :src="logo" width="180">
+      <p class="slogn">Vueggy</p>
       <p class="description">Lightweight Mobile UI Components built on <b>Vue3</b></p>
     </div>
     <div class="button-warrper">
       <a href="javascript:;" class="get-started" @click="getStarted">立即使用</a>
       <a href="https://github.com/justbefree/vueggy" target="_blank" class="github">
-        <img :src="github" width="24">Github
+        <img :src="github" width="24">&nbsp;&nbsp;Github
       </a>
     </div>
   </div>
 </template>
 
 <script lang="ts">
-const logo = require("../assets/logo/logo.svg");
+const logo = require("../assets/logo/logo.png");
 const github = require("../assets/github.svg");
 import { Vue } from 'vue-class-component';
 export default class Main extends Vue {
@@ -30,10 +31,17 @@ export default class Main extends Vue {
 <style scoped>
 .logo {
   /* height: 100px; */
-  margin: 80px auto;
+  margin: 20px auto;
 }
 .logo img {
   /* margin: 80px auto; */
+}
+p.slogn{
+  /* color: #4f5959; */
+  color: #4fc08d;
+  font-weight: 600;
+  font-size: 30px;
+  margin: 0;
 }
 p.description{
   margin: 0 auto;
@@ -43,7 +51,7 @@ p.description{
   color: #4f5959;
 }
 .button-warrper {
-  margin-top: 200px;
+  margin-top: 150px;
 }
 .button-warrper a{
   display: inline-block;
@@ -63,7 +71,7 @@ a.github{
 }
 a.github img {
   vertical-align: middle;
-  margin: -2px 5px;
+  /* margin: -2px 5px; */
 }
 a.get-started{
   color: #4fc08d;
