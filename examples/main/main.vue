@@ -6,7 +6,7 @@
       <p class="description">Lightweight Mobile UI Components built on <b>Vue3</b></p>
     </div>
     <div class="button-warrper">
-      <a href="javascript:;" class="get-started" @click="getStarted">立即使用</a>
+      <a href="javascript:;" class="get-started" @click="getStarted">GET STARTED</a>
       <a href="https://github.com/justbefree/vueggy" target="_blank" class="github">
         <img :src="github" width="24">&nbsp;&nbsp;Github
       </a>
@@ -56,7 +56,7 @@ p.description{
 .button-warrper a{
   display: inline-block;
   text-decoration: none;
-  width: 100px;
+  min-width: 120px;
   height: 40px;
   line-height: 40px;
   border-radius: 2em;
