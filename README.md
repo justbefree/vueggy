@@ -1,24 +1,3 @@
 # vueggy
 
-## Project setup
-```
-npm install
-```
-
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
-
-### Compiles and minifies for production
-```
-npm run build
-```
-
-### Lints and fixes files
-```
-npm run lint
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+![Vueggy](https://lizhuang.xyz/vueggy/static/img/logo.3f5d9a9c.svg)
