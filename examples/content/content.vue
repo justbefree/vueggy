@@ -35,7 +35,6 @@ ul {
   user-select: none;
 }
 li {
-  margin: 0 10px;
   border-top: 1px solid #e4e4e4;
   line-height: 44px;
   cursor: pointer;
