@@ -1,3 +1,3 @@
 # vueggy
 
-![Vueggy](https://lizhuang.xyz/vueggy/static/img/logo.3f5d9a9c.svg)
+![Vueggy](https://github.com/justbefree/vueggy/blob/master/examples/assets/logo/logo.png)
