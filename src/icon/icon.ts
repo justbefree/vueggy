@@ -2,13 +2,13 @@
 * @Author: Just be free
 * @Date:   2020-09-23 16:16:46
 * @Last Modified by:   Just be free
-* @Last Modified time: 2020-10-14 16:11:27
+* @Last Modified time: 2020-10-15 10:56:42
 * @E-mail: justbefree@126.com
 */
 import VueGgy, { Options, mixins, props } from "../component/VueGgy";
 import Base642Svg from "../utils/dom/base642svg";
 import { getStyle } from "../utils/dom/style";
-import { h, nextTick } from "vue";
+import { h } from "vue";
 import svgs from "./svgs";
 const Props = props({
   name: String,
@@ -45,9 +45,13 @@ export default class VgIcon extends mixins(VueGgy, Props) {
     this.adjustColorHandler();
   }
   render() {
+    let svgString = VgIcon.svgs[this.name as string];
+    if (this.adjustColor) {
+      svgString = this.svgbase64;
+    }
     return h("i", { class: ["vg-iconfont-wrap", this.cursor] }, {
       default: () => [
-        h("img", { src: this.svgbase64, class: ["vg-iconfont", `vg-iconfont-size-${this.size}`] }, { default: () => "" })
+        h("img", { src: svgString, class: ["vg-iconfont", `vg-iconfont-size-${this.size}`] }, { default: () => "" })
       ] 
     });
   }
