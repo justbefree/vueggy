@@ -2,7 +2,7 @@
 * @Author: Just be free
 * @Date:   2020-09-28 14:57:46
 * @Last Modified by:   Just be free
-* @Last Modified time: 2020-10-13 12:21:34
+* @Last Modified time: 2020-10-15 10:04:06
 * @E-mail: justbefree@126.com
 */
 /**
@@ -12,11 +12,11 @@ https://v3.vuejs.org/guide/migration/v-model.html
 import VueGgy, { mixins, props, Options } from "../component/VueGgy";
 import { h, Transition, withDirectives, vShow, VNode } from "vue";
 const VALIDATE_POSITION_VALUE = ["left", "right", "top", "bottom", "middle"];
-// import PopupManager from "../component/popupManager.js";
 import PopupManager from "../component/popupManager";
 import { addClass } from "../utils/dom";
 let idSeed = 1;
 const closeIcon = require("./close.svg");
+// const Emits = emits(["update:modelValue", "before-enter", "enter", "after-enter", "before-leave", "leave", "after-leave"]);
 const Props = props({
   modelValue: {
     type: Boolean,
@@ -49,6 +49,7 @@ const Props = props({
   fixed: Boolean
 });
 @Options({
+  emits: ["update:modelValue", "before-enter", "enter", "after-enter", "before-leave", "leave", "after-leave"],
   name: "VgPopup"
 })
 export default class VgPopup extends mixins(VueGgy, Props) {

@@ -2,23 +2,23 @@
 * @Author: Just be free
 * @Date:   2020-09-23 16:16:46
 * @Last Modified by:   Just be free
-* @Last Modified time: 2020-10-14 18:46:19
+* @Last Modified time: 2020-10-15 10:05:04
 * @E-mail: justbefree@126.com
 */
-import VueGgy, { Options, mixins, props, emits } from "../component/VueGgy";
+import VueGgy, { Options, mixins, props, } from "../component/VueGgy";
 import { Transition, h, withDirectives, vShow, VNode } from "vue";
 import { addClass } from "../utils/dom";
 import { isPromise } from "../utils";
 import VgButton from "../button";
-const Emits = emits([
-  "update:modelValue",
-  "modal-click",
-  "before-enter",
-  "after-enter",
-  "before-leave",
-  "after-leave",
-  "button-click"
-]);
+// const Emits = emits([
+//   "update:modelValue",
+//   "modal-click",
+//   "before-enter",
+//   "after-enter",
+//   "before-leave",
+//   "after-leave",
+//   "button-click"
+// ]);
 const Props = props({
   beforeOpen: null,
   opened: null,
@@ -60,10 +60,11 @@ const Props = props({
     default: false
   }
 });
-// @Options({
-//   name: "VgDialog"
-// })
-export default class VgDialog extends mixins(VueGgy, Emits, Props) {
+@Options({
+  emits: ["update:modelValue", "modal-click", "before-enter", "after-enter", "before-leave", "after-leave", "button-click"],
+  name: "VgDialog"
+})
+export default class VgDialog extends mixins(VueGgy, Props) {
   public static componentName = "VgDialog";
   public bodyOverflow = "";
   public events = {} as any;
