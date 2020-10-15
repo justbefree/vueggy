@@ -11,6 +11,7 @@
       <li @click="listClick('Radiobox')">radiobox</li>
       <li @click="listClick('Button')">button</li>
       <li @click="listClick('Dialog')">dialog</li>
+      <li @click="listClick('Sticky')">sticky</li>
     </ul>
   </div>
 </template>

@@ -2,7 +2,7 @@
 * @Author: Just be free
 * @Date:   2020-09-22 14:17:59
 * @Last Modified by:   Just be free
-* @Last Modified time: 2020-10-12 15:56:16
+* @Last Modified time: 2020-10-15 11:11:42
 * @E-mail: justbefree@126.com
 */
 import { createRouter, createWebHashHistory } from "vue-router";
@@ -16,6 +16,7 @@ import Checkbox from "./checkbox/checkbox.vue";
 import Radiobox from "./radiobox/radiobox.vue";
 import Dialog from "./dialog/dialog.vue";
 import Button from "./button/button.vue";
+import Sticky from "./sticky/sticky.vue";
 const routes = [
   {
     path: "/",
@@ -66,6 +67,11 @@ const routes = [
     path: "/button",
     name: "Button",
     component: Button
+  },
+  {
+    path: "/sticky",
+    name: "Sticky",
+    component: Sticky
   }
 ];
 const router = createRouter({
