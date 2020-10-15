@@ -1,3 +1,3 @@
 # vueggy
 
-![Vueggy](https://github.com/justbefree/vueggy/blob/master/examples/assets/logo/logo.png =100x100)
+<img src="https://github.com/justbefree/vueggy/blob/master/examples/assets/logo/logo.png" width="100" height="100"/>
