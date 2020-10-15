@@ -2,10 +2,11 @@
 * @Author: Just be free
 * @Date:   2020-09-22 14:17:59
 * @Last Modified by:   Just be free
-* @Last Modified time: 2020-10-15 11:11:42
+* @Last Modified time: 2020-10-15 16:36:49
 * @E-mail: justbefree@126.com
 */
 import { createRouter, createWebHashHistory } from "vue-router";
+import Main from "./main/main.vue";
 import Content from "./content/content.vue";
 import Flex from "./flex/flex.vue";
 import Toast from "./toast/toast.vue";
@@ -20,6 +21,11 @@ import Sticky from "./sticky/sticky.vue";
 const routes = [
   {
     path: "/",
+    name: "Main",
+    component: Main
+  },
+  {
+    path: "/components",
     name: "Content",
     component: Content
   },

@@ -27,8 +27,11 @@ export default class Content extends Vue {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-h3 {
-  margin: 40px 0 0;
+.logo {
+  height: 100px;
+}
+.logo img {
+  margin: 20px auto;
 }
 ul {
   list-style-type: none;
