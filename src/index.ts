@@ -2,7 +2,7 @@
 * @Author: Just be free
 * @Date:   2020-09-22 15:24:16
 * @Last Modified by:   Just be free
-* @Last Modified time: 2020-10-13 17:47:47
+* @Last Modified time: 2020-10-15 11:10:58
 * @E-mail: justbefree@126.com
 */
 import { version } from "../package.json";
@@ -17,11 +17,12 @@ import VgIcon from "./icon";
 import VgCheckbox from "./checkbox";
 import VgRadiobox from "./radiobox";
 import Dialog, { VgDialog } from "./dialog";
+import VgSticky from "./sticky";
 export interface VueggyConfigOptions {
   [propName: string]: any;
 }
 const configOptions = {} as VueggyConfigOptions;
-const components = [VgButton, VgFlex, VgFlexItem, VgSpin, VgPopup, VgIcon, VgCheckbox, VgRadiobox, VgDialog];
+const components = [VgSticky, VgButton, VgFlex, VgFlexItem, VgSpin, VgPopup, VgIcon, VgCheckbox, VgRadiobox, VgDialog];
 
 const install = (app: any, options: any) => {
   components.map(component => {
@@ -43,5 +44,5 @@ const config = (options: VueggyConfigOptions) => {
   });
 };
 const Vueggy = { install, version, config };
-export { VgButton, VgFlex, VgFlexItem, VgToast, VgSpin, VgPopup, VgIcon, VgCheckbox, VgRadiobox, VgDialog };
+export { VgSticky, VgButton, VgFlex, VgFlexItem, VgToast, VgSpin, VgPopup, VgIcon, VgCheckbox, VgRadiobox, VgDialog };
 export default Vueggy;
