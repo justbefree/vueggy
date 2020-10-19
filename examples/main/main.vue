@@ -3,7 +3,7 @@
     <div class="logo">
       <img :src="logo" width="180">
       <p class="slogn">Vueggy</p>
-      <p class="description">Lightweight Mobile UI Components built on <b>Vue3</b></p>
+      <p class="description">Lightweight Mobile UI Components built on <b><a href="https://v3.vuejs.org/" target="_blank">Vue3</a></b></p>
     </div>
     <div class="button-warrper">
       <a href="javascript:;" class="get-started" @click="getStarted">GET STARTED</a>
@@ -50,8 +50,12 @@ p.description{
   line-height: 30px;
   color: #4f5959;
 }
+p.description a {
+  display: block;
+  font-size: 30px;
+}
 .button-warrper {
-  margin-top: 150px;
+  margin-top: 120px;
 }
 .button-warrper a{
   display: inline-block;
