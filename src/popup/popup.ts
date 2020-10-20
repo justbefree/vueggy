@@ -2,7 +2,7 @@
 * @Author: Just be free
 * @Date:   2020-09-28 14:57:46
 * @Last Modified by:   Just be free
-* @Last Modified time: 2020-10-20 10:11:45
+* @Last Modified time: 2020-10-20 18:23:15
 * @E-mail: justbefree@126.com
 */
 /**
@@ -49,7 +49,7 @@ const Props = props({
   fixed: Boolean
 });
 @Options({
-  emits: ["update:modelValue", "before-enter", "enter", "after-enter", "before-leave", "leave", "after-leave"],
+  emits: ["update:modelValue", "beforeenter", "enter", "afterenter", "beforeleave", "leave", "afterleave"],
   name: "VgPopup"
 })
 export default class VgPopup extends mixins(VueGgy, Props) {
@@ -103,16 +103,16 @@ export default class VgPopup extends mixins(VueGgy, Props) {
     }
     this.idSeed = idSeed;
     idSeed++;
-    this.$emit("before-enter");
+    this.$emit("beforeenter");
   }
   handleEnter() {
     this.$emit("enter");
   }
   handleAfterEneter() {
-    this.$emit("after-enter");
+    this.$emit("afterenter");
   }
   handleBeforeLeave() {
-    this.$emit("before-leave");
+    this.$emit("beforeleave");
   }
   handleLeave() {
     if (this.diff < 1000) {
@@ -128,7 +128,7 @@ export default class VgPopup extends mixins(VueGgy, Props) {
     } else {
       PopupManager.closeModal(this.idSeed);
     }
-    this.$emit("after-leave");
+    this.$emit("afterleave");
   }
   close() {
     this.$emit("update:modelValue", false);
