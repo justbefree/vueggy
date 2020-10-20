@@ -2,7 +2,7 @@
 * @Author: Just be free
 * @Date:   2020-09-28 14:57:46
 * @Last Modified by:   Just be free
-* @Last Modified time: 2020-10-15 10:04:06
+* @Last Modified time: 2020-10-20 10:11:45
 * @E-mail: justbefree@126.com
 */
 /**
@@ -11,11 +11,11 @@ https://v3.vuejs.org/guide/migration/v-model.html
 */
 import VueGgy, { mixins, props, Options } from "../component/VueGgy";
 import { h, Transition, withDirectives, vShow, VNode } from "vue";
+import VgIcon from "../icon";
 const VALIDATE_POSITION_VALUE = ["left", "right", "top", "bottom", "middle"];
 import PopupManager from "../component/popupManager";
 import { addClass } from "../utils/dom";
 let idSeed = 1;
-const closeIcon = require("./close.svg");
 // const Emits = emits(["update:modelValue", "before-enter", "enter", "after-enter", "before-leave", "leave", "after-leave"]);
 const Props = props({
   modelValue: {
@@ -66,7 +66,17 @@ export default class VgPopup extends mixins(VueGgy, Props) {
     return VALIDATE_POSITION_VALUE.indexOf(this.position) > -1;
   }
   hanleFastClick() {}
-  removeModal() {}
+  removeModal() {
+    if (this.singleton) {
+      document.body.style.overflow = this.bodyOverflow;
+    }
+    this.events["closeModal"] &&
+      typeof this.events["closeModal"] === "function" &&
+      this.events["closeModal"]();
+    this.events = {
+      closeModal: () => {}
+    };
+  }
   handleBeforeEnter(node: any) {
     this.bodyOverflow = document.body.style.overflow;
     const parentNode = node.parentNode as HTMLElement;
@@ -123,12 +133,16 @@ export default class VgPopup extends mixins(VueGgy, Props) {
   close() {
     this.$emit("update:modelValue", false);
   }
-  createCloseIcon(): VNode {
-    return h("div", { class: ["vg-popup-closeicon", this.fixed ? "fixed" : ""] }, {
-      default: () => [
-        h("img", { src: closeIcon, onClick: this.close }, { default: () => [] })
-      ]
-    });
+  createCloseIcon(): VNode[] {
+    if (this.showCloseIcon) {
+      return [h("div", { class: ["vg-popup-closeicon", this.fixed ? "fixed" : ""] }, {
+        default: () => [
+          h(VgIcon, { name: "close", onClick: this.close }, { default: () => [] })
+        ]
+      })];
+    } else {
+      return [];
+    }
   }
   genStyle(position: string) {
     if (position === "bottom") {
