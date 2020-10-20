@@ -12,6 +12,7 @@
       <li @click="listClick('Button')">button</li>
       <li @click="listClick('Dialog')">dialog</li>
       <li @click="listClick('Sticky')">sticky</li>
+      <li @click="listClick('Calendar')">calendar</li>
     </ul>
   </div>
 </template>

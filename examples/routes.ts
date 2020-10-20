@@ -2,7 +2,7 @@
 * @Author: Just be free
 * @Date:   2020-09-22 14:17:59
 * @Last Modified by:   Just be free
-* @Last Modified time: 2020-10-15 16:36:49
+* @Last Modified time: 2020-10-19 09:54:32
 * @E-mail: justbefree@126.com
 */
 import { createRouter, createWebHashHistory } from "vue-router";
@@ -18,6 +18,7 @@ import Radiobox from "./radiobox/radiobox.vue";
 import Dialog from "./dialog/dialog.vue";
 import Button from "./button/button.vue";
 import Sticky from "./sticky/sticky.vue";
+import Calendar from "./calendar/calendar.vue";
 const routes = [
   {
     path: "/",
@@ -78,6 +79,11 @@ const routes = [
     path: "/sticky",
     name: "Sticky",
     component: Sticky
+  },
+  {
+    path: "/calendar",
+    name: "Calendar",
+    component: Calendar
   }
 ];
 const router = createRouter({
