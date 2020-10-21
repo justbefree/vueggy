@@ -2,7 +2,7 @@
 * @Author: Just be free
 * @Date:   2020-10-12 15:56:53
 * @Last Modified by:   Just be free
-* @Last Modified time: 2020-10-20 18:30:26
+* @Last Modified time: 2020-10-21 14:02:03
 * @E-mail: justbefree@126.com
 */
 import VueGgy, { mixins, props, Options } from "../component/VueGgy";
@@ -114,7 +114,10 @@ const Props = props({
 });
 @Options({
   emits: ["update:modelValue", "getdate", "beforeenter", "enter", "afterenter", "beforeleave", "leave", "afterleave"],
-  name: "VgCalendar"
+  name: "VgCalendar",
+  watch: {
+    mode: "highLightDefault"
+  }
 })
 export default class VgCalendar extends mixins(VueGgy, Props) {
   public static componentName = "VgCalendar";
@@ -125,7 +128,6 @@ export default class VgCalendar extends mixins(VueGgy, Props) {
   public beginDate: null|string = null;
   public endDate: null|string = null;
   public confirmButtonClassName = "active";
-  [propName: string]: any;
   close() {
     this.$emit("update:modelValue", false);
   }
