@@ -2,7 +2,7 @@
 * @Author: Just be free
 * @Date:   2020-09-28 14:57:46
 * @Last Modified by:   Just be free
-* @Last Modified time: 2020-10-20 18:23:15
+* @Last Modified time: 2020-10-21 18:16:37
 * @E-mail: justbefree@126.com
 */
 /**
@@ -158,7 +158,6 @@ export default class VgPopup extends mixins(VueGgy, Props) {
     }
   }
   render() {
-    const slots = this.$slots.default && (typeof this.$slots.default === "function") && this.$slots.default();
     let position = "bottom";
     if (this.isValidatePositionVlaue()) {
       position = this.position;
@@ -184,7 +183,7 @@ export default class VgPopup extends mixins(VueGgy, Props) {
               class: ["vg-popup", `vg-popup-${position}`],
               style: { ...this.genStyle(position) }
             },
-            { default: () => [this.createCloseIcon(), slots] }
+            { default: () => [this.createCloseIcon(), this.getSlots()] }
           ), [[vShow, this.modelValue]])
         ]
       }
