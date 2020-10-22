@@ -6,4 +6,8 @@
 
 ```js
 npm install vueggy --save
+
+import Vueggy from "vueggy";
+const app = Vue.createApp(App);
+app.use(Vueggy);
 ```
