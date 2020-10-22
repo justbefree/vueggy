@@ -2,7 +2,7 @@
 * @Author: Just be free
 * @Date:   2020-09-22 14:17:59
 * @Last Modified by:   Just be free
-* @Last Modified time: 2020-10-19 09:54:32
+* @Last Modified time: 2020-10-21 17:43:22
 * @E-mail: justbefree@126.com
 */
 import { createRouter, createWebHashHistory } from "vue-router";
@@ -19,6 +19,7 @@ import Dialog from "./dialog/dialog.vue";
 import Button from "./button/button.vue";
 import Sticky from "./sticky/sticky.vue";
 import Calendar from "./calendar/calendar.vue";
+import Layout from "./layout/layout.vue";
 const routes = [
   {
     path: "/",
@@ -84,6 +85,11 @@ const routes = [
     path: "/calendar",
     name: "Calendar",
     component: Calendar
+  },
+  {
+    path: "/layout",
+    name: "Layout",
+    component: Layout
   }
 ];
 const router = createRouter({
