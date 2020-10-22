@@ -1,0 +1,52 @@
+/*
+* @Author: Just be free
+* @Date:   2020-10-21 15:17:14
+* @Last Modified by:   Just be free
+* @Last Modified time: 2020-10-22 10:44:57
+*/
+.vg-layout {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  .vg-layout-flex-container {
+    height: 100%;
+    width: 100%;
+    position: relative;
+    .vg-layout-body {
+      transition: all 0.5s;
+      box-sizing: border-box;
+      height: 100%;
+      overflow: auto;
+      // -webkit-overflow-scrolling: touch;
+    }
+    .vg-layout-footer {
+      // min-height: 50px;
+    }
+  }
+}
+.slide-fade-enter-active {
+  transition: all 0.2s ease-in-out;
+  // -webkit-backface-visibility: hidden;
+}
+.slide-fade-leave-active {
+  transition: all 0.5s ease-in-out;
+  // -webkit-backface-visibility: hidden;
+}
+.slide-fade-enter-from, .slide-fade-leave-to
+/* .slide-fade-leave-active below version 2.1.8 */ {
+  transform: translateY(55px);
+  // -webkit-backface-visibility: hidden;
+  opacity: 0;
+}
+
+.slide-fade-top-enter-active {
+  transition: all 0.2s ease;
+}
+.slide-fade-top-leave-active {
+  transition: all 0.5s ease-out;
+}
+.slide-fade-top-enter-from, .slide-fade-top-leave-to
+/* .slide-fade-leave-active below version 2.1.8 */ {
+  transform: translateY(-55px);
+  opacity: 0;
+}
