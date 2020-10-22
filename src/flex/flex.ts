@@ -2,7 +2,7 @@
 * @Author: Just be free
 * @Date:   2020-09-22 15:24:40
 * @Last Modified by:   Just be free
-* @Last Modified time: 2020-10-21 18:16:23
+* @Last Modified time: 2020-10-22 11:11:25
 * @E-mail: justbefree@126.com
 */
 import VueGgy, { mixins, props, Options } from "../component/VueGgy";
@@ -78,6 +78,6 @@ export default class VgFlex extends mixins(VueGgy, Props) {
   render() {
     const className = this.translateAttrsToClassName();
     const fix = this.fixBottomLine ? "vg-flex-fix-bottom-line" : "";
-    return h("div", { class: ["vg-flex", ...className, fix] }, [this.getSlots()]);
+    return h("div", { class: ["vg-flex", ...className, fix] }, { default: () => this.getSlots() });
   }
 }
