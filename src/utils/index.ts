@@ -2,7 +2,7 @@
 * @Author: Just be free
 * @Date:   2020-09-22 16:20:15
 * @Last Modified by:   Just be free
-* @Last Modified time: 2020-10-20 18:06:46
+* @Last Modified time: 2020-10-22 17:23:13
 * @E-mail: justbefree@126.com
 */
 export const hyphenate = (str: string): string => {
@@ -64,4 +64,20 @@ export const setProperty = <T extends object, K extends string, V extends any>(o
     value: v,
     writable: true
   });
-}
+};
+// 判断是否是中文
+export const isChineseCharacters = (str: string): boolean => {
+  return /^[\u4e00-\u9fa5]+$/i.test(str);
+};
+export const throttle = (callback: Function, delay: number = 800): Function => {
+  let timer: null|number = null;
+  return function() {
+    if (timer) {
+      clearTimeout(timer);
+    }
+    timer = setTimeout(() => {
+      callback(arguments);
+      timer = null;
+    }, delay);
+  };
+};
