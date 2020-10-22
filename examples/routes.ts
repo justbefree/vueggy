@@ -2,7 +2,7 @@
 * @Author: Just be free
 * @Date:   2020-09-22 14:17:59
 * @Last Modified by:   Just be free
-* @Last Modified time: 2020-10-21 17:43:22
+* @Last Modified time: 2020-10-22 14:45:48
 * @E-mail: justbefree@126.com
 */
 import { createRouter, createWebHashHistory } from "vue-router";
@@ -20,6 +20,7 @@ import Button from "./button/button.vue";
 import Sticky from "./sticky/sticky.vue";
 import Calendar from "./calendar/calendar.vue";
 import Layout from "./layout/layout.vue";
+import Citypicker from "./citypicker/citypicker.vue";
 const routes = [
   {
     path: "/",
@@ -90,6 +91,11 @@ const routes = [
     path: "/layout",
     name: "Layout",
     component: Layout
+  },
+  {
+    path: "/citypicker",
+    name: "Citypicker",
+    component: Citypicker
   }
 ];
 const router = createRouter({

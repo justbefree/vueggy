@@ -14,6 +14,7 @@
       <li @click="listClick('Sticky')">sticky</li>
       <li @click="listClick('Calendar')">calendar</li>
       <li @click="listClick('Layout')">layout</li>
+      <li @click="listClick('Citypicker')">citypicker</li>
     </ul>
   </div>
 </template>
