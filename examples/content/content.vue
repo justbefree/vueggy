@@ -14,6 +14,7 @@
       <li @click="listClick('Calendar')">calendar</li>
       <li @click="listClick('Layout')">layout</li>
       <li @click="listClick('Citypicker')">citypicker</li>
+      <li @click="listClick('Indicator')">indicator</li>
     </ul>
   </div>
 </template>

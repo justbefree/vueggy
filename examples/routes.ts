@@ -2,7 +2,7 @@
 * @Author: Just be free
 * @Date:   2020-09-22 14:17:59
 * @Last Modified by:   Just be free
-* @Last Modified time: 2020-10-23 11:14:14
+* @Last Modified time: 2020-10-23 11:44:45
 * @E-mail: justbefree@126.com
 */
 import { createRouter, createWebHashHistory } from "vue-router";
@@ -21,6 +21,7 @@ import Sticky from "./sticky/sticky.vue";
 import Calendar from "./calendar/calendar.vue";
 import Layout from "./layout/layout.vue";
 import Citypicker from "./citypicker/citypicker.vue";
+import Indicator from "./indicator/indicator.vue";
 const routes = [
   {
     path: "/",
@@ -111,6 +112,12 @@ const routes = [
     name: "Citypicker",
     component: Citypicker,
     meta: { showFooter: false, showHeader: true, title: "citypicker" }
+  },
+  {
+    path: "/indicator",
+    name: "Indicator",
+    component: Indicator,
+    meta: { showFooter: false, showHeader: true, title: "indicator" }
   }
 ];
 const router = createRouter({
