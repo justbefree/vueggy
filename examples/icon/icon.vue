@@ -1,6 +1,5 @@
 <template>
   <div class="icon-view">
-    <h1>icon</h1>
     <div id="container">
       <ul>
         <li>我是组件库自带的<vg-icon name="close" @click="handleClick"></vg-icon></li>

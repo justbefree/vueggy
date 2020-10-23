@@ -1,6 +1,5 @@
 <template>
   <div class="checkbox-view">
-    <h1>checkbox</h1>
     <div id="container">
       <span>disabled</span>
       <vg-checkbox v-model="checkbox1" :disabled="true"></vg-checkbox>

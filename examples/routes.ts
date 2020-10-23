@@ -2,7 +2,7 @@
 * @Author: Just be free
 * @Date:   2020-09-22 14:17:59
 * @Last Modified by:   Just be free
-* @Last Modified time: 2020-10-22 14:45:48
+* @Last Modified time: 2020-10-23 11:14:14
 * @E-mail: justbefree@126.com
 */
 import { createRouter, createWebHashHistory } from "vue-router";
@@ -25,77 +25,92 @@ const routes = [
   {
     path: "/",
     name: "Main",
-    component: Main
+    component: Main,
+    meta: { showFooter: false, showHeader: false, title: "" }
   },
   {
     path: "/components",
     name: "Content",
-    component: Content
+    component: Content,
+    meta: { showFooter: false, showHeader: true, title: "components" }
   },
   {
     path: "/flex",
     name: "Flex",
-    component: Flex
+    component: Flex,
+    meta: { showFooter: false, showHeader: true, title: "flex" }
   },
   {
     path: "/toast",
     name: "Toast",
-    component: Toast
+    component: Toast,
+    meta: { showFooter: false, showHeader: true, title: "toast" }
   },
   {
     path: "/spin",
     name: "Spin",
-    component: Spin
+    component: Spin,
+    meta: { showFooter: false, showHeader: true, title: "spin" }
   },
   {
     path: "/popup",
     name: "Popup",
-    component: Popup
+    component: Popup,
+    meta: { showFooter: false, showHeader: true, title: "popup" }
   },
   {
     path: "/icon",
     name: "Icon",
-    component: Icon
+    component: Icon,
+    meta: { showFooter: false, showHeader: true, title: "icon" }
   },
   {
     path: "/checkbox",
     name: "Checkbox",
-    component: Checkbox
+    component: Checkbox,
+    meta: { showFooter: false, showHeader: true, title: "checkbox" }
   },
   {
     path: "/radiobox",
     name: "Radiobox",
-    component: Radiobox
+    component: Radiobox,
+    meta: { showFooter: false, showHeader: true, title: "radiobox" }
   },
   {
     path: "/dialog",
     name: "Dialog",
-    component: Dialog
+    component: Dialog,
+    meta: { showFooter: false, showHeader: true, title: "dialog" }
   },
   {
     path: "/button",
     name: "Button",
-    component: Button
+    component: Button,
+    meta: { showFooter: false, showHeader: true, title: "button" }
   },
   {
     path: "/sticky",
     name: "Sticky",
-    component: Sticky
+    component: Sticky,
+    meta: { showFooter: false, showHeader: true, title: "sticky" }
   },
   {
     path: "/calendar",
     name: "Calendar",
-    component: Calendar
+    component: Calendar,
+    meta: { showFooter: false, showHeader: true, title: "calendar" }
   },
   {
     path: "/layout",
     name: "Layout",
-    component: Layout
+    component: Layout,
+    meta: { showFooter: false, showHeader: true, title: "layout" }
   },
   {
     path: "/citypicker",
     name: "Citypicker",
-    component: Citypicker
+    component: Citypicker,
+    meta: { showFooter: false, showHeader: true, title: "citypicker" }
   }
 ];
 const router = createRouter({

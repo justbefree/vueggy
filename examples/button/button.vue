@@ -1,6 +1,5 @@
 <template>
   <div class="button-view">
-    <h1>button</h1>
     <div id="container">
       <ul>
         <li><vg-button>default text</vg-button></li>

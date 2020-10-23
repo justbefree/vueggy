@@ -1,6 +1,5 @@
 <template>
   <div class="toast-view">
-    <h1>toast</h1>
     <div id="container">
       <!-- <transition name="ddd">
         <div>dddd</div>

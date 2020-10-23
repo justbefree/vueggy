@@ -1,6 +1,5 @@
 <template>
   <div class="radiobox-view">
-    <h1>radiobox</h1>
     <div id="container">
       <span>disabled</span>
       <vg-radiobox v-model="radiobox1" :disabled="true"></vg-radiobox>

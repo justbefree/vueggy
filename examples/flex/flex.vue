@@ -1,6 +1,5 @@
 <template>
   <div class="flex-view">
-    <h1>flex</h1>
     <div id="container">
       <vg-flex justifyContent="center" alignItems="center" class="face">
         <transition>

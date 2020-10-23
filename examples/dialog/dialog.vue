@@ -1,6 +1,5 @@
 <template>
   <div class="dialog-view">
-    <h1>dialog</h1>
     <div id="container">
       <ul>
         <li @click="alert">sync alert</li>

@@ -1,6 +1,5 @@
 <template>
   <div class="calendar-view">
-    <h1>calendar</h1>
     <div id="container">
       <ul>
         <li @click="handleClick(1)">单选</li>

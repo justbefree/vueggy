@@ -1,6 +1,5 @@
 <template>
   <div class="spin-view">
-    <h1>spin</h1>
     <div id="container">
       <ul>
         <li><vg-spin></vg-spin></li>

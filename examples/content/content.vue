@@ -1,6 +1,5 @@
 <template>
   <div class="content-view">
-    <h1>Components</h1>
     <ul>
       <li @click="listClick('Flex')">flex</li>
       <li @click="listClick('Toast')">toast</li>
@@ -40,11 +39,14 @@ ul {
   list-style-type: none;
   padding: 0;
   user-select: none;
+  margin: 0;
 }
 li {
   border-top: 1px solid #e4e4e4;
   line-height: 44px;
   cursor: pointer;
+  color: #4f5959;
+  font-size: 18px;
 }
 li:last-child {
   border-bottom: 1px solid #e4e4e4;

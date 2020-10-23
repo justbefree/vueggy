@@ -1,6 +1,5 @@
 <template>
   <div class="sticky-view">
-    <h1>sticky</h1>
     <div id="container">
       <template v-for="item in 200" :key="item">
         <div v-if="item === 20">

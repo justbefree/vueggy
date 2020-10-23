@@ -1,6 +1,5 @@
 <template>
   <div class="citypicker-view">
-    <h1>citypicker</h1>
     <div id="container">
       <ul>
         <li @click="handlePicker(1)">国内城市</li>
