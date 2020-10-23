@@ -2,7 +2,7 @@
 * @Author: Just be free
 * @Date:   2020-09-22 15:24:16
 * @Last Modified by:   Just be free
-* @Last Modified time: 2020-10-22 14:49:11
+* @Last Modified time: 2020-10-23 12:00:27
 * @E-mail: justbefree@126.com
 */
 import { version } from "../package.json";
@@ -21,6 +21,7 @@ import VgSticky from "./sticky";
 import VgCalendar from "./calendar";
 import VgLayout from "./layout";
 import VgCitypicker from "./citypicker";
+import VgIndicator from "./indicator";
 export interface VueggyConfigOptions {
   [propName: string]: any;
 }
@@ -39,6 +40,7 @@ const install = (app: any, options: any) => {
   });
   app.config.globalProperties.Toast = VgToast;
   app.config.globalProperties.Dialog = Dialog;
+  app.config.globalProperties.Indicator = VgIndicator;
   app.config.isCustomElement = (tag: string) => tag.startsWith("vg-");
 };
 const config = (options: VueggyConfigOptions) => {
@@ -47,5 +49,5 @@ const config = (options: VueggyConfigOptions) => {
   });
 };
 const Vueggy = { install, version, config };
-export { VgCitypicker, VgLayout, VgCalendar, VgSticky, VgButton, VgFlex, VgFlexItem, VgToast, VgSpin, VgPopup, VgIcon, VgCheckbox, VgRadiobox, VgDialog };
+export { VgIndicator, VgCitypicker, VgLayout, VgCalendar, VgSticky, VgButton, VgFlex, VgFlexItem, VgToast, VgSpin, VgPopup, VgIcon, VgCheckbox, VgRadiobox, VgDialog };
 export default Vueggy;
