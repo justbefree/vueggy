@@ -34,9 +34,11 @@
     "typescript": "~3.9.3"
   },
   "main": "lib/vueggy.umd.min.js",
-  "typings": "types/index.d.ts",
+  "types": "types/index.d.ts",
   "files": [
-    "lib"
+    "lib",
+    "packages",
+    "*.d.ts"
   ],
   "eslintConfig": {
     "root": true,

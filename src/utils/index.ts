@@ -2,9 +2,12 @@
 * @Author: Just be free
 * @Date:   2020-09-22 16:20:15
 * @Last Modified by:   Just be free
-* @Last Modified time: 2020-10-22 17:23:13
+* @Last Modified time: 2020-10-27 17:59:01
 * @E-mail: justbefree@126.com
 */
+export const hasOwnProperty = (obj: any, props: string): boolean => {
+  return Object.prototype.hasOwnProperty.call(obj, props);
+};
 export const hyphenate = (str: string): string => {
   return String(str).replace(/\B([A-Z])/g, "-$1").toLowerCase();
 };
@@ -23,6 +26,13 @@ export const isPromise = (obj: any): boolean => {
     (typeof obj === "object" || typeof obj === "function") &&
     typeof obj.then === "function"
   );
+};
+export const isObject = (value: any): boolean => {
+  const type = typeof value;
+  return value !== null && type === "object";
+};
+export const getCharLength = (str: string): number => {
+  return str.replace(/[\u0391-\uFFE5]/g, "aa").length;
 };
 export const drop = (arr: string[]|string, ele: string[]|string): void => {
   if (Array.isArray(arr)) {

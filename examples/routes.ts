@@ -2,7 +2,7 @@
 * @Author: Just be free
 * @Date:   2020-09-22 14:17:59
 * @Last Modified by:   Just be free
-* @Last Modified time: 2020-10-23 11:44:45
+* @Last Modified time: 2020-10-23 16:41:05
 * @E-mail: justbefree@126.com
 */
 import { createRouter, createWebHashHistory } from "vue-router";
@@ -22,6 +22,7 @@ import Calendar from "./calendar/calendar.vue";
 import Layout from "./layout/layout.vue";
 import Citypicker from "./citypicker/citypicker.vue";
 import Indicator from "./indicator/indicator.vue";
+import Slider from "./slider/slider.vue";
 const routes = [
   {
     path: "/",
@@ -118,6 +119,12 @@ const routes = [
     name: "Indicator",
     component: Indicator,
     meta: { showFooter: false, showHeader: true, title: "indicator" }
+  },
+  {
+    path: "/slider",
+    name: "Slider",
+    component: Slider,
+    meta: { showFooter: false, showHeader: true, title: "slider" }
   }
 ];
 const router = createRouter({

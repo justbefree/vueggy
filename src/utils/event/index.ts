@@ -2,7 +2,7 @@
 * @Author: Just be free
 * @Date:   2020-10-21 18:26:11
 * @Last Modified by:   Just be free
-* @Last Modified time: 2020-10-22 10:21:13
+* @Last Modified time: 2020-10-27 17:50:12
 * @E-mail: justbefree@126.com
 */
  /* eslint-disable */ 
@@ -16,7 +16,7 @@ try {
   window.addEventListener("test", () => {}, options);
 } catch (err) {}
 export const bind = (dom: EventTarget, type: string, fn: (ev: Event, args: any) => void, args: any, passive = true) => {
-  const callback = (e: Event) => {
+  const callback: EventListener = <E extends Event>(e: E) => {
     fn(e, args);
   };
   dom.addEventListener(

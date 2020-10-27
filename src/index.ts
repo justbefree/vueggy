@@ -2,7 +2,7 @@
 * @Author: Just be free
 * @Date:   2020-09-22 15:24:16
 * @Last Modified by:   Just be free
-* @Last Modified time: 2020-10-23 12:00:27
+* @Last Modified time: 2020-10-23 16:39:14
 * @E-mail: justbefree@126.com
 */
 import { version } from "../package.json";
@@ -22,11 +22,12 @@ import VgCalendar from "./calendar";
 import VgLayout from "./layout";
 import VgCitypicker from "./citypicker";
 import VgIndicator from "./indicator";
+import VgSlider from "./slider";
 export interface VueggyConfigOptions {
   [propName: string]: any;
 }
 const configOptions = {} as VueggyConfigOptions;
-const components = [VgCitypicker, VgLayout, VgCalendar, VgSticky, VgButton, VgFlex, VgFlexItem, VgSpin, VgPopup, VgIcon, VgCheckbox, VgRadiobox, VgDialog];
+const components = [VgSlider, VgCitypicker, VgLayout, VgCalendar, VgSticky, VgButton, VgFlex, VgFlexItem, VgSpin, VgPopup, VgIcon, VgCheckbox, VgRadiobox, VgDialog];
 
 const install = (app: any, options: any) => {
   components.map(component => {
@@ -49,5 +50,5 @@ const config = (options: VueggyConfigOptions) => {
   });
 };
 const Vueggy = { install, version, config };
-export { VgIndicator, VgCitypicker, VgLayout, VgCalendar, VgSticky, VgButton, VgFlex, VgFlexItem, VgToast, VgSpin, VgPopup, VgIcon, VgCheckbox, VgRadiobox, VgDialog };
+export { VgSlider, VgIndicator, VgCitypicker, VgLayout, VgCalendar, VgSticky, VgButton, VgFlex, VgFlexItem, VgToast, VgSpin, VgPopup, VgIcon, VgCheckbox, VgRadiobox, VgDialog };
 export default Vueggy;
