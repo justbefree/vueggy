@@ -2,7 +2,7 @@
 * @Author: Just be free
 * @Date:   2020-09-22 14:17:59
 * @Last Modified by:   Just be free
-* @Last Modified time: 2020-10-23 16:41:05
+* @Last Modified time: 2020-10-28 12:17:33
 * @E-mail: justbefree@126.com
 */
 import { createRouter, createWebHashHistory } from "vue-router";
@@ -23,6 +23,7 @@ import Layout from "./layout/layout.vue";
 import Citypicker from "./citypicker/citypicker.vue";
 import Indicator from "./indicator/indicator.vue";
 import Slider from "./slider/slider.vue";
+import ActionSheet from "./action-sheet/actionSheet.vue";
 const routes = [
   {
     path: "/",
@@ -125,6 +126,12 @@ const routes = [
     name: "Slider",
     component: Slider,
     meta: { showFooter: false, showHeader: true, title: "slider" }
+  },
+  {
+    path: "/action-sheet",
+    name: "ActionSheet",
+    component: ActionSheet,
+    meta: { showFooter: false, showHeader: true, title: "action-sheet" }
   }
 ];
 const router = createRouter({

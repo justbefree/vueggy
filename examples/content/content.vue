@@ -16,6 +16,7 @@
       <li @click="listClick('Citypicker')">citypicker</li>
       <li @click="listClick('Indicator')">indicator</li>
       <li @click="listClick('Slider')">slider</li>
+      <li @click="listClick('ActionSheet')">action-sheet</li>
     </ul>
   </div>
 </template>
