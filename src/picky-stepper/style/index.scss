@@ -1,0 +1,109 @@
+/*
+* @Author: Just be free
+* @Date:   2020-10-28 14:38:33
+* @Last Modified by:   Just be free
+* @Last Modified time: 2020-10-28 19:13:02
+*/
+.vg-picky-stepper {
+  .vg-picky-stepper-header {
+    text-align: center;
+    .vg-picky-stepper-title {
+      display: inline-block;
+      height: 100%;
+      line-height: 50px;
+      color: #666;
+      font-size: 17px;
+    }
+    height: 50px;
+    position: relative;
+    .vg-picky-stepper-back {
+      position: absolute;
+      left: 10px;
+      top: 10px;
+    }
+    .vg-picky-stepper-close {
+      position: absolute;
+      right: 10px;
+      top: 10px;
+    }
+  }
+  .vg-picky-stepper-content {
+    &.show {
+      display: block;
+    }
+    &.hide {
+      display: none;
+    }
+    ul {
+      width: 90%;
+      list-style-type: none;
+      padding: 0;
+      margin: 0 auto;
+      li {
+        cursor: pointer;
+        line-height: 44px;
+        border-bottom: 1px solid $border-color;
+        &:last-child {
+          border-bottom: none;
+        }
+        .text {
+          margin-left: 5px;
+          font-size: 15px;
+          color: $text-color;
+        }
+        .textarea-wapper {
+          width: 100%;
+          position: relative;
+          .textarea-counter {
+            position: absolute;
+            bottom: 20px;
+            right: 8px;
+            font-size: 12px;
+            color: #999;
+            height: 15px;
+            line-height: 15px;
+          }
+        }
+        .input,
+        .textarea {
+          border-radius: 5px;
+          border: 1px solid #e2e2e2;
+          outline: none;
+          font-size: 15px;
+          height: 30px;
+          background: rgba(238, 238, 238, 1);
+          // box-shadow: none;
+          text-shadow: none;
+          -webkit-appearance: none;
+          box-shadow: 0px 0px 0px #fff inset;
+          &.active {
+            color: $text-color;
+            background: $background-color;
+          }
+        }
+        .input {
+          padding: 0 8px;
+          margin-left: 8px;
+          width: calc(100% - 18px - 8px);
+        }
+        .textarea {
+          margin: 0;
+          padding: 8px;
+          width: calc(100% - 18px);
+          min-height: 65px;
+          resize: none;
+        }
+        .input:focus, .textarea:focus {
+          color: $text-color;
+          background: $background-color;
+        }
+      }
+    }
+  }
+  .vg-picky-stepper-footer {
+    .step-confirm {
+      margin: 10px auto;
+      width: 90%;
+    }
+  }
+}
