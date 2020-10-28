@@ -1,0 +1,59 @@
+/*
+* @Author: Just be free
+* @Date:   2020-10-28 12:10:18
+* @Last Modified by:   Just be free
+* @Last Modified time: 2020-10-28 12:18:37
+*/
+.vg-action-sheet {
+  .vg-action-sheet-title {
+    height: 50px;
+    margin: 0;
+    line-height: 50px;
+    text-align: center;
+    font-weight: normal;
+    font-size: 16px;
+    user-select: none;
+  }
+  .vg-action-sheet-content {
+    padding: 0;
+    margin: 0;
+    text-align: center;
+    > li {
+      line-height: 50px;
+      cursor: pointer;
+      position: relative;
+      user-select: none;
+    }
+    > li::after {
+      position: absolute;
+      box-sizing: border-box;
+      content: " ";
+      pointer-events: none;
+      top: -50%;
+      right: -50%;
+      bottom: -50%;
+      left: -50%;
+      border: 0 solid #ebedf0;
+      border-top-width: 1px;
+      -webkit-transform: scale(0.5);
+      transform: scale(0.5);
+    }
+    > li.vg-action-sheet-cancel::before {
+      display: block;
+      height: 8px;
+      background-color: #f7f8fa;
+      content: " ";
+    }
+    > li.disable {
+      color: #c8c9cc;
+      cursor: not-allowed;
+    }
+    .vg-action-sheet-loading-warpper {
+      line-height: normal;
+      > .loading {
+        display: inline-block;
+        margin: 20px auto;
+      }
+    }
+  }
+}
