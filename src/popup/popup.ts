@@ -2,7 +2,7 @@
 * @Author: Just be free
 * @Date:   2020-09-28 14:57:46
 * @Last Modified by:   Just be free
-* @Last Modified time: 2020-10-21 18:16:37
+* @Last Modified time: 2020-10-28 14:25:43
 * @E-mail: justbefree@126.com
 */
 /**
@@ -49,7 +49,7 @@ const Props = props({
   fixed: Boolean
 });
 @Options({
-  emits: ["update:modelValue", "beforeenter", "enter", "afterenter", "beforeleave", "leave", "afterleave"],
+  emits: ["update:modelValue", "beforeenter", "enter", "afterenter", "beforeleave", "leave", "afterleave", "input"],
   name: "VgPopup"
 })
 export default class VgPopup extends mixins(VueGgy, Props) {
@@ -132,6 +132,7 @@ export default class VgPopup extends mixins(VueGgy, Props) {
   }
   close() {
     this.$emit("update:modelValue", false);
+    this.$emit("input", false);
   }
   createCloseIcon(): VNode[] {
     if (this.showCloseIcon) {
