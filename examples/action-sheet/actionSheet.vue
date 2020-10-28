@@ -93,5 +93,6 @@ ul {
 }
 ul li{
   margin: 20px auto;
+  cursor: pointer;
 }
 </style>
