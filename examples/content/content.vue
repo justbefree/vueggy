@@ -18,6 +18,7 @@
       <li @click="listClick('Slider')">slider</li>
       <li @click="listClick('ActionSheet')">action-sheet</li>
       <li @click="listClick('PickyStepper')">picky-stepper</li>
+      <li @click="listClick('Counter')">counter</li>
       <li @click="listClick('JSapi')">js-api</li>
     </ul>
   </div>
