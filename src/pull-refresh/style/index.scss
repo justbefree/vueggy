@@ -1,0 +1,25 @@
+/*
+* @Author: Just be free
+* @Date:   2020-11-02 17:10:56
+* @Last Modified by:   Just be free
+* @Last Modified time: 2020-11-02 17:49:31
+*/
+.vg-pull-refresh {
+  user-select: none;
+  transition: all 0.2s ease-out;
+  &.none {
+    transition: none 0s ease 0s;
+  }
+  &.dragging {
+    cursor: grab;
+  }
+  .vg-pull-refresh-loading,
+  .vg-pull-refresh-draggin-text {
+    text-align: center;
+    > span {
+      display: inline-block;
+      font-size: 13px;
+      color: $theme-color;
+    }
+  }
+}
