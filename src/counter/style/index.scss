@@ -1,0 +1,31 @@
+/*
+* @Author: Just be free
+* @Date:   2020-11-02 14:27:18
+* @Last Modified by:   Just be free
+* @Last Modified time: 2020-11-02 14:28:56
+*/
+.vg-counter {
+  .vg-counter-subtract,
+  .vg-counter-screen,
+  .vg-counter-plus {
+    border-radius: 4px;
+    color: #4a4a4a;
+    height: 30px;
+    display: inline-block;
+    background: rgba(242, 242, 242, 1);
+    min-width: 32px;
+    text-align: center;
+    line-height: 30px;
+    cursor: pointer;
+    margin: 0 0.5px;
+    font-size: 15px;
+    user-select: none;
+    &.disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+  }
+  .vg-counter-screen {
+    padding: 0 5px;
+  }
+}
