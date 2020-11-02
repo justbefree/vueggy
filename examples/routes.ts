@@ -2,7 +2,7 @@
 * @Author: Just be free
 * @Date:   2020-09-22 14:17:59
 * @Last Modified by:   Just be free
-* @Last Modified time: 2020-10-28 14:46:40
+* @Last Modified time: 2020-10-30 10:03:36
 * @E-mail: justbefree@126.com
 */
 import { createRouter, createWebHashHistory } from "vue-router";
@@ -25,6 +25,7 @@ import Indicator from "./indicator/indicator.vue";
 import Slider from "./slider/slider.vue";
 import ActionSheet from "./action-sheet/actionSheet.vue";
 import PickyStepper from "./picky-stepper/pickyStepper.vue";
+import JSapi from "./js-api/api.vue";
 const routes = [
   {
     path: "/",
@@ -139,6 +140,12 @@ const routes = [
     name: "PickyStepper",
     component: PickyStepper,
     meta: { showFooter: false, showHeader: true, title: "picky-stepper" }
+  },
+  {
+    path: "/js-api",
+    name: "JSapi",
+    component: JSapi,
+    meta: { showFooter: false, showHeader: true, title: "js-api" }
   }
 ];
 const router = createRouter({

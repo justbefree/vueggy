@@ -2,10 +2,15 @@
 * @Author: Just be free
 * @Date:   2020-09-22 15:24:16
 * @Last Modified by:   Just be free
-* @Last Modified time: 2020-10-28 14:48:40
+* @Last Modified time: 2020-11-02 10:51:32
 * @E-mail: justbefree@126.com
 */
 import { version } from "../package.json";
+// TOOLS
+import { deepClone } from "./utils/deep-clone";
+const Tools = {
+  deepClone
+}
 import "./index.scss";
 import VgButton from "./button";
 import VgFlex from "./flex";
@@ -51,6 +56,6 @@ const config = (options: VueggyConfigOptions) => {
     configOptions[attr] = options[attr];
   });
 };
-const Vueggy = { install, version, config };
+const Vueggy = { install, version, config, Tools };
 export { VgPickyStepper, VgActionSheet, VgSlider, VgIndicator, VgCitypicker, VgLayout, VgCalendar, VgSticky, VgButton, VgFlex, VgFlexItem, VgToast, VgSpin, VgPopup, VgIcon, VgCheckbox, VgRadiobox, VgDialog };
 export default Vueggy;

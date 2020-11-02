@@ -2,7 +2,7 @@
 * @Author: Just be free
 * @Date:   2020-09-22 16:20:15
 * @Last Modified by:   Just be free
-* @Last Modified time: 2020-10-27 17:59:01
+* @Last Modified time: 2020-10-30 09:53:37
 * @E-mail: justbefree@126.com
 */
 export const hasOwnProperty = (obj: any, props: string): boolean => {
@@ -30,6 +30,9 @@ export const isPromise = (obj: any): boolean => {
 export const isObject = (value: any): boolean => {
   const type = typeof value;
   return value !== null && type === "object";
+};
+export const isDef = (value: any): boolean => {
+  return value !== undefined && value !== null;
 };
 export const getCharLength = (str: string): number => {
   return str.replace(/[\u0391-\uFFE5]/g, "aa").length;
