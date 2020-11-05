@@ -1,0 +1,83 @@
+/*
+* @Author: Just be free
+* @Date:   2020-11-04 15:11:32
+* @Last Modified by:   Just be free
+* @Last Modified time: 2020-11-04 15:58:14
+*/
+$avatar-size: 80px;
+$bar-height: 16px;
+$padding-height: 10px;
+$parting-line-width: 10px;
+.vg-skeleton {
+  width: 100%;
+  margin: 5px 0;
+  .animated-background {
+    animation-duration: 1s;
+    animation-fill-mode: forwards;
+    animation-iteration-count: infinite;
+    animation-name: placeHolderShimmer;
+    animation-timing-function: linear;
+    background: #f6f7f8;
+    background: linear-gradient(to right, #eeeeee 8%, #dddddd 18%, #eeeeee 33%);
+    background-size: 800px 104px;
+    height: 68px;
+    position: relative;
+  }
+  @keyframes placeHolderShimmer {
+    0% {
+      background-position: -468px 0;
+    }
+    100% {
+      background-position: 468px 0;
+    }
+  }
+  .background-masker {
+    background: #fff;
+    position: absolute;
+    &.header-left {
+      height: 100%;
+      top: 0;
+      bottom: 0;
+      left: $avatar-size;
+      width: $parting-line-width;
+      background: transparent;
+      &.avatar {
+        background: #fff;
+      }
+    }
+    &.header-right {
+      right: 0;
+      top: 0;
+      height: $bar-height;
+      width: 40%;
+    }
+    @for $i from 0 through 20 {
+      &.header-bottom-#{$i} {
+        top: calc(#{$bar-height} * #{$i} + (#{$i} - 1) * #{$padding-height});
+        right: 0;
+        left: 0;
+        height: $padding-height;
+        &.avatar {
+          left: $avatar-size;
+        }
+      }
+    }
+    &.subheader-right {
+      bottom: 0;
+      height: $bar-height;
+      right: 0;
+      width: 20%;
+    }
+    &.subheader-left {
+      bottom: 0;
+      height: $bar-height;
+      left: 0;
+      height: 0px;
+      width: $avatar-size;
+      background: transparent;
+      &.avatar {
+        background: #fff;
+      }
+    }
+  }
+}
