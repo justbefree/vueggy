@@ -20,6 +20,7 @@
       <li @click="listClick('PickyStepper')">picky-stepper</li>
       <li @click="listClick('Counter')">counter</li>
       <li @click="listClick('PullRefresh')">pull-refresh</li>
+      <li @click="listClick('Skeleton')">skeleton</li>
       <li @click="listClick('JSapi')">js-api</li>
     </ul>
   </div>

@@ -2,7 +2,7 @@
 * @Author: Just be free
 * @Date:   2020-09-22 14:17:59
 * @Last Modified by:   Just be free
-* @Last Modified time: 2020-11-02 17:24:44
+* @Last Modified time: 2020-11-04 15:33:16
 * @E-mail: justbefree@126.com
 */
 import { createRouter, createWebHashHistory } from "vue-router";
@@ -27,6 +27,7 @@ import ActionSheet from "./action-sheet/actionSheet.vue";
 import PickyStepper from "./picky-stepper/pickyStepper.vue";
 import Counter from "./counter/counter.vue";
 import PullRefresh from "./pull-refresh/refresh.vue";
+import Skeleton from "./skeleton/skeleton.vue";
 import JSapi from "./js-api/api.vue";
 const routes = [
   {
@@ -154,6 +155,12 @@ const routes = [
     name: "PullRefresh",
     component: PullRefresh,
     meta: { showFooter: false, showHeader: true, title: "pull-refresh" }
+  },
+  {
+    path: "/skeleton",
+    name: "Skeleton",
+    component: Skeleton,
+    meta: { showFooter: false, showHeader: true, title: "skeleton" }
   },
   {
     path: "/js-api",
