@@ -2,11 +2,12 @@
 * @Author: Just be free
 * @Date:   2020-10-26 14:19:04
 * @Last Modified by:   Just be free
-* @Last Modified time: 2020-10-27 18:09:16
+* @Last Modified time: 2020-11-09 14:52:18
 * @E-mail: justbefree@126.com
 */
 import { Vue } from "vue-class-component";
-import { bind, preventDefault } from "../utils/event";
+// import { bind, preventDefault } from "../utils/event";
+import { bind } from "../utils/event";
 // import "../utils/event/touch-emulator";
 import "../../packages/touch-emulator/index.js";
 const MIN_DISTANCE = 10;
@@ -48,7 +49,7 @@ class EventEmulator extends Vue {
     this.bounceDeltaY = 0;
   }
   onTouchStart(e: Event, args: any) {
-    preventDefault(e, true);
+    // preventDefault(e, true);
     this.resetTouchStatus();
     const { start, target } = args;
     this.startX = (e as TouchEvent).touches[0].clientX;
@@ -56,7 +57,7 @@ class EventEmulator extends Vue {
     start && typeof start === "function" && start({ e, target });
   }
   onTouchMove(e: Event, args: any) {
-    preventDefault(e, true);
+    // preventDefault(e, true);
     const { dragging, target } = args;
     const itemHeight = (e.target as HTMLElement).offsetHeight;
     const touch = (e as TouchEvent).touches[0];
@@ -79,7 +80,7 @@ class EventEmulator extends Vue {
       dragging({ e, target, itemHeight });
   }
   onTouchEnd(e: Event, args: any) {
-    preventDefault(e, true);
+    // preventDefault(e, true);
     const { stop, target } = args;
     const itemHeight = (e.target as HTMLElement).offsetHeight;
     const scrollHeight = target.offsetHeight;
