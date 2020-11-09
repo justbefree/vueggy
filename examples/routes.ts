@@ -2,7 +2,7 @@
 * @Author: Just be free
 * @Date:   2020-09-22 14:17:59
 * @Last Modified by:   Just be free
-* @Last Modified time: 2020-11-05 13:27:15
+* @Last Modified time: 2020-11-09 17:05:19
 * @E-mail: justbefree@126.com
 */
 import { createRouter, createWebHashHistory } from "vue-router";
@@ -29,6 +29,7 @@ import Counter from "./counter/counter.vue";
 import PullRefresh from "./pull-refresh/refresh.vue";
 import Skeleton from "./skeleton/skeleton.vue";
 import Picker from "./picker/picker.vue";
+import DatePicker from "./date-picker/datePicker.vue";
 import JSapi from "./js-api/api.vue";
 const routes = [
   {
@@ -168,6 +169,12 @@ const routes = [
     name: "Picker",
     component: Picker,
     meta: { showFooter: false, showHeader: true, title: "picker" }
+  },
+  {
+    path: "/date-picker",
+    name: "DatePicker",
+    component: DatePicker,
+    meta: { showFooter: false, showHeader: true, title: "date-picker" }
   },
   {
     path: "/js-api",
