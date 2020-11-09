@@ -31,6 +31,7 @@ export default class JSapi extends Vue {
   public tools = Vueggy.Tools;
   public exampleCode = examples;
   mounted() {
+    document.querySelectorAll("pre code").forEach(block => window.Prism.highlightElement(block));
     const a = { name: "zhangsan", age: 20, getName() { return this.name; } };
     console.log(a);
     const b = Vueggy.Tools.deepClone(a);
