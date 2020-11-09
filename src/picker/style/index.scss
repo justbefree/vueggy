@@ -1,0 +1,87 @@
+/*
+* @Author: Just be free
+* @Date:   2020-11-05 13:22:37
+* @Last Modified by:   Just be free
+* @Last Modified time: 2020-11-05 13:23:39
+*/
+.vg-picker {
+  .vg-picker-header {
+    user-select: none;
+    height: 44px;
+    .vg-picker-header-back,
+    .vg-picker-header-close {
+      cursor: pointer;
+      height: 100%;
+      min-width: 30px;
+      line-height: 44px;
+    }
+    .vg-picker-header-title {
+      line-height: 44px;
+      text-align: center;
+      color: $text-color;
+      font-size: 15px;
+      &.ml30 {
+        margin-left: 30px;
+      }
+      &.mr30 {
+        margin-right: 30px;
+      }
+    }
+  }
+  .vg-picker-cancel,
+  .vg-picker-confirm {
+    display: inline-block;
+    width: 50px;
+    text-align: center;
+    color: $theme-color;
+  }
+  .vg-picker-container {
+    overflow: hidden;
+    height: 220px;
+    position: relative;
+    cursor: grab;
+    user-select: none;
+    .vg-picker-column {
+      height: 100%;
+      width: 100%;
+      ul {
+        transition-timing-function: cubic-bezier(0.23, 1, 0.68, 1);
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        text-align: center;
+        user-select: none;
+      }
+    }
+    .scroll-viewer-window {
+      position: absolute;
+      height: 42px;
+      top: 50%;
+      margin-top: -21px;
+      width: 100%;
+      border-top: 1px solid $border-color;
+      border-bottom: 1px solid $border-color;
+      pointer-events: none;
+      z-index: 3;
+    }
+    .vg-picker-mask {
+      position: absolute;
+      top: 0;
+      left: 0;
+      z-index: 2;
+      width: 100%;
+      height: 100%;
+      background-image: linear-gradient(
+          180deg,
+          hsla(0, 0%, 100%, 0.9),
+          hsla(0, 0%, 100%, 0.4)
+        ),
+        linear-gradient(0deg, hsla(0, 0%, 100%, 0.9), hsla(0, 0%, 100%, 0.4));
+      background-repeat: no-repeat;
+      background-position: top, bottom;
+      -webkit-backface-visibility: hidden;
+      backface-visibility: hidden;
+      pointer-events: none;
+    }
+  }
+}
