@@ -2,7 +2,7 @@
 * @Author: Just be free
 * @Date:   2020-09-22 15:24:16
 * @Last Modified by:   Just be free
-* @Last Modified time: 2020-11-05 13:49:45
+* @Last Modified time: 2020-11-09 17:07:40
 * @E-mail: justbefree@126.com
 */
 import { version } from "../package.json";
@@ -34,11 +34,12 @@ import VgCounter from "./counter";
 import VgPullRefresh from "./pull-refresh";
 import VgSkeleton from "./skeleton";
 import VgPicker from "./picker";
+import VgDatePicker from "./date-picker";
 export interface VueggyConfigOptions {
   [propName: string]: any;
 }
 const configOptions = {} as VueggyConfigOptions;
-const components = [VgPicker, VgSkeleton, VgPullRefresh, VgCounter, VgPickyStepper, VgActionSheet, VgSlider, VgCitypicker, VgLayout, VgCalendar, VgSticky, VgButton, VgFlex, VgFlexItem, VgSpin, VgPopup, VgIcon, VgCheckbox, VgRadiobox, VgDialog];
+const components = [VgDatePicker, VgPicker, VgSkeleton, VgPullRefresh, VgCounter, VgPickyStepper, VgActionSheet, VgSlider, VgCitypicker, VgLayout, VgCalendar, VgSticky, VgButton, VgFlex, VgFlexItem, VgSpin, VgPopup, VgIcon, VgCheckbox, VgRadiobox, VgDialog];
 
 const install = (app: any, options: any) => {
   components.map(component => {
@@ -61,5 +62,5 @@ const config = (options: VueggyConfigOptions) => {
   });
 };
 const Vueggy = { install, version, config, Tools };
-export { VgPicker, VgSkeleton, VgPullRefresh, VgCounter, VgPickyStepper, VgActionSheet, VgSlider, VgIndicator, VgCitypicker, VgLayout, VgCalendar, VgSticky, VgButton, VgFlex, VgFlexItem, VgToast, VgSpin, VgPopup, VgIcon, VgCheckbox, VgRadiobox, VgDialog };
+export { VgDatePicker, VgPicker, VgSkeleton, VgPullRefresh, VgCounter, VgPickyStepper, VgActionSheet, VgSlider, VgIndicator, VgCitypicker, VgLayout, VgCalendar, VgSticky, VgButton, VgFlex, VgFlexItem, VgToast, VgSpin, VgPopup, VgIcon, VgCheckbox, VgRadiobox, VgDialog };
 export default Vueggy;

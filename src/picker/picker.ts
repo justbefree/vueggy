@@ -2,7 +2,7 @@
 * @Author: Just be free
 * @Date:   2020-11-05 13:22:24
 * @Last Modified by:   Just be free
-* @Last Modified time: 2020-11-09 14:56:51
+* @Last Modified time: 2020-11-09 17:57:58
 * @E-mail: justbefree@126.com
 */
 import VueGgy, { mixins, props, Options } from "../component/VueGgy";
@@ -13,6 +13,11 @@ import { ColumnObject } from "./picker-column";
 import VgPopup from "../popup";
 import VgFlex from "../flex";
 import VgFlexItem from "../flex-item";
+export interface ChangeCallbackEvent {
+  value: any;
+  index: number;
+  key: number;
+}
 const Props = props({
   modelValue: Boolean,
   itemHeight: {
@@ -87,8 +92,8 @@ export default class VgPicker extends mixins(VueGgy, Props) {
       this.computedColumn = [];
     }
   }
-  change(value: any, index: number): void {
-    this.$emit("change", { value, index });
+  change(value: any, index: number, key: number): void {
+    this.$emit("change", { value, index, key });
   }
   getColumns() {
     const columns: VNode[] = [];
@@ -107,7 +112,7 @@ export default class VgPicker extends mixins(VueGgy, Props) {
                 {
                   ref: `picker_${key}`,
                   onChange: (value: any, index: number) => {
-                    this.change(value, index);
+                    this.change(value, index, key);
                   },
                   defaultIndex: column.defaultIndex || 0,
                   columns: column.value,
