@@ -1,0 +1,28 @@
+/*
+* @Author: Just be free
+* @Date:   2020-11-10 10:42:06
+* @Last Modified by:   Just be free
+* @Last Modified time: 2020-11-10 16:51:25
+*/
+.vg-tabs {
+  .vg-tabs-nav {
+    height: 44px;
+    border-bottom: 1px solid $border-color;
+    line-height: 44px;
+    overflow: hidden;
+    cursor: pointer;
+    .vg-tab-text {
+      display: inline-block;
+      height: calc(100% - 4px);
+      color: $text-color;
+      &.active {
+        color: $theme-color;
+        border-bottom: 2px solid $theme-color;
+      }
+      &.disabled {
+        cursor: not-allowed;
+        color: $disable-color;
+      }
+    }
+  }
+}
