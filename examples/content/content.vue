@@ -23,6 +23,7 @@
       <li @click="listClick('Skeleton')">skeleton</li>
       <li @click="listClick('Picker')">picker</li>
       <li @click="listClick('DatePicker')">date-picker</li>
+      <li @click="listClick('Tabs')">tabs</li>
       <li @click="listClick('JSapi')">js-api</li>
     </ul>
   </div>
