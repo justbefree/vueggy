@@ -26,6 +26,11 @@ console.log(a, b);
 console.log(a.getName(), b.getName());`
 ];
 import Vueggy from "@";
+import { EventBus } from "@/utils/event/bus";
+EventBus.on("testevent", (...args) => {
+  console.log("事件返回", ...args);
+});
+EventBus.emit("testevent", "this is the first argument", "this is the second argument");
 console.log("api vueggy", Vueggy.Tools);
 export default class JSapi extends Vue {
   public tools = Vueggy.Tools;

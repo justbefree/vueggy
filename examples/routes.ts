@@ -2,7 +2,7 @@
 * @Author: Just be free
 * @Date:   2020-09-22 14:17:59
 * @Last Modified by:   Just be free
-* @Last Modified time: 2020-11-10 10:41:17
+* @Last Modified time: 2020-11-19 18:12:13
 * @E-mail: justbefree@126.com
 */
 import { createRouter, createWebHashHistory } from "vue-router";
@@ -31,6 +31,7 @@ import Skeleton from "./skeleton/skeleton.vue";
 import Picker from "./picker/picker.vue";
 import DatePicker from "./date-picker/datePicker.vue";
 import Tabs from "./tabs/tabs.vue";
+import AnimationList from "./animation-list/animationList.vue";
 import JSapi from "./js-api/api.vue";
 const routes = [
   {
@@ -182,6 +183,12 @@ const routes = [
     name: "Tabs",
     component: Tabs,
     meta: { showFooter: false, showHeader: true, title: "tabs" }
+  },
+  {
+    path: "/animation-list",
+    name: "AnimationList",
+    component: AnimationList,
+    meta: { showFooter: false, showHeader: true, title: "animation-list" }
   },
   {
     path: "/js-api",
