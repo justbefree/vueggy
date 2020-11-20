@@ -1,0 +1,18 @@
+/*
+* @Author: Just be free
+* @Date:   2020-11-19 17:56:52
+* @Last Modified by:   Just be free
+* @Last Modified time: 2020-11-20 14:36:57
+*/
+.vg-animation-list-item {
+  transform: translateY(0px);
+  backface-visibility: hidden;
+  transition: all 500ms ease;
+}
+.vg-slide-in-enter-from,
+.vg-slide-in-enter-to,
+.vg-slide-in-enter-active,
+.vg-slide-in-leave-active {
+  opacity: 0;
+  transform: translateY(100px);
+}
