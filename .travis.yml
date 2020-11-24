@@ -13,6 +13,7 @@ branches:
 script:
   - npm install
   - npm run build
+  - echo "$CNAME" > docs/CNAME
   - cd docs
   - git init
   - git add -A
