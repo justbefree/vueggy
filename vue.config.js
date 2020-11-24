@@ -2,12 +2,12 @@
 * @Author: Just be free
 * @Date:   2020-05-06 14:45:16
 * @Last Modified by:   Just be free
-* @Last Modified time: 2020-09-30 09:52:35
+* @Last Modified time: 2020-11-24 09:52:00
 * @E-mail: justbefree@126.com
 */
 process.env.VUE_APP_VERSION = require('./package.json').version;
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const publicPath = process.env.NODE_ENV === 'production' ? "/vueggy/" : "/local/";
+const publicPath = process.env.NODE_ENV === 'production' ? "/" : "/local/";
 module.exports = {
   publicPath,
   outputDir: "docs",
