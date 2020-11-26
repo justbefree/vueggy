@@ -2,7 +2,7 @@
 * @Author: Just be free
 * @Date:   2020-11-25 14:11:49
 * @Last Modified by:   Just be free
-* @Last Modified time: 2020-11-26 18:26:52
+* @Last Modified time: 2020-11-26 18:37:24
 * @E-mail: justbefree@126.com
 */
 import VueGgy, { mixins, props, Options, VisibilityChangeStatus } from "../component/VueGgy";
@@ -60,6 +60,7 @@ export default class VgSwipe extends mixins(Props, VueGgy, EventEmulator) {
   public dragging = false;
   public children = [] as Element[];
   public fullScreen = false;
+  public R: null|Remainder = null;
   creteIndicator(counts: number): VNode|null {
     const { showIndicator, indicatorType, delayActivedIndex } = this;
     if (showIndicator) {
@@ -131,13 +132,13 @@ export default class VgSwipe extends mixins(Props, VueGgy, EventEmulator) {
             (!that.vertical && that.deltaX < 0) ||
             (that.vertical && that.deltaY < 0)
           ) {
-            r = that.R.next();
+            r = (that.R as Remainder).next();
             num = 1;
           } else if (
             (!that.vertical && that.deltaX > 0) ||
             (that.vertical && that.deltaY > 0)
           ) {
-            r = that.R.previous();
+            r = (that.R as Remainder).previous();
             num = -1;
           } else {
             return;
@@ -188,9 +189,9 @@ export default class VgSwipe extends mixins(Props, VueGgy, EventEmulator) {
     let r;
     const isPositive = num > 0;
     if (isPositive) {
-      r = this.R.next();
+      r = (this.R as Remainder).next();
     } else {
-      r = this.R.previous();
+      r = (this.R as Remainder).previous();
     }
     this.delayActivedIndex = this.activedIndex;
     const prevEle = this.children[r.getPrevious()] as HTMLElement;
@@ -244,9 +245,7 @@ export default class VgSwipe extends mixins(Props, VueGgy, EventEmulator) {
       this.width = Math.round(this.rect.width);
     }
     const el = this.$refs.swipeContainer;
-    console.log("el = ", el);
     this.children = Array.from((el as HTMLElement).children);
-    console.log("children = ", children);
     const attr = this.vertical ? "top" : "left";
     this.children.forEach((child, key) => {
       if (key === this.activedIndex) {
