@@ -2,12 +2,11 @@
 * @Author: Just be free
 * @Date:   2020-11-25 15:53:24
 * @Last Modified by:   Just be free
-* @Last Modified time: 2020-11-25 17:15:23
+* @Last Modified time: 2020-11-26 17:27:01
 * @E-mail: justbefree@126.com
 */
 
 export const move = (obj: HTMLElement, json: any, fn: Function, div: number = 4): void => {
-  // clearInterval(obj.timer);
   let timer: number = -1;
   clearInterval(timer);
   let iCurrent = 0;
@@ -17,9 +16,9 @@ export const move = (obj: HTMLElement, json: any, fn: Function, div: number = 4)
     for (let attr in json) {
       let iTarget = json[attr];
       if (attr === "opacity") {
-        iCurrent = Math.round(parseFloat(window.getComputedStyle(obj, null).getPropertyValue("opacity")) * 100);
+        iCurrent = Math.round(parseFloat(window.getComputedStyle(obj as Element, null).getPropertyValue("opacity")) * 100);
       } else {
-        iCurrent = parseInt(window.getComputedStyle(obj, null).getPropertyValue(attr));
+        iCurrent = parseInt(window.getComputedStyle(obj as Element, null).getPropertyValue(attr));
       }
       iSpeed = (iTarget - iCurrent) / div;
       iSpeed = iSpeed > 0 ? Math.ceil(iSpeed) : Math.floor(iSpeed);
