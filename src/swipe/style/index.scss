@@ -1,0 +1,94 @@
+/*
+* @Author: Just be free
+* @Date:   2020-11-25 14:11:59
+* @Last Modified by:   Just be free
+* @Last Modified time: 2020-11-25 14:24:14
+*/
+.vg-swipe {
+  width: 100%;
+  user-select: none;
+  position: relative;
+  cursor: grab;
+  > .v-ynpopup-modal {
+    background: #000;
+  }
+  .vg-swipe-list-container,
+  .vg-swipe-popup-list-container {
+    position: relative;
+    overflow: hidden;
+    .vg-swipe-item {
+      width: 100%;
+      height: 100%;
+      position: absolute;
+      &.loaded {
+      }
+      &.loading {
+      }
+      img {
+        display: block;
+        pointer-events: none;
+        margin: 0 auto;
+        width: 100%;
+        height: 100%;
+      }
+    }
+  }
+  .vg-swipe-indicators {
+    &.vertical {
+      left: 5px;
+      top: 50%;
+      transform: translateY(-50%);
+      .indicator-dot {
+        display: block;
+        width: 2px;
+        height: 15px;
+        margin: 3px 0;
+      }
+      &.number {
+        bottom: 5px;
+        left: 50%;
+        transform: translateX(-50%);
+        top: auto;
+      }
+    }
+    &.horizontal {
+      bottom: 5px;
+      left: 50%;
+      transform: translateX(-50%);
+      .indicator-dot {
+        width: 15px;
+        height: 2px;
+        margin: 0 3px;
+        display: inline-block;
+      }
+    }
+    pointer-events: none;
+    position: absolute;
+    .indicator-dot {
+      background: $theme-color;
+    }
+    .index {
+      font-size: 13px;
+      display: inline-block;
+      height: 20px;
+      line-height: 20px;
+    }
+    &.number {
+      text-align: right;
+      width: 100%;
+      .index {
+        background: rgba(0, 0, 0, 0.5);
+        margin-right: 5px;
+        border-radius: 10px;
+        padding: 0 12px;
+        color: #fff;
+      }
+    }
+    .indicator-dot {
+      opacity: 0.3;
+      &.active {
+        opacity: 1;
+      }
+    }
+  }
+}
