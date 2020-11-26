@@ -2,7 +2,7 @@
 * @Author: Just be free
 * @Date:   2020-11-25 15:31:39
 * @Last Modified by:   Just be free
-* @Last Modified time: 2020-11-26 13:39:44
+* @Last Modified time: 2020-11-26 18:36:56
 * @E-mail: justbefree@126.com
 */
 const getData = (context: any, attr: string): any => {
@@ -31,7 +31,7 @@ export class Remainder {
       this.hasContext = false;
     }
   }
-  next(callback: Function): Remainder {
+  next(callback?: Function): Remainder {
     this.dir = 1;
     this.i = this.getNext("absolute");
     if (this.hasContext) {
@@ -40,7 +40,7 @@ export class Remainder {
     callback && typeof callback === "function" && callback(this.i);
     return this;
   }
-  previous(callback: Function): Remainder {
+  previous(callback?: Function): Remainder {
     this.dir = -1;
     this.i = this.getPrevious("absolute");
     if (this.hasContext) {
