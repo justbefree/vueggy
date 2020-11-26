@@ -2,14 +2,19 @@
 * @Author: Just be free
 * @Date:   2020-09-23 17:32:46
 * @Last Modified by:   Just be free
-* @Last Modified time: 2020-10-22 11:02:11
+* @Last Modified time: 2020-11-26 11:28:58
 * @E-mail: justbefree@126.com
 */
 const pkg = require("../../package.json");
 import { Vue, mixins, props, emits, createDecorator, setup, Options } from "vue-class-component";
 import { VNode } from "vue";
+import { EventBus } from "../utils/event/bus";
+import { on } from "../utils/event";
+import { throttle } from "../utils";
+export type VisibilityChangeStatus = "hidden" | "visible";
 export default class VueGgy extends Vue {
   [propName: string]: any;
+  public static windowEventsinitialized = false;
   private version = pkg.version;
   public static componentName = "VueGgy";
   getVersion(): string {
@@ -21,6 +26,26 @@ export default class VueGgy extends Vue {
   getSlots(slotName: string = "default"): VNode {
     const slots = this.$slots[slotName] && (typeof this.$slots[slotName] === "function") && (this.$slots[slotName] as Function)();
     return slots;
+  }
+  public static visibilitychange(): void {
+    on(window, "visibilitychange", () => {
+      const status = document.visibilityState;
+      EventBus.emit("window:visibilitychange", status as VisibilityChangeStatus);
+    });
+  }
+  public static resize(): void {
+    on(window, "resize", (ev: Event) => {
+      throttle(() => {
+        EventBus.emit("window:resize", ev);
+      })();
+    });
+  }
+  beforeCreate() {
+    if (!VueGgy.windowEventsinitialized) {
+      VueGgy.windowEventsinitialized = true;
+      VueGgy.resize();
+      VueGgy.visibilitychange();
+    }
   }
 }
 export { Vue, mixins, props, emits, createDecorator, setup, Options };
