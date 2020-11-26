@@ -2,7 +2,7 @@
 * @Author: Just be free
 * @Date:   2020-11-25 14:11:49
 * @Last Modified by:   Just be free
-* @Last Modified time: 2020-11-26 13:56:28
+* @Last Modified time: 2020-11-26 17:32:09
 * @E-mail: justbefree@126.com
 */
 import VueGgy, { mixins, props, Options, VisibilityChangeStatus } from "../component/VueGgy";
@@ -198,12 +198,12 @@ export default class VgSwipe extends mixins(Props, VueGgy, EventEmulator) {
     const nextEle = this.children[r.getNext()] as HTMLElement;
     const attr = this.vertical ? "top" : "left";
     this.startMove(prevEle, -1 * num * this.size);
-    curEle.setAttribute("style", `${attr}: ${num * this.size}px`);
+    (curEle as HTMLElement).setAttribute("style", `${attr}: ${num * this.size}px`);
     this.startMove(curEle, 0, (el: HTMLElement) => {
       this.moving = false;
       callback && typeof callback === "function" && callback(el);
     });
-    nextEle.setAttribute("style", `${attr}: ${num * this.size}px`);
+    (nextEle as HTMLElement).setAttribute("style", `${attr}: ${num * this.size}px`);
   }
   startMove(el: HTMLElement, value = 0, fn?: Function) {
     const { vertical } = this;
