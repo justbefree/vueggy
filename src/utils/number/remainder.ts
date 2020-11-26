@@ -2,50 +2,27 @@
 * @Author: Just be free
 * @Date:   2020-11-25 15:31:39
 * @Last Modified by:   Just be free
-* @Last Modified time: 2020-11-26 18:36:56
+* @Last Modified time: 2020-11-26 20:39:47
 * @E-mail: justbefree@126.com
 */
-const getData = (context: any, attr: string): any => {
-  return context[attr];
-};
-const setData = (context: any, attr: string, value: any): void => {
-  context[attr] = value;
-};
 export class Remainder {
   private remainder = 1;
   private dir = 0;
   private i = 0;
-  private context: any = null;
-  private hasContext = true;
-  private attr = "";
-  constructor(r: number, i: string|number, context?: any) {
-    this.remainder = r;
+  constructor(r?: number, i?: number) {
+    this.remainder = r || 1;
     this.dir = 1;
-    if (context && Object.prototype.hasOwnProperty.call(context, i)) {
-      this.i = getData(context, (i as string)) as number;
-      this.attr = i as string;
-      this.context = context;
-      this.hasContext = true;
-    } else {
-      this.i = (i as number) || 0;
-      this.hasContext = false;
-    }
+    this.i = i || 1;
   }
   next(callback?: Function): Remainder {
     this.dir = 1;
     this.i = this.getNext("absolute");
-    if (this.hasContext) {
-      setData(this.context, this.attr, this.i);
-    }
     callback && typeof callback === "function" && callback(this.i);
     return this;
   }
   previous(callback?: Function): Remainder {
     this.dir = -1;
     this.i = this.getPrevious("absolute");
-    if (this.hasContext) {
-      setData(this.context, this.attr, this.i);
-    }
     callback && typeof callback === "function" && callback(this.i);
     return this;
   }

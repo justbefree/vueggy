@@ -2,7 +2,7 @@
 * @Author: Just be free
 * @Date:   2020-11-25 14:11:49
 * @Last Modified by:   Just be free
-* @Last Modified time: 2020-11-26 18:37:24
+* @Last Modified time: 2020-11-26 20:39:35
 * @E-mail: justbefree@126.com
 */
 import VueGgy, { mixins, props, Options, VisibilityChangeStatus } from "../component/VueGgy";
@@ -60,7 +60,7 @@ export default class VgSwipe extends mixins(Props, VueGgy, EventEmulator) {
   public dragging = false;
   public children = [] as Element[];
   public fullScreen = false;
-  public R: null|Remainder = null;
+  public R = new Remainder();
   creteIndicator(counts: number): VNode|null {
     const { showIndicator, indicatorType, delayActivedIndex } = this;
     if (showIndicator) {
@@ -132,13 +132,17 @@ export default class VgSwipe extends mixins(Props, VueGgy, EventEmulator) {
             (!that.vertical && that.deltaX < 0) ||
             (that.vertical && that.deltaY < 0)
           ) {
-            r = (that.R as Remainder).next();
+            r = that.R.next((index: number) => {
+              that.activedIndex = index;
+            });
             num = 1;
           } else if (
             (!that.vertical && that.deltaX > 0) ||
             (that.vertical && that.deltaY > 0)
           ) {
-            r = (that.R as Remainder).previous();
+            r = that.R.previous((index: number) => {
+              that.activedIndex = index;
+            });
             num = -1;
           } else {
             return;
@@ -189,9 +193,13 @@ export default class VgSwipe extends mixins(Props, VueGgy, EventEmulator) {
     let r;
     const isPositive = num > 0;
     if (isPositive) {
-      r = (this.R as Remainder).next();
+      r = this.R.next((index: number) => {
+        this.activedIndex = index;
+      });
     } else {
-      r = (this.R as Remainder).previous();
+      r = this.R.previous((index: number) => {
+        this.activedIndex = index;
+      });
     }
     this.delayActivedIndex = this.activedIndex;
     const prevEle = this.children[r.getPrevious()] as HTMLElement;
@@ -272,7 +280,7 @@ export default class VgSwipe extends mixins(Props, VueGgy, EventEmulator) {
     });
   }
   mounted() {
-    this.R = new Remainder(this.count, "activedIndex", this);
+    this.R = new Remainder(this.count, this.activedIndex);
     this.initRect();
     this.initialize();
     this.drag();
