@@ -2,7 +2,7 @@
 * @Author: Just be free
 * @Date:   2020-09-22 14:17:59
 * @Last Modified by:   Just be free
-* @Last Modified time: 2020-11-19 18:12:13
+* @Last Modified time: 2020-11-25 14:18:11
 * @E-mail: justbefree@126.com
 */
 import { createRouter, createWebHashHistory } from "vue-router";
@@ -32,6 +32,7 @@ import Picker from "./picker/picker.vue";
 import DatePicker from "./date-picker/datePicker.vue";
 import Tabs from "./tabs/tabs.vue";
 import AnimationList from "./animation-list/animationList.vue";
+import Swipe from "./swipe/swipe.vue";
 import JSapi from "./js-api/api.vue";
 const routes = [
   {
@@ -189,6 +190,12 @@ const routes = [
     name: "AnimationList",
     component: AnimationList,
     meta: { showFooter: false, showHeader: true, title: "animation-list" }
+  },
+  {
+    path: "/swipe",
+    name: "Swipe",
+    component: Swipe,
+    meta: { showFooter: false, showHeader: true, title: "swipe" }
   },
   {
     path: "/js-api",
