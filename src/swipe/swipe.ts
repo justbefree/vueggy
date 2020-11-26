@@ -2,7 +2,7 @@
 * @Author: Just be free
 * @Date:   2020-11-25 14:11:49
 * @Last Modified by:   Just be free
-* @Last Modified time: 2020-11-26 17:32:09
+* @Last Modified time: 2020-11-26 18:26:52
 * @E-mail: justbefree@126.com
 */
 import VueGgy, { mixins, props, Options, VisibilityChangeStatus } from "../component/VueGgy";
@@ -205,7 +205,10 @@ export default class VgSwipe extends mixins(Props, VueGgy, EventEmulator) {
     });
     (nextEle as HTMLElement).setAttribute("style", `${attr}: ${num * this.size}px`);
   }
-  startMove(el: HTMLElement, value = 0, fn?: Function) {
+  startMove(el: HTMLElement, value = 0, fn?: Function): void {
+    if (!el) {
+      return;
+    }
     const { vertical } = this;
     const attr = vertical ? "top" : "left";
     move(el, { [attr]: value }, () => {
@@ -241,7 +244,9 @@ export default class VgSwipe extends mixins(Props, VueGgy, EventEmulator) {
       this.width = Math.round(this.rect.width);
     }
     const el = this.$refs.swipeContainer;
+    console.log("el = ", el);
     this.children = Array.from((el as HTMLElement).children);
+    console.log("children = ", children);
     const attr = this.vertical ? "top" : "left";
     this.children.forEach((child, key) => {
       if (key === this.activedIndex) {
