@@ -2,7 +2,7 @@
 * @Author: Just be free
 * @Date:   2020-11-25 14:11:49
 * @Last Modified by:   Just be free
-* @Last Modified time: 2020-11-26 17:32:09
+* @Last Modified time: 2020-11-26 20:30:19
 * @E-mail: justbefree@126.com
 */
 import VueGgy, { mixins, props, Options, VisibilityChangeStatus } from "../component/VueGgy";
@@ -131,13 +131,17 @@ export default class VgSwipe extends mixins(Props, VueGgy, EventEmulator) {
             (!that.vertical && that.deltaX < 0) ||
             (that.vertical && that.deltaY < 0)
           ) {
-            r = that.R.next();
+            r = that.R.next((index: number) => {
+              that.activedIndex = index;
+            });
             num = 1;
           } else if (
             (!that.vertical && that.deltaX > 0) ||
             (that.vertical && that.deltaY > 0)
           ) {
-            r = that.R.previous();
+            r = that.R.previous((index: number) => {
+              that.activedIndex = index;
+            });
             num = -1;
           } else {
             return;
@@ -188,9 +192,13 @@ export default class VgSwipe extends mixins(Props, VueGgy, EventEmulator) {
     let r;
     const isPositive = num > 0;
     if (isPositive) {
-      r = this.R.next();
+      r = this.R.next((index: number) => {
+        this.activedIndex = index;
+      });
     } else {
-      r = this.R.previous();
+      r = this.R.previous((index: number) => {
+        this.activedIndex = index;
+      });
     }
     this.delayActivedIndex = this.activedIndex;
     const prevEle = this.children[r.getPrevious()] as HTMLElement;
@@ -268,7 +276,7 @@ export default class VgSwipe extends mixins(Props, VueGgy, EventEmulator) {
     });
   }
   mounted() {
-    this.R = new Remainder(this.count, "activedIndex", this);
+    this.R = new Remainder(this.count, this.activedIndex);
     this.initRect();
     this.initialize();
     this.drag();
