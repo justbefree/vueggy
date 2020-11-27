@@ -2,7 +2,7 @@
 * @Author: Just be free
 * @Date:   2020-11-25 14:11:49
 * @Last Modified by:   Just be free
-* @Last Modified time: 2020-11-26 20:39:35
+* @Last Modified time: 2020-11-27 18:10:45
 * @E-mail: justbefree@126.com
 */
 import VueGgy, { mixins, props, Options, VisibilityChangeStatus } from "../component/VueGgy";
@@ -28,6 +28,10 @@ const Props = props({
   height: {
     type: [String, Number],
     default: 240
+  },
+  loadingText: {
+    type: String,
+    default: "图片加载中..."
   }
 });
 @Options({
