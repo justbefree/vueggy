@@ -2,7 +2,7 @@
 * @Author: Just be free
 * @Date:   2020-09-22 14:17:59
 * @Last Modified by:   Just be free
-* @Last Modified time: 2020-11-25 14:18:11
+* @Last Modified time: 2020-11-30 11:18:22
 * @E-mail: justbefree@126.com
 */
 import { createRouter, createWebHashHistory } from "vue-router";
@@ -33,6 +33,7 @@ import DatePicker from "./date-picker/datePicker.vue";
 import Tabs from "./tabs/tabs.vue";
 import AnimationList from "./animation-list/animationList.vue";
 import Swipe from "./swipe/swipe.vue";
+import SubmitBar from "./submit-bar/submitBar.vue";
 import JSapi from "./js-api/api.vue";
 const routes = [
   {
@@ -196,6 +197,12 @@ const routes = [
     name: "Swipe",
     component: Swipe,
     meta: { showFooter: false, showHeader: true, title: "swipe" }
+  },
+  {
+    path: "/submit-bar",
+    name: "SubmitBar",
+    component: SubmitBar,
+    meta: { showFooter: false, showHeader: true, title: "submit-bar" }
   },
   {
     path: "/js-api",

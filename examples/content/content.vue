@@ -26,6 +26,7 @@
       <li @click="listClick('Tabs')">tabs</li>
       <li @click="listClick('AnimationList')">animation-list</li>
       <li @click="listClick('Swipe')">swipe</li>
+      <li @click="listClick('SubmitBar')">submit-bar</li>
       <li @click="listClick('JSapi')">js-api</li>
     </ul>
   </div>
