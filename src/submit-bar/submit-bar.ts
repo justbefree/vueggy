@@ -2,7 +2,7 @@
 * @Author: Just be free
 * @Date:   2020-11-30 11:11:58
 * @Last Modified by:   Just be free
-* @Last Modified time: 2020-11-30 14:45:36
+* @Last Modified time: 2020-11-30 16:13:49
 * @E-mail: justbefree@126.com
 */
 import VueGgy, { mixins, props, Options } from "../component/VueGgy";
@@ -52,7 +52,7 @@ const Props = props({
 });
 @Options({
   name: "VgSubmitBar",
-  emits: ["trigger", "beforeenter"]
+  emits: ["trigger", "beforeenter", "afterleave", "submit"]
 })
 export default class VgSubmitBar extends mixins(Props, VueGgy) {
   public static componentName = "VgSubmitBar";
@@ -60,12 +60,10 @@ export default class VgSubmitBar extends mixins(Props, VueGgy) {
   public popupStatus = false;
   public submitStatus = "resolved";
   toggle() {
-    console.log("点击了");
     this.showPopup = !this.showPopup;
     this.$emit("trigger", this.showPopup);
   }
   getValideContent(tagName: string, slots: VNode[]): VNode[] {
-    // return this.getSlots();
     const components = [] as VNode[];
     if (slots && Array.isArray(slots)) {
       slots.forEach((slot: VNode) => {
@@ -79,7 +77,6 @@ export default class VgSubmitBar extends mixins(Props, VueGgy) {
     return components;
   }
   genValue(slots: VNode[]) {
-    // const value = this.getValideContent("value", slots);
     const value = this.getValideContent(VALIDE_VALUE_COMPONENT, slots);
     if (Array.isArray(value) && value.length > 0) {
       return value;
@@ -95,8 +92,8 @@ export default class VgSubmitBar extends mixins(Props, VueGgy) {
   genIcon(): undefined|VNode {
     if (this.showIcon) {
       const iconName = this.showPopup
-        ? "iconl-arrow-down-line"
-        : "iconl-arrow-up-line";
+        ? "arrow-down"
+        : "arrow-up";
       return h("span", { class: ["vg-submit-action-icon"] }, {
         default: () => [
           h(VgIcon,
@@ -118,14 +115,27 @@ export default class VgSubmitBar extends mixins(Props, VueGgy) {
     this.popupStatus = true;
     this.setActionPopupStyle();
   }
-  afterLeave(): void {}
-  submit(): void {}
+  afterLeave(): void {
+    this.popupStatus = false;
+    this.$emit("afterleave");
+    if (this.submitStatus === "pendding") {
+      this.$emit("submit");
+      this.submitStatus = "resolved";
+    }
+  }
+  submit(): void {
+    if (this.popupStatus) {
+      this.submitStatus = "pendding";
+      this.toggle();
+    } else {
+      this.$emit("submit");
+    }
+  }
+  view() {
+    this.showPopup = true;
+  }
   render() {
     const slots = this.getSlots();
-    // console.log("slots = ", slots);
-    slots.forEach((slot: any) => {
-      console.log("slot = ", slot.type);
-    });
     return h(
       "div",
       { class: ["vg-submit-action", this.fixed ? "fixed" : ""] },
@@ -136,7 +146,6 @@ export default class VgSubmitBar extends mixins(Props, VueGgy) {
             {
               class: ["vg-submit-action-popup"],
               ref: "actionPopup",
-              // directives: [{ name: "show", value: this.popupStatus }],
             },
             {
               default: () => [
@@ -148,11 +157,6 @@ export default class VgSubmitBar extends mixins(Props, VueGgy) {
                     onBeforeenter: this.beforeEnter,
                     onAfterleave: this.afterLeave,
                     onInput: this.toggle
-                    // on: {
-                    //   beforeEnter: this.handleBeforeEnter,
-                    //   afterLeave: this.handleAfterLeave,
-                    //   input: this.toggle,
-                    // },
                   },
                   {
                     default: () => [
