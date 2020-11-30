@@ -1,0 +1,69 @@
+/*
+* @Author: Just be free
+* @Date:   2020-11-30 11:12:11
+* @Last Modified by:   Just be free
+* @Last Modified time: 2020-11-30 12:00:47
+*/
+.vg-submit-action {
+  user-select: none;
+  height: 48px;
+  width: 100%;
+  background: #fff;
+  border-top: 1px solid $border-color;
+  border-bottom: 1px solid $border-color;
+  line-height: 48px;
+  &.fixed {
+    position: fixed;
+    bottom: 0;
+  }
+  .vg-submit-action-flex {
+    width: 94%;
+    margin: 0 auto;
+  }
+  .vg-submit-action-total-text {
+    font-size: 14px;
+    color: #666;
+    cursor: pointer;
+  }
+  .vg-submit-action-currency {
+    cursor: pointer;
+    color: $currency-color;
+    margin: 0 4px;
+    small {
+      font-size: 12px;
+    }
+    b {
+      margin-left: 3px;
+      font-size: 22px;
+    }
+  }
+  .vg-submit-action-icon {
+    vertical-align: top;
+    cursor: pointer;
+  }
+  .vg-submit-action-button {
+    margin: 4px auto;
+  }
+  .vg-submit-action-popup {
+    position: fixed;
+    left: 0;
+    right: 0;
+    top: 0;
+    width: 100%;
+    z-index: 1;
+    overflow: hidden;
+    > .v-vgpopup-modal {
+      position: absolute;
+      top: 0;
+      height: 100%;
+      width: 100%;
+      left: 0;
+      right: 0;
+    }
+    .vg-submit-action-content {
+      background: #fff;
+      width: 94%;
+      margin: 0 auto;
+    }
+  }
+}
