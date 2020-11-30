@@ -2,7 +2,7 @@
 * @Author: Just be free
 * @Date:   2020-11-30 11:11:58
 * @Last Modified by:   Just be free
-* @Last Modified time: 2020-11-30 16:13:49
+* @Last Modified time: 2020-11-30 16:26:05
 * @E-mail: justbefree@126.com
 */
 import VueGgy, { mixins, props, Options } from "../component/VueGgy";
@@ -63,21 +63,8 @@ export default class VgSubmitBar extends mixins(Props, VueGgy) {
     this.showPopup = !this.showPopup;
     this.$emit("trigger", this.showPopup);
   }
-  getValideContent(tagName: string, slots: VNode[]): VNode[] {
-    const components = [] as VNode[];
-    if (slots && Array.isArray(slots)) {
-      slots.forEach((slot: VNode) => {
-        if (typeof slot.type === "object") {
-          if (tagName === (slot.type as any).name) {
-            components.push(slot);
-          }
-        }
-      });
-    }
-    return components;
-  }
-  genValue(slots: VNode[]) {
-    const value = this.getValideContent(VALIDE_VALUE_COMPONENT, slots);
+  genValue(): VNode|VNode[] {
+    const value = this.getCustomSlotsByTagName(VALIDE_VALUE_COMPONENT);
     if (Array.isArray(value) && value.length > 0) {
       return value;
     } else {
@@ -135,7 +122,6 @@ export default class VgSubmitBar extends mixins(Props, VueGgy) {
     this.showPopup = true;
   }
   render() {
-    const slots = this.getSlots();
     return h(
       "div",
       { class: ["vg-submit-action", this.fixed ? "fixed" : ""] },
@@ -162,7 +148,7 @@ export default class VgSubmitBar extends mixins(Props, VueGgy) {
                     default: () => [
                       h("div", { class: ["vg-submit-action-content"] }, {
                         default: () => [
-                          this.getValideContent(VALIDE_POPUP_CONTENT_COMPONENT, slots)
+                          this.getCustomSlotsByTagName(VALIDE_POPUP_CONTENT_COMPONENT)
                         ]
                       })
                     ]
@@ -188,7 +174,7 @@ export default class VgSubmitBar extends mixins(Props, VueGgy) {
                             }),
                           ]
                         }),
-                        h(VgFlexItem, {}, { default: () => [this.genValue(slots)] }),
+                        h(VgFlexItem, {}, { default: () => [this.genValue()] }),
                         h(VgFlexItem, {}, { default: () => [this.genIcon()] }),
                       ]
                     }),
