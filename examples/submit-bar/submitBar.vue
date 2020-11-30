@@ -24,6 +24,42 @@
           </vg-submit-bar-popup-content>
         </vg-submit-bar>
       </div>
+      <div class="box">
+        <h4>固定在底部</h4>
+        <vg-submit-bar
+          fixed
+          submitText="确认退票"
+          @submit="handleSubmit2"
+          label="应退金额参考:"
+        >
+          <vg-submit-bar-popup-content>
+            <ul>
+              <li>这里是自定义内容</li>
+              <li>这里是自定义内容</li>
+            </ul>
+          </vg-submit-bar-popup-content>
+        </vg-submit-bar>
+      </div>
+      <div class="box">
+        <vg-button @click="handlePopup">弹出</vg-button>
+        <vg-popup v-model="popup">
+          <div class="full-content">
+            <vg-submit-bar
+              fixed
+              submitText="确认退票"
+              @submit="handleSubmit3"
+              label="应退金额参考:"
+            >
+              <vg-submit-bar-popup-content>
+                <ul>
+                  <li>这里是自定义内容</li>
+                  <li>这里是自定义内容</li>
+                </ul>
+              </vg-submit-bar-popup-content>
+            </vg-submit-bar>
+          </div>
+        </vg-popup>
+      </div>
     </div>
   </div>
 </template>
@@ -61,9 +97,15 @@ h3 {
 }
 ul {
   list-style: none;
+  padding: 0;
+  margin: 0;
 }
-ul li {
-  margin: 20px auto;
+.rewrite {
+  font-size: 12px;
+}
+.full-content{
+  width: 100%;
+  height: 200px;
 }
 .box {
   margin: 150px auto;
