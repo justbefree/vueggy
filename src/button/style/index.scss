@@ -2,7 +2,7 @@
 * @Author: Just be free
 * @Date:   2020-10-12 15:56:45
 * @Last Modified by:   Just be free
-* @Last Modified time: 2020-10-14 16:14:41
+* @Last Modified time: 2020-11-30 15:54:57
 */
 .vg-button {
   appearance: none;
@@ -20,6 +20,9 @@
   cursor: pointer;
   &.loading {
     opacity: 0.5;
+  }
+  &.large {
+    width: 100%;
   }
 }
 .vg-button[disabled] {
