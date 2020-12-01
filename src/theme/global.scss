@@ -2,7 +2,7 @@
 * @Author: Just be free
 * @Date:   2020-10-12 16:12:06
 * @Last Modified by:   Just be free
-* @Last Modified time: 2020-10-12 16:13:14
+* @Last Modified time: 2020-12-01 11:10:04
 */
 
 // 主题色
@@ -33,4 +33,7 @@ textarea {
 input::input-placeholder,
 textarea::input-placeholder {
   color: #999999;
+}
+* {
+  -webkit-tap-highlight-color: transparent;
 }
