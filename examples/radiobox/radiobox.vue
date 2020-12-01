@@ -12,7 +12,7 @@
 
 <script lang="ts">
 import { Vue } from 'vue-class-component';
-export default class Flex extends Vue {
+export default class Radiobox extends Vue {
   public radiobox1 = true;
   public radiobox2 = false;
 }

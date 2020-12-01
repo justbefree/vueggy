@@ -5,6 +5,7 @@
         <div class="header">
           <span @click="back" class="backicon-button"><img width="20" :src="backIcon"></span>
           <span>{{ getTitle() }}</span>
+          <span class="view-sorce-code" @click="viewSourceCode" v-if="isShowSourceCode()"><img width="25" :src="viewIcon"></span>
         </div>
       </template>
       <template #body>
@@ -20,22 +21,31 @@
 <script lang="ts">
 import { Options, Vue } from 'vue-class-component';
 const backIcon = require("./assets/back.svg");
+const viewIcon = require("./assets/view.svg");
 
 @Options({
 })
 export default class App extends Vue {
   public backIcon = backIcon;
+  public viewIcon = viewIcon;
   getTitle(): string {
     return this.$route.meta.title;
   }
   isShowHeader(): boolean {
     return this.$route.meta.showHeader;
   }
+  isShowSourceCode(): boolean {
+    return this.$route.meta.code;
+  }
   isShowFooter(): boolean {
     return this.$route.meta.showFooter;
   }
   back(): void {
     this.$router.back();
+  }
+  viewSourceCode() {
+    const { name } = this.$route;
+    this.$router.push({ name: `${name}Code` });
   }
 }
 </script>
@@ -81,6 +91,15 @@ body, #example {
   height: 44px;
 }
 .header .backicon-button img{
+  vertical-align: middle;
+}
+.header .view-sorce-code  {
+  position: absolute;
+  right: 6px;
+  top: 0;
+  height: 44px;
+}
+.header .view-sorce-code img {
   vertical-align: middle;
 }
 </style>

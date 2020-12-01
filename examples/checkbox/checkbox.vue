@@ -12,7 +12,7 @@
 
 <script lang="ts">
 import { Vue } from 'vue-class-component';
-export default class Flex extends Vue {
+export default class Checkbox extends Vue {
   public checkbox1 = true;
   public checkbox2 = false;
 }
