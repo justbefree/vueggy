@@ -2,7 +2,7 @@
 * @Author: Just be free
 * @Date:   2020-11-25 14:11:49
 * @Last Modified by:   Just be free
-* @Last Modified time: 2020-11-27 18:10:45
+* @Last Modified time: 2020-11-30 16:59:57
 * @E-mail: justbefree@126.com
 */
 import VueGgy, { mixins, props, Options, VisibilityChangeStatus } from "../component/VueGgy";
@@ -11,6 +11,7 @@ import { Remainder } from "../utils/number/remainder";
 import { move } from "../utils/dom/animate";
 import { EventBus } from "../utils/event/bus";
 import { EventEmulator, EventCallbackOptions } from "../component/EventEmulator";
+const VALID_CHILD_COMPONENT = "VgSwipeItem";
 const Props = props({
   vertical: Boolean,
   autoPlay: {
@@ -292,7 +293,7 @@ export default class VgSwipe extends mixins(Props, VueGgy, EventEmulator) {
     this.resize();
   }
   render() {
-    const slots = this.getSlots();
+    const slots = this.getCustomSlotsByTagName(VALID_CHILD_COMPONENT);
     this.count = slots.length;
     return h(
       "div",

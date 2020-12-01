@@ -2,14 +2,20 @@
 * @Author: Just be free
 * @Date:   2020-11-10 10:41:55
 * @Last Modified by:   Just be free
-* @Last Modified time: 2020-11-10 18:31:15
+* @Last Modified time: 2020-12-01 10:30:47
 * @E-mail: justbefree@126.com
 */
 import VueGgy, { mixins, props, Options } from "../component/VueGgy";
-import { h } from "vue";
+import { h, VNode } from "vue";
 import VgFlex from "../flex";
 import VgFlexItem from "../flex-item";
-// const VALID_CHILD_COMPONENT = "tab-item";
+const VALID_CHILD_COMPONENT = "VgTabItem";
+export interface Tab {
+  value: string;
+  disabled: boolean|undefined;
+  index: number;
+  name: string;
+}
 const Props = props({
   modelValue: [String, Number]
 });
@@ -25,40 +31,35 @@ const Props = props({
 export default class VgTabs extends mixins(VueGgy, Props) {
   public static componentName = "VgTabs";
   public currentTab = this.modelValue;
-  public children = [] as any;
-  getTitles(slots = []): any[] {
-    const children = (slots[0] as any).children;
-    console.log("children", children);
-    this.children = children.map((child: any) => JSON.stringify(child.children.default()));
-    const tabs: any[] = [];
-    children.forEach((slot: any, index: number) => {
-      const { title, disabled } = slot.props;
-      tabs.push({ value: title, disabled, index: index });
+  getTitles(slots: VNode[] = []): Tab[] {
+    const tabs: Tab[] = [];
+    slots.forEach((slot: any, index: number) => {
+      const { title, disabled, name } = slot.props;
+      tabs.push({ value: title, disabled, index, name });
     });
     return tabs;
   }
-  handleTabClick(tab: any): void {
+  handleTabClick(tab: Tab): void {
     this.$emit("click", tab);
     if (tab.disabled) {
       return;
     }
-    if (this.currentTab !== tab.index) {
+    if (this.currentTab !== tab.name) {
       this.$emit("change", tab);
     }
-    this.currentTab = tab.index;
+    this.currentTab = tab.name;
   }
-  getStatus(tab: any): string {
+  getStatus(tab: Tab): string {
     if (tab.disabled) {
       return "disabled";
     }
-    if (tab.index === this.currentTab) {
+    if (tab.name === this.currentTab) {
       return "active";
     }
     return "";
   }
   render() {
-    // let validChildComponent = VALID_CHILD_COMPONENT;
-    const slots = this.getSlots();
+    const slots = this.getCustomSlotsByTagName(VALID_CHILD_COMPONENT);
     const tabTitles = this.getTitles(slots);
     const flex = tabTitles.length > 4 ? "0 0 22%" : 1;
     return h("div", { class: ["vg-tabs"] }, [
@@ -72,7 +73,7 @@ export default class VgTabs extends mixins(VueGgy, Props) {
                   style: { textAlign: "center" },
                   flex,
                   onClick: this.handleTabClick.bind(this, tab),
-                  key: tab.index
+                  key: tab.name
                 },
                 {
                   default: () => [

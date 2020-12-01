@@ -2,7 +2,7 @@
 * @Author: Just be free
 * @Date:   2020-11-25 14:12:12
 * @Last Modified by:   Just be free
-* @Last Modified time: 2020-11-27 18:11:53
+* @Last Modified time: 2020-11-30 17:00:24
 * @E-mail: justbefree@126.com
 */
 import VueGgy, { mixins, props, Options } from "../component/VueGgy";
@@ -22,7 +22,6 @@ export default class VgSwipeItem extends mixins(Props, VueGgy) {
       return;
     }
     const imgs = $el.getElementsByTagName("img");
-    console.log("imgs = ", imgs);
     const imgDOMs = Array.from(imgs);
     if (imgDOMs.length > 0) {
       loadImageAsync(imgDOMs).then(() => {
