@@ -110,6 +110,9 @@
         <span>js-api</span>
       </li>
     </ul>
+    <div class="logo">
+      <img src="../assets/logo/logo.svg">
+    </div>
   </div>
 </template>
 
@@ -125,10 +128,13 @@ export default class Content extends Vue {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 .logo {
+  width: 92%;
   height: 100px;
+  margin: 0 auto;
 }
 .logo img {
-  margin: 20px auto;
+  margin: 40px auto;
+  width: 150px;
 }
 ul {
   list-style-type: none;
@@ -145,7 +151,7 @@ li {
   margin: 10px auto;
   background: #f7f8fa;
   border-radius: 30px;
-  width: 94%;
+  width: 92%;
   text-align: left;
   text-indent: 1em;
 }

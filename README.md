@@ -1,6 +1,6 @@
 # Vueggy
 
-<img src="./examples/assets/logo/logo.png" width="100" height="100"/>
+<img src="./examples/assets/logo/v.svg" width="100" height="100"/>
 
 # Usage
 
