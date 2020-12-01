@@ -5,7 +5,7 @@
         <li @click="indicator('snake')">snake</li>
         <li @click="indicator('tripleBounce')">tripleBounce</li>
         <li @click="indicator('rotate', false)">rotate lockScreen</li>
-        <li @click="indicator('rotate', true)">rotate lockScreen transparent</li>
+        <li @click="indicator('rotate', true)">rotate transparent</li>
       </ul>
     </div>
   </div>
@@ -30,13 +30,23 @@ export default class Indicator extends Vue {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-h3 {
-  margin: 40px 0 0;
-}
 ul {
-  list-style: none;
+  list-style-type: none;
+  padding: 0;
+  user-select: none;
+  margin: 0;
 }
-ul li{
-  margin: 20px auto;
+li {
+  border-top: 1px solid #e4e4e4;
+  line-height: 44px;
+  cursor: pointer;
+  color: #000;
+  font-size: 16px;
+  margin: 10px auto;
+  background: #f7f8fa;
+  border-radius: 30px;
+  width: 92%;
+  text-align: left;
+  text-indent: 1em;
 }
 </style>
