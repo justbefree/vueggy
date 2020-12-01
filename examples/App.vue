@@ -66,7 +66,8 @@ body, #example {
 .header{
   height: 44px;
   /* background: #4fc08d; */
-  background: #1b1b1b;
+  /* background: #1b1b1b; */
+  background: #007aff;
   color: #fff;
   line-height: 44px;
   text-align: center;
