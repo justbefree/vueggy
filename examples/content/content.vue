@@ -1,33 +1,114 @@
 <template>
   <div class="content-view">
     <ul>
-      <li @click="listClick('Flex')">flex</li>
-      <li @click="listClick('Toast')">toast</li>
-      <li @click="listClick('Spin')">spin</li>
-      <li @click="listClick('Popup')">popup</li>
-      <li @click="listClick('Icon')">icon</li>
-      <li @click="listClick('Checkbox')">checkbox</li>
-      <li @click="listClick('Radiobox')">radiobox</li>
-      <li @click="listClick('Button')">button</li>
-      <li @click="listClick('Dialog')">dialog</li>
-      <li @click="listClick('Sticky')">sticky</li>
-      <li @click="listClick('Calendar')">calendar</li>
-      <li @click="listClick('Layout')">layout</li>
-      <li @click="listClick('Citypicker')">citypicker</li>
-      <li @click="listClick('Indicator')">indicator</li>
-      <li @click="listClick('Slider')">slider</li>
-      <li @click="listClick('ActionSheet')">action-sheet</li>
-      <li @click="listClick('PickyStepper')">picky-stepper</li>
-      <li @click="listClick('Counter')">counter</li>
-      <li @click="listClick('PullRefresh')">pull-refresh</li>
-      <li @click="listClick('Skeleton')">skeleton</li>
-      <li @click="listClick('Picker')">picker</li>
-      <li @click="listClick('DatePicker')">date-picker</li>
-      <li @click="listClick('Tabs')">tabs</li>
-      <li @click="listClick('AnimationList')">animation-list</li>
-      <li @click="listClick('Swipe')">swipe</li>
-      <li @click="listClick('SubmitBar')">submit-bar</li>
-      <li @click="listClick('JSapi')">js-api</li>
+      <li @click="listClick('Flex')">
+        <img src="./svgs/flex.svg">
+        <span>flex</span>
+      </li>
+      <li @click="listClick('Toast')">
+        <img src="./svgs/toast.svg">
+        <span>toast</span>
+      </li>
+      <li @click="listClick('Spin')">
+        <img src="./svgs/spin.svg">
+        <span>spin</span>
+      </li>
+      <li @click="listClick('Popup')">
+        <img src="./svgs/popup.svg">
+        <span>popup</span>
+      </li>
+      <li @click="listClick('Icon')">
+        <img src="./svgs/icon.svg">
+        <span>icon</span>
+      </li>
+      <li @click="listClick('Checkbox')">
+        <img src="./svgs/checkbox.svg">
+        <span>checkbox</span>
+      </li>
+      <li @click="listClick('Radiobox')">
+        <img src="./svgs/radiobox.svg">
+        <span>radiobox</span>
+      </li>
+      <li @click="listClick('Button')">
+        <img src="./svgs/button.svg">
+        <span>button</span>
+      </li>
+      <li @click="listClick('Dialog')">
+        <img src="./svgs/dialog.svg">
+        <span>dialog</span>
+      </li>
+      <li @click="listClick('Sticky')">
+        <img src="./svgs/sticky.svg">
+        <span>sticky</span>
+      </li>
+      <li @click="listClick('Calendar')">
+        <img src="./svgs/calendar.svg">
+        <span>calendar</span>
+      </li>
+      <li @click="listClick('Layout')">
+        <img src="./svgs/layout.svg">
+        <span>layout</span>
+      </li>
+      <li @click="listClick('Citypicker')">
+        <img src="./svgs/city-picker.svg">
+        <span>citypicker</span>
+      </li>
+      <li @click="listClick('Indicator')">
+        <img src="./svgs/indicator.svg">
+        <span>indicator</span>
+      </li>
+      <li @click="listClick('Slider')">
+        <img src="./svgs/slider.svg">
+        <span>slider</span>
+      </li>
+      <li @click="listClick('ActionSheet')">
+        <img src="./svgs/action-sheet.svg">
+        <span>action-sheet</span>
+      </li>
+      <li @click="listClick('PickyStepper')">
+        <img src="./svgs/picky-stepper.svg">
+        <span>picky-stepper</span>
+      </li>
+      <li @click="listClick('Counter')">
+        <img src="./svgs/counter.svg">
+        <span>counter</span>
+      </li>
+      <li @click="listClick('PullRefresh')">
+        <img src="./svgs/pull-refresh.svg">
+        <span>pull-refresh</span>
+      </li>
+      <li @click="listClick('Skeleton')">
+        <img src="./svgs/skeleton.svg">
+        <span>skeleton</span>
+      </li>
+      <li @click="listClick('Picker')">
+        <img src="./svgs/picker.svg">
+        <span>picker</span>
+      </li>
+      <li @click="listClick('DatePicker')">
+        <img src="./svgs/date-picker.svg">
+        <span>date-picker</span>
+      </li>
+      <li @click="listClick('Tabs')">
+        <img src="./svgs/tabs.svg">
+        <span>tabs</span>
+      </li>
+      <li @click="listClick('AnimationList')">
+        <img src="./svgs/animation-list.svg">
+        <span>animation-list</span>
+      </li>
+      <li @click="listClick('Swipe')">
+        <img src="./svgs/swipe.svg">
+        <span>swipe</span>
+      </li>
+      <li @click="listClick('SubmitBar')">
+        <img src="./svgs/submit-bar.svg">
+        <span>submit-bar</span>
+      </li>
+      <li @click="listClick('JSapi')">
+        <img src="./svgs/js-api.svg">
+        <span>js-api</span>
+      </li>
     </ul>
   </div>
 </template>
@@ -59,8 +140,21 @@ li {
   border-top: 1px solid #e4e4e4;
   line-height: 44px;
   cursor: pointer;
-  color: #4f5959;
-  font-size: 18px;
+  color: #000;
+  font-size: 20px;
+  margin: 10px auto;
+  background: #f7f8fa;
+  border-radius: 30px;
+  width: 94%;
+  text-align: left;
+  text-indent: 1em;
+}
+li img {
+  vertical-align: middle;
+  margin-right: 15px;
+  margin-top: -1px;
+  width: 25px;
+  height: 25px;
 }
 li:last-child {
   border-bottom: 1px solid #e4e4e4;
