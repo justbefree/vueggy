@@ -2,7 +2,7 @@
 * @Author: Just be free
 * @Date:   2020-09-22 14:17:59
 * @Last Modified by:   Just be free
-* @Last Modified time: 2020-12-01 17:52:32
+* @Last Modified time: 2020-12-02 09:52:33
 * @E-mail: justbefree@126.com
 */
 import { createRouter, createWebHashHistory } from "vue-router";
@@ -27,7 +27,9 @@ import DialogCode from "./dialog/code.vue";
 import Button from "./button/button.vue";
 import ButtonCode from "./button/code.vue";
 import Sticky from "./sticky/sticky.vue";
+import StickyCode from "./sticky/code.vue";
 import Calendar from "./calendar/calendar.vue";
+import CalendarCode from "./calendar/code.vue";
 import Layout from "./layout/layout.vue";
 import Citypicker from "./citypicker/citypicker.vue";
 import Indicator from "./indicator/indicator.vue";
@@ -172,10 +174,22 @@ const routes = [
     meta: { showFooter: false, showHeader: true, title: "sticky", code: true }
   },
   {
+    path: "/sticky-cide",
+    name: "StickyCode",
+    component: StickyCode,
+    meta: { showFooter: false, showHeader: true, title: "source code" }
+  },
+  {
     path: "/calendar",
     name: "Calendar",
     component: Calendar,
     meta: { showFooter: false, showHeader: true, title: "calendar", code: true }
+  },
+  {
+    path: "/calendar-code",
+    name: "CalendarCode",
+    component: CalendarCode,
+    meta: { showFooter: false, showHeader: true, title: "source code" }
   },
   {
     path: "/layout",

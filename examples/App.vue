@@ -89,6 +89,7 @@ body, #example {
   left: 6px;
   top: 0px;
   height: 44px;
+  cursor: pointer;
 }
 .header .backicon-button img{
   vertical-align: middle;
@@ -98,6 +99,7 @@ body, #example {
   right: 6px;
   top: 0;
   height: 44px;
+  cursor: pointer;
 }
 .header .view-sorce-code img {
   vertical-align: middle;
