@@ -2,7 +2,7 @@
 * @Author: Just be free
 * @Date:   2020-10-12 15:56:53
 * @Last Modified by:   Just be free
-* @Last Modified time: 2020-12-02 10:45:49
+* @Last Modified time: 2020-12-02 11:52:42
 * @E-mail: justbefree@126.com
 */
 import VueGgy, { mixins, props, Options } from "../component/VueGgy";
@@ -514,7 +514,7 @@ export default class VgCalendar extends mixins(VueGgy, Props) {
           default: () => [
             h("div", {
               class: [
-                "yn-calendar-confirm-button",
+                "vg-calendar-confirm-button",
                 this.confirmButtonClassName
               ],
               onClick: this.handleOnConfirm,
