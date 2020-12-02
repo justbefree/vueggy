@@ -2,7 +2,7 @@
 * @Author: Just be free
 * @Date:   2020-09-22 14:17:59
 * @Last Modified by:   Just be free
-* @Last Modified time: 2020-12-02 09:52:33
+* @Last Modified time: 2020-12-02 15:57:19
 * @E-mail: justbefree@126.com
 */
 import { createRouter, createWebHashHistory } from "vue-router";
@@ -31,20 +31,35 @@ import StickyCode from "./sticky/code.vue";
 import Calendar from "./calendar/calendar.vue";
 import CalendarCode from "./calendar/code.vue";
 import Layout from "./layout/layout.vue";
+import LayoutCode from "./layout/code.vue";
 import Citypicker from "./citypicker/citypicker.vue";
+import CitypickerCode from "./citypicker/code.vue";
 import Indicator from "./indicator/indicator.vue";
+import IndicatorCode from "./indicator/code.vue";
 import Slider from "./slider/slider.vue";
+import SliderCode from "./slider/code.vue";
 import ActionSheet from "./action-sheet/actionSheet.vue";
+import ActionSheetCode from "./action-sheet/code.vue";
 import PickyStepper from "./picky-stepper/pickyStepper.vue";
+import PickyStepperCode from "./picky-stepper/code.vue";
 import Counter from "./counter/counter.vue";
+import CounterCode from "./counter/code.vue";
 import PullRefresh from "./pull-refresh/refresh.vue";
+import PullRefreshCode from "./pull-refresh/code.vue";
 import Skeleton from "./skeleton/skeleton.vue";
+import SkeletonCode from "./skeleton/code.vue";
 import Picker from "./picker/picker.vue";
+import PickerCode from "./picker/code.vue";
 import DatePicker from "./date-picker/datePicker.vue";
+import DatePickerCode from "./date-picker/code.vue";
 import Tabs from "./tabs/tabs.vue";
+import TabsCode from "./tabs/code.vue";
 import AnimationList from "./animation-list/animationList.vue";
+import AnimationListCode from "./animation-list/code.vue";
 import Swipe from "./swipe/swipe.vue";
+import SwipeCode from "./swipe/code.vue";
 import SubmitBar from "./submit-bar/submitBar.vue";
+import SubmitBarCode from "./submit-bar/code.vue";
 import JSapi from "./js-api/api.vue";
 const routes = [
   {
@@ -198,10 +213,22 @@ const routes = [
     meta: { showFooter: false, showHeader: true, title: "layout", code: true }
   },
   {
+    path: "/layout-code",
+    name: "LayoutCode",
+    component: LayoutCode,
+    meta: { showFooter: false, showHeader: true, title: "source code" }
+  },
+  {
     path: "/citypicker",
     name: "Citypicker",
     component: Citypicker,
     meta: { showFooter: false, showHeader: true, title: "citypicker", code: true }
+  },
+  {
+    path: "/citypicker-code",
+    name: "CitypickerCode",
+    component: CitypickerCode,
+    meta: { showFooter: false, showHeader: true, title: "source code" }
   },
   {
     path: "/indicator",
@@ -210,10 +237,22 @@ const routes = [
     meta: { showFooter: false, showHeader: true, title: "indicator", code: true }
   },
   {
+    path: "/indicator-code",
+    name: "IndicatorCode",
+    component: IndicatorCode,
+    meta: { showFooter: false, showHeader: true, title: "source code" }
+  },
+  {
     path: "/slider",
     name: "Slider",
     component: Slider,
     meta: { showFooter: false, showHeader: true, title: "slider", code: true }
+  },
+  {
+    path: "/slider-code",
+    name: "SliderCode",
+    component: SliderCode,
+    meta: { showFooter: false, showHeader: true, title: "source code" }
   },
   {
     path: "/action-sheet",
@@ -222,10 +261,22 @@ const routes = [
     meta: { showFooter: false, showHeader: true, title: "action-sheet", code: true }
   },
   {
+    path: "/action-sheet-code",
+    name: "ActionSheetCode",
+    component: ActionSheetCode,
+    meta: { showFooter: false, showHeader: true, title: "source code" }
+  },
+  {
     path: "/picky-stepper",
     name: "PickyStepper",
     component: PickyStepper,
     meta: { showFooter: false, showHeader: true, title: "picky-stepper", code: true }
+  },
+  {
+    path: "/picky-stepper-code",
+    name: "PickyStepperCode",
+    component: PickyStepperCode,
+    meta: { showFooter: false, showHeader: true, title: "source code" }
   },
   {
     path: "/counter",
@@ -234,10 +285,22 @@ const routes = [
     meta: { showFooter: false, showHeader: true, title: "counter", code: true }
   },
   {
+    path: "/counter-code",
+    name: "CounterCode",
+    component: CounterCode,
+    meta: { showFooter: false, showHeader: true, title: "source code" }
+  },
+  {
     path: "/pull-refresh",
     name: "PullRefresh",
     component: PullRefresh,
     meta: { showFooter: false, showHeader: true, title: "pull-refresh", code: true }
+  },
+  {
+    path: "/pull-refresh-code",
+    name: "PullRefreshCode",
+    component: PullRefreshCode,
+    meta: { showFooter: false, showHeader: true, title: "source code" }
   },
   {
     path: "/skeleton",
@@ -246,10 +309,22 @@ const routes = [
     meta: { showFooter: false, showHeader: true, title: "skeleton", code: true }
   },
   {
+    path: "/skeleton-code",
+    name: "SkeletonCode",
+    component: SkeletonCode,
+    meta: { showFooter: false, showHeader: true, title: "source code" }
+  },
+  {
     path: "/picker",
     name: "Picker",
     component: Picker,
     meta: { showFooter: false, showHeader: true, title: "picker", code: true }
+  },
+  {
+    path: "/picker-code",
+    name: "PickerCode",
+    component: PickerCode,
+    meta: { showFooter: false, showHeader: true, title: "source code" }
   },
   {
     path: "/date-picker",
@@ -258,10 +333,22 @@ const routes = [
     meta: { showFooter: false, showHeader: true, title: "date-picker", code: true }
   },
   {
+    path: "/date-picker-code",
+    name: "DatePickerCode",
+    component: DatePickerCode,
+    meta: { showFooter: false, showHeader: true, title: "source code" }
+  },
+  {
     path: "/tabs",
     name: "Tabs",
     component: Tabs,
     meta: { showFooter: false, showHeader: true, title: "tabs", code: true }
+  },
+  {
+    path: "/tabs-code",
+    name: "TabsCode",
+    component: TabsCode,
+    meta: { showFooter: false, showHeader: true, title: "source code" }
   },
   {
     path: "/animation-list",
@@ -270,16 +357,34 @@ const routes = [
     meta: { showFooter: false, showHeader: true, title: "animation-list", code: true }
   },
   {
+    path: "/animation-list-code",
+    name: "AnimationListCode",
+    component: AnimationListCode,
+    meta: { showFooter: false, showHeader: true, title: "source code" }
+  },
+  {
     path: "/swipe",
     name: "Swipe",
     component: Swipe,
     meta: { showFooter: false, showHeader: true, title: "swipe", code: true }
   },
   {
+    path: "/swipe-code",
+    name: "SwipeCode",
+    component: SwipeCode,
+    meta: { showFooter: false, showHeader: true, title: "source code" }
+  },
+  {
     path: "/submit-bar",
     name: "SubmitBar",
     component: SubmitBar,
     meta: { showFooter: false, showHeader: true, title: "submit-bar", code: true }
+  },
+  {
+    path: "/submit-bar-code",
+    name: "SubmitBarCode",
+    component: SubmitBarCode,
+    meta: { showFooter: false, showHeader: true, title: "source code" }
   },
   {
     path: "/js-api",

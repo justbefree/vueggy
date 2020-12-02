@@ -9,7 +9,7 @@
     topDistance="100"
   >
     <template #header>
-      <div class="header">header</div>
+      <div class="header0">header</div>
     </template>
     <template #body>
       <div>
@@ -69,13 +69,8 @@ export default class Layout extends Vue {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-h3 {
-  margin: 40px 0 0;
-}
-ul {
-  list-style: none;
-}
-ul li{
-  margin: 20px auto;
-}
+  .header0 {
+    /* height: 44px; */
+    background: #ccc;
+  }
 </style>
