@@ -2,16 +2,20 @@
 * @Author: Just be free
 * @Date:   2020-10-19 16:31:57
 * @Last Modified by:   Just be free
-* @Last Modified time: 2020-10-20 17:41:57
+* @Last Modified time: 2020-12-02 10:32:31
 * @E-mail: justbefree@126.com
 */
 const now = new Date();
 export type VDate = string|number|VgDate;
 export type VDateString = string|number;
+const number2string = (num: VDateString): string => {
+  const integer = (typeof num === "string") ? parseInt(num) : num;
+  return integer < 10 ? `0${integer}` : `${integer}`;
+}
 class VgDate {
   private year: VDate = now.getFullYear();
-  private month: VDateString = now.getMonth() + 1;
-  private date: VDateString = now.getDate();
+  private month: VDateString = number2string(now.getMonth() + 1);
+  private date: VDateString = number2string(now.getDate());
   private JSDate = new Date();
   constructor(year?: VDate, month?: VDateString, date?: VDateString) {
     this.init(year, month, date);
@@ -35,10 +39,12 @@ class VgDate {
     }
   }
   setMonth(month: VDateString): void {
-    this.month = parseInt(month as string) < 10 ? `0${month}` : month;
+    // this.month = parseInt(month as string) < 10 ? `0${month}` : month;
+    this.month = number2string(month);
   }
   setDate(date: VDateString): void {
-    this.date = parseInt(date as string) < 10 ? `0${date}` : date;
+    // this.date = parseInt(date as string) < 10 ? `0${date}` : date;
+    this.date = number2string(date);
   }
   isDateFormat(arg: string): boolean {
     return /^(\d{4})(-)(\d{2})(-)(\d{2})$/.test(String(arg));
