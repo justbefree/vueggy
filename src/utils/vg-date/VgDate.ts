@@ -2,7 +2,7 @@
 * @Author: Just be free
 * @Date:   2020-10-19 16:31:57
 * @Last Modified by:   Just be free
-* @Last Modified time: 2020-12-02 10:32:31
+* @Last Modified time: 2020-12-02 11:43:01
 * @E-mail: justbefree@126.com
 */
 const now = new Date();
@@ -26,16 +26,14 @@ class VgDate {
     } else if (this.isDateFormat(year as string)) {
       this.init(...(year as string).split("-"));
     } else {
-      if (year && month && date) {
-        this.JSDate = new Date(Date.parse(`${year}/${month}/${date}`));
-        this.year = year;
-        this.setMonth(month);
-        this.setDate(date);
-        return this;
-      } else {
-        this.JSDate = new Date(Date.parse(`${this.year}/${this.month}/${this.date}`));
-        return this;
-      }
+      const iYear = year ? year : this.year;
+      const iMonth = month ? month : this.month;
+      const iDate = date ? date : this.date;
+      this.JSDate = new Date(Date.parse(`${iYear}/${iMonth}/${iDate}`));
+      this.year = iYear;
+      this.setMonth(iMonth);
+      this.setDate(iDate);
+      return this;
     }
   }
   setMonth(month: VDateString): void {
