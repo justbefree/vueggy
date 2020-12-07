@@ -2,7 +2,7 @@
 * @Author: Just be free
 * @Date:   2020-09-22 14:17:59
 * @Last Modified by:   Just be free
-* @Last Modified time: 2020-12-02 15:57:19
+* @Last Modified time: 2020-12-07 15:00:33
 * @E-mail: justbefree@126.com
 */
 import { createRouter, createWebHashHistory } from "vue-router";
@@ -60,6 +60,7 @@ import Swipe from "./swipe/swipe.vue";
 import SwipeCode from "./swipe/code.vue";
 import SubmitBar from "./submit-bar/submitBar.vue";
 import SubmitBarCode from "./submit-bar/code.vue";
+import Field from "./field/field.vue";
 import JSapi from "./js-api/api.vue";
 const routes = [
   {
@@ -385,6 +386,12 @@ const routes = [
     name: "SubmitBarCode",
     component: SubmitBarCode,
     meta: { showFooter: false, showHeader: true, title: "source code" }
+  },
+  {
+    path: "/field",
+    name: "Field",
+    component: Field,
+    meta: { showFooter: false, showHeader: true, title: "field", code: true }
   },
   {
     path: "/js-api",

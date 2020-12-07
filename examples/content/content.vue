@@ -105,6 +105,10 @@
         <img src="./svgs/submit-bar.svg">
         <span>submit-bar</span>
       </li>
+      <li @click="listClick('Field')">
+        <img src="./svgs/field.svg">
+        <span>field</span>
+      </li>
       <li @click="listClick('JSapi')">
         <img src="./svgs/js-api.svg">
         <span>js-api</span>
