@@ -1,0 +1,107 @@
+/*
+* @Author: Just be free
+* @Date:   2020-12-07 14:36:22
+* @Last Modified by:   Just be free
+* @Last Modified time: 2020-12-07 18:33:19
+*/
+
+.vg-field {
+  padding: 10px 10px;
+  line-height: 24px;
+  box-sizing: border-box;
+  width: 100%;
+  background: #fff;
+  position: relative;
+  .vg-field-container {
+    .vg-field-label {
+      box-sizing: border-box;
+      user-select: none;
+      &.limit-label-width {
+        width: 90px;
+      }
+      text-align: left;
+      .label-wrapper {
+        font-size: 15px;
+        color: #888888;
+      }
+    }
+    .vg-field-input,
+    .vg-field-textarea {
+      color: #323233;
+      > input.input-ele {
+        font-size: 14px;
+        outline: none;
+        text-overflow: ellipsis;
+        overflow: hidden;
+        white-space: nowrap;
+        display: block;
+        box-sizing: border-box;
+        width: 100%;
+        min-width: 0;
+        margin: 0;
+        padding: 0;
+        color: #323233;
+        line-height: inherit;
+        text-align: left;
+        background-color: transparent;
+        border: 0;
+        resize: none;
+      }
+      > textarea.textarea-ele {
+        word-break: break-all;
+        font-size: 14px;
+        border: none;
+        outline: none;
+        width: 100%;
+        padding: 0;
+      }
+      .vg-field-textarea-counter {
+        text-align: right;
+        span {
+          font-size: 12px;
+          color: #646566;
+        }
+      }
+      > input.input-ele.disable,
+      > textarea.textarea-ele.disable {
+        cursor: not-allowed;
+      }
+    }
+  }
+  // &:not(:last-child)::after {
+  //   position: absolute;
+  //   box-sizing: border-box;
+  //   content: " ";
+  //   pointer-events: none;
+  //   right: 0;
+  //   bottom: 0;
+  //   left: 16px;
+  //   border-bottom: 1px solid #ebedf0;
+  //   transform: scaleY(0.5);
+  // }
+}
+.vg-field-solo::after {
+  position: absolute;
+  box-sizing: border-box;
+  content: " ";
+  pointer-events: none;
+  right: 0;
+  bottom: 0;
+  left: 16px;
+  border-bottom: 1px solid #ebedf0;
+  transform: scaleY(0.5);
+}
+.border-top-bottom::after {
+  position: absolute;
+  box-sizing: border-box;
+  content: " ";
+  pointer-events: none;
+  top: -50%;
+  right: -50%;
+  bottom: -50%;
+  left: -50%;
+  border: 0 solid #ebedf0;
+  -webkit-transform: scale(0.5);
+  transform: scale(0.5);
+  border-width: 1px 0;
+}
