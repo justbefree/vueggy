@@ -1,6 +1,7 @@
 <template>
   <div class="flex-view">
     <div id="container">
+      <a href="https://wow.techbrood.com/fiddle/8177" target="_blank">查看原案例</a>
       <vg-flex justifyContent="center" alignItems="center" class="face">
         <transition>
           <!-- 加一层<transition>也是可以的，其他元素就不行了哦，暂时不支持<transition-group> -->
