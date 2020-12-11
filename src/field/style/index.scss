@@ -2,17 +2,25 @@
 * @Author: Just be free
 * @Date:   2020-12-07 14:36:22
 * @Last Modified by:   Just be free
-* @Last Modified time: 2020-12-07 18:33:19
+* @Last Modified time: 2020-12-11 15:03:59
 */
 
 .vg-field {
   padding: 10px 10px;
   line-height: 24px;
+  &.vg-field-column {
+    line-height: none;
+    padding: 0 10px;
+  }
   box-sizing: border-box;
   width: 100%;
   background: #fff;
   position: relative;
   .vg-field-container {
+    .column-flex-item {
+      height: 44px;
+      line-height: 44px;
+    }
     .vg-field-label {
       box-sizing: border-box;
       user-select: none;
@@ -22,12 +30,12 @@
       text-align: left;
       .label-wrapper {
         font-size: 15px;
-        color: #888888;
+        color: #646566;
       }
     }
     .vg-field-input,
     .vg-field-textarea {
-      color: #323233;
+      // color: #323233;
       > input.input-ele {
         font-size: 14px;
         outline: none;
@@ -40,7 +48,7 @@
         min-width: 0;
         margin: 0;
         padding: 0;
-        color: #323233;
+        // color: #323233;
         line-height: inherit;
         text-align: left;
         background-color: transparent;

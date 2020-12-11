@@ -2,15 +2,16 @@
 * @Author: Just be free
 * @Date:   2020-12-07 14:36:07
 * @Last Modified by:   Just be free
-* @Last Modified time: 2020-12-07 18:32:59
+* @Last Modified time: 2020-12-11 15:59:13
 * @E-mail: justbefree@126.com
 */
 import VueGgy, { mixins, props, Options } from "../component/VueGgy";
 import { h, VNode, vShow, withDirectives } from "vue";
+import { encrypt } from "../utils/string";
 import VgFlex from "../flex";
 import VgFlexItem from "../flex-item";
 import VgIcon from "../icon";
-const VALID_TYPE = ["number", "textarea", "password", "text", "email"];
+const VALID_TYPE = ["number", "textarea", "password", "text", "email", "tel"];
 const Props = props({
   modelValue: {
     type: [Number, String],
@@ -65,16 +66,23 @@ const Props = props({
 });
 @Options({
   name: "VgField",
-  emits: ["blur", "update:modelValue", "focus"]
+  emits: ["blur", "update:modelValue", "focus", "click"],
+  computed: {
+    isColumnDisplay() {
+      return this.display === "column";
+    }
+  }
 })
 export default class VgField extends mixins(Props, VueGgy) {
   public static componentName = "VgField";
   public target: null|HTMLInputElement = null;
   public showIcon = false;
   public showEncryptInput = false;
+  public originalText = this.modelValue;
+  public inputing = false;
   handleIconClick(): void {
     if (this.clearable) {
-      (this.target as HTMLInputElement).value = "";
+      // (this.target as HTMLInputElement).value = "";
       this.$emit("update:modelValue", "");
       this.showIcon = false;
     }
@@ -84,9 +92,12 @@ export default class VgField extends mixins(Props, VueGgy) {
     this.$emit("focus", e);
     this.$emit("click", e);
     if (this.encrypted) {
-      (e.target as HTMLInputElement).value = "";
+      // (e.target as HTMLInputElement).value = "";
       this.$emit("update:modelValue", "");
     }
+  }
+  getDecryptedValue(): string|number {
+    return this.originalText;
   }
   handleInput(e: InputEvent): void {
     if (this.clearable && (e.target as HTMLInputElement).value) {
@@ -94,19 +105,31 @@ export default class VgField extends mixins(Props, VueGgy) {
     } else {
       this.showIcon = false;
     }
+    this.inputing = true;
     this.$emit("update:modelValue", (e.target as HTMLInputElement).value);
   }
   handleOnBlur(e: InputEvent): void {
+    this.inputing = false;
+    if (this.encrypted) {
+      if (this.modelValue === "") {
+        this.$emit("update:modelValue", encrypt(this.originalText));
+      } else {
+        const inputText = (this.target as HTMLInputElement).value;
+        this.originalText = inputText;
+      }
+    }
     this.$emit("blur", e);
   }
   createIcon(): VNode[] {
     const icon = [] as VNode[];
     const name = this.clearable ? "clear" : this.iconName;
     if (this.clearable || this.iconName) {
+      if (this.modelValue !== "") {
+        this.showIcon = true;
+      }
       icon.push(
         withDirectives(h(VgFlexItem,
           {
-            // directives,
             onClick: this.handleIconClick,
           },
           {
@@ -124,17 +147,13 @@ export default class VgField extends mixins(Props, VueGgy) {
       readonly: this.readonly,
       placeholder: this.placeholder,
       autofocus: this.autofocus,
-      // value: this.encrypted ? encrypt(this.modelValue) : this.modelValue,
-      value: this.modelValue,
+      value: this.encrypted && !this.inputing ? encrypt(this.modelValue) : this.modelValue,
+      // value: this.modelValue,
       required: this.required,
       disabled: this.disabled,
       maxlength,
       pattern: this.pattern,
     } as any;
-    if (this.encrypted) {
-      attrs["realValue"] = this.modelValue;
-      // attrs["encryptedValue"] = encrypt(this.modelValue);
-    }
     const events = {
       onFocus: this.handleOnFocus,
       onBlur: this.handleOnBlur,
@@ -144,11 +163,12 @@ export default class VgField extends mixins(Props, VueGgy) {
     if (this.disabled) {
       className.push("disable");
     }
+    const columnDisplayClass = this.isColumnDisplay ? "column-flex-item" : "";
     if (VALID_TYPE.indexOf(this.type) > -1) {
       if (this.type === "textarea") {
         area.push(
           h(VgFlexItem,
-            { class: ["vg-field-textarea"], flex: 1 },
+            { class: ["vg-field-textarea", columnDisplayClass], flex: 1 },
             {
               default: () => [
                 h(
@@ -178,7 +198,7 @@ export default class VgField extends mixins(Props, VueGgy) {
       } else {
         area.push(
           h(VgFlexItem,
-            { class: ["vg-field-input"], flex: 1 },
+            { class: ["vg-field-input", columnDisplayClass], flex: 1 },
             {
               default: () => [
                 h(
@@ -200,7 +220,7 @@ export default class VgField extends mixins(Props, VueGgy) {
     return area;
   }
   genLabel(label: string): VNode {
-    const limitLabelWidth = this.display === "column" ? "" : "limit-label-width";
+    const limitLabelWidth = this.isColumnDisplay ? "column-flex-item" : "limit-label-width";
     return h(VgFlexItem, { class: ["vg-field-label", limitLabelWidth] }, {
       default: () => [
         h("div", { class: ["label-wrapper"] }, label),
@@ -215,7 +235,7 @@ export default class VgField extends mixins(Props, VueGgy) {
     } else if (this.label) {
       label.push(this.genLabel(this.label));
     }
-    return h("div", { class: ["vg-field", "border-top-bottom"] }, {
+    return h("div", { class: ["vg-field", "border-top-bottom", this.isColumnDisplay ? "vg-field-column" : ""] }, {
       default: () => [
         h(VgFlex,
           {
