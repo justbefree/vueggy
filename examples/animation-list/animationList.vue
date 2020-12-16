@@ -5,7 +5,13 @@
       <vg-animation-list :dataList="asyncData" :animation="animation">
         <vg-animation-list-item v-for="i in asyncData" :key="i.index">
           <!-- <div style="height: 100px;" :class="[i.index % 2 === 0 ? 'hide' : '']">这是第{{i.index}}个元素</div> -->
-          <div style="height: 80px;" v-if="i.index %2 === 0">这是第{{i.index}}个元素</div>
+          <div style="height: 80px;" v-if="i.index === 5">
+            <span @click="dialog">这是第{{i.index}}个元素, 可点击{{showDialog}}</span>
+            <vg-dialog v-model="showDialog">
+              弹窗后页面还能滑动吗
+            </vg-dialog>
+          </div>
+          <div style="height: 80px;" v-else>这是第{{i.index}}个元素</div>
         </vg-animation-list-item>
       </vg-animation-list>
     </div>
@@ -17,6 +23,10 @@ import { Vue } from 'vue-class-component';
 export default class AnimationList extends Vue {
   public asyncData = [];
   public animation = true;
+  public showDialog = false;
+  dialog() {
+    this.showDialog = true;
+  }
   filter() {
     // this.asyncData.reverse();
     this.animation = false;
