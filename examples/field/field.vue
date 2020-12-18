@@ -42,7 +42,7 @@
         <li>
           <span class="title">
             Encrypted
-            <i class="hidden-value" @click="showHiddenValue">{{hidden}}</i>
+            <i class="hidden-value">{{encryptedValue}}</i>
           </span>
           <vg-field
             v-model="encryptedValue"
@@ -110,10 +110,6 @@ export default class Field extends Vue {
   public clear = "clear icon";
   public textarea = "";
   public encryptedValue = "3252523523523";
-  public hidden = "click show hidden value";
-  showHiddenValue() {
-    this.hidden = this.$refs.encrypted.getDecryptedValue();
-  }
 }
 </script>
 
