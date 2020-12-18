@@ -2,7 +2,7 @@
 * @Author: Just be free
 * @Date:   2020-12-07 14:36:07
 * @Last Modified by:   Just be free
-* @Last Modified time: 2020-12-11 15:59:13
+* @Last Modified time: 2020-12-18 16:37:23
 * @E-mail: justbefree@126.com
 */
 import VueGgy, { mixins, props, Options } from "../component/VueGgy";
@@ -62,7 +62,11 @@ const Props = props({
     type: String,
     default: "row",
   },
-  pattern: String
+  pattern: String,
+  encrypt: {
+    type: Function,
+    default: encrypt
+  }
 });
 @Options({
   name: "VgField",
@@ -96,9 +100,6 @@ export default class VgField extends mixins(Props, VueGgy) {
       this.$emit("update:modelValue", "");
     }
   }
-  getDecryptedValue(): string|number {
-    return this.originalText;
-  }
   handleInput(e: InputEvent): void {
     if (this.clearable && (e.target as HTMLInputElement).value) {
       this.showIcon = true;
@@ -112,10 +113,10 @@ export default class VgField extends mixins(Props, VueGgy) {
     this.inputing = false;
     if (this.encrypted) {
       if (this.modelValue === "") {
-        this.$emit("update:modelValue", encrypt(this.originalText));
+        this.$emit("update:modelValue", this.originalText);
+        // this.$emit("update:modelValue", this.encrypt(this.originalText));
       } else {
-        const inputText = (this.target as HTMLInputElement).value;
-        this.originalText = inputText;
+        this.originalText = (this.target as HTMLInputElement).value;
       }
     }
     this.$emit("blur", e);
@@ -147,7 +148,7 @@ export default class VgField extends mixins(Props, VueGgy) {
       readonly: this.readonly,
       placeholder: this.placeholder,
       autofocus: this.autofocus,
-      value: this.encrypted && !this.inputing ? encrypt(this.modelValue) : this.modelValue,
+      value: this.encrypted && !this.inputing ? this.encrypt(this.modelValue) : this.modelValue,
       // value: this.modelValue,
       required: this.required,
       disabled: this.disabled,
