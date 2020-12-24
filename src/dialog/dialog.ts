@@ -2,7 +2,7 @@
 * @Author: Just be free
 * @Date:   2020-09-23 16:16:46
 * @Last Modified by:   Just be free
-* @Last Modified time: 2020-10-15 10:05:04
+* @Last Modified time: 2020-12-24 17:04:23
 * @E-mail: justbefree@126.com
 */
 import VueGgy, { Options, mixins, props, } from "../component/VueGgy";
@@ -20,10 +20,10 @@ import VgButton from "../button";
 //   "button-click"
 // ]);
 const Props = props({
-  beforeOpen: null,
-  opened: null,
-  beforeClose: null,
-  closed: null,
+  beforeOpen: Function,
+  opened: Function,
+  beforeClose: Function,
+  closed: Function,
   modelValue: {
     type: Boolean,
     default: false
@@ -74,7 +74,7 @@ export default class VgDialog extends mixins(VueGgy, Props) {
   public loading = false;
   handleBeforeEnter(node: any) {
     this.$emit("before-enter", node);
-    this.beforeOpen && (typeof this.beforeOpen === "function") && this.beforeOpen();
+    this.beforeOpen && this.beforeOpen(this.action);
     this.bodyOverflow = document.body.style.overflow;
     document.body.style.overflow = "hidden";
     const parent = node.parentNode;
@@ -113,16 +113,16 @@ export default class VgDialog extends mixins(VueGgy, Props) {
   }
   handleAfterEnter(node: any) {
     this.$emit("after-enter", node);
-    this.opened && (typeof this.opened === "function") && this.opened();
+    this.opened && this.opened(this.action);
   }
   handleBeforeLeave(node: any) {
     this.$emit("before-leave", node);
-    this.beforeClose && (typeof this.beforeClose === "function") && this.beforeClose();
+    // this.beforeClose && (typeof this.beforeClose === "function") && this.beforeClose();
   }
   handleAfterLeave(node: any) {
     this.$emit("after-leave", node);
     this.close();
-    this.closed && (typeof this.closed === "function") && this.closed();
+    this.closed && this.closed(this.action);
   }
   getLoadingStatus(e: string): boolean {
     return this.loading && this.action === e;
@@ -133,7 +133,7 @@ export default class VgDialog extends mixins(VueGgy, Props) {
   handleButtonClick(e: string): void {
     this.action = e;
     const { beforeClose } = this;
-    if (beforeClose && typeof beforeClose === "function") {
+    if (beforeClose) {
       const promise = beforeClose(e);
       if (isPromise(promise)) {
         this.loading = true;
