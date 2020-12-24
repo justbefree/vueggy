@@ -38,7 +38,7 @@ export default class Dialog extends Vue {
     this.Dialog.alert({ title: "sync alert", message: "点击确定按钮会立即关闭", closeModelOnClick: true });
   }
   asyncAlert() {
-    this.Dialog.alert({ title: "async alert", message: "点击确定按钮会等结果执行结束才会关闭，防止误触", closeModelOnClick: true, beforeClose: this.handleBeforeClose });
+    this.Dialog.alert({ title: "async alert", textHideWhenLoading: true, message: "点击确定按钮会等结果执行结束才会关闭，防止误触", closeModelOnClick: true, beforeClose: this.handleBeforeClose });
   }
   asyncConfirm() {
     this.Dialog.confirm({ title: "confirm", message: "自定义内容", beforeClose: this.handleBeforeClose, textHideWhenLoading: true });
