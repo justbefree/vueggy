@@ -2,7 +2,7 @@
 * @Author: Just be free
 * @Date:   2020-11-25 14:11:49
 * @Last Modified by:   Just be free
-* @Last Modified time: 2020-11-30 16:59:57
+* @Last Modified time: 2020-12-29 17:31:56
 * @E-mail: justbefree@126.com
 */
 import VueGgy, { mixins, props, Options, VisibilityChangeStatus } from "../component/VueGgy";
@@ -284,6 +284,10 @@ export default class VgSwipe extends mixins(Props, VueGgy, EventEmulator) {
       this.width = this.rect.width;
     });
   }
+  beforeMount() {
+    this.bindVisibilityChange();
+    this.bindResize();
+  }
   mounted() {
     this.R = new Remainder(this.count, this.activedIndex);
     this.initRect();
@@ -291,6 +295,10 @@ export default class VgSwipe extends mixins(Props, VueGgy, EventEmulator) {
     this.drag();
     this.visibilityChange();
     this.resize();
+  }
+  beforeUnmount() {
+    this.unbindVisibilityChange();
+    this.unbindResize();
   }
   render() {
     const slots = this.getCustomSlotsByTagName(VALID_CHILD_COMPONENT);

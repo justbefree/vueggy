@@ -2,7 +2,7 @@
 * @Author: Just be free
 * @Date:   2020-10-21 18:26:11
 * @Last Modified by:   Just be free
-* @Last Modified time: 2020-10-27 17:50:12
+* @Last Modified time: 2020-12-29 17:25:41
 * @E-mail: justbefree@126.com
 */
  /* eslint-disable */ 
@@ -38,7 +38,7 @@ export const on = (dom: EventTarget, type: string, fn: EventListener, passive = 
 };
 
 export const off = (dom: EventTarget, type: string, fn: EventListener) => {
-  dom.addEventListener(type, fn);
+  dom.removeEventListener(type, fn);
 };
 
 export const stopPropagation = (event: Event) => {
