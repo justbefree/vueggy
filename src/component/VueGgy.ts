@@ -2,19 +2,18 @@
 * @Author: Just be free
 * @Date:   2020-09-23 17:32:46
 * @Last Modified by:   Just be free
-* @Last Modified time: 2020-12-01 10:30:04
+* @Last Modified time: 2020-12-29 17:31:47
 * @E-mail: justbefree@126.com
 */
 const pkg = require("../../package.json");
 import { Vue, mixins, props, emits, createDecorator, setup, Options } from "vue-class-component";
 import { VNode } from "vue";
 import { EventBus } from "../utils/event/bus";
-import { on } from "../utils/event";
+import { on, off } from "../utils/event";
 import { throttle } from "../utils";
 export type VisibilityChangeStatus = "hidden" | "visible";
 export default class VueGgy extends Vue {
   [propName: string]: any;
-  public static windowEventsinitialized = false;
   private version = pkg.version;
   public static componentName = "VueGgy";
   getVersion(): string {
@@ -54,25 +53,26 @@ export default class VueGgy extends Vue {
     });
     return components;
   }
-  public static visibilitychange(): void {
-    on(window, "visibilitychange", () => {
-      const status = document.visibilityState;
-      EventBus.emit("window:visibilitychange", status as VisibilityChangeStatus);
-    });
+  private visibilityChangeEvent(): void {
+    const status = document.visibilityState;
+    EventBus.emit("window:visibilitychange", status as VisibilityChangeStatus);
   }
-  public static resize(): void {
-    on(window, "resize", (ev: Event) => {
-      throttle(() => {
-        EventBus.emit("window:resize", ev);
-      })();
-    });
+  public bindVisibilityChange(): void {
+    on(window, "visibilitychange", this.visibilityChangeEvent);
   }
-  beforeCreate() {
-    if (!VueGgy.windowEventsinitialized) {
-      VueGgy.windowEventsinitialized = true;
-      VueGgy.resize();
-      VueGgy.visibilitychange();
-    }
+  public unbindVisibilityChange(): void {
+    off(window, "visibilitychange", this.visibilityChangeEvent);
+  }
+  private resizeEvent(ev: Event): void {
+    throttle(() => {
+      EventBus.emit("window:resize", ev);
+    })();
+  }
+  public bindResize(): void {
+    on(window, "resize", this.resizeEvent);
+  }
+  public unbindResize(): void {
+    off(window, "resize", this.resizeEvent);
   }
 }
 export { Vue, mixins, props, emits, createDecorator, setup, Options };
