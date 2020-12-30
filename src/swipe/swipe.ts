@@ -2,7 +2,7 @@
 * @Author: Just be free
 * @Date:   2020-11-25 14:11:49
 * @Last Modified by:   Just be free
-* @Last Modified time: 2020-12-30 16:29:48
+* @Last Modified time: 2020-12-30 16:37:29
 * @E-mail: justbefree@126.com
 */
 import VueGgy, { mixins, props, Options, VisibilityChangeStatus } from "../component/VueGgy";
@@ -71,7 +71,6 @@ export default class VgSwipe extends mixins(Props, VueGgy, EventEmulator) {
     if (showIndicator) {
       let type = [] as VNode[];
       if (indicatorType === "number") {
-        console.log("delayActivedIndex", delayActivedIndex);
         type = [
           h(
             "span",
@@ -224,7 +223,6 @@ export default class VgSwipe extends mixins(Props, VueGgy, EventEmulator) {
     });
   }
   paly() {
-    console.log("paly", Date.now());
     if (Number(this.autoPlay) > 0 && this.children.length > 1) {
       this.stop();
       this.timer = setTimeout(() => {
