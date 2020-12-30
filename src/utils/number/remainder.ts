@@ -2,7 +2,7 @@
 * @Author: Just be free
 * @Date:   2020-11-25 15:31:39
 * @Last Modified by:   Just be free
-* @Last Modified time: 2020-11-26 20:39:47
+* @Last Modified time: 2020-12-30 16:25:26
 * @E-mail: justbefree@126.com
 */
 export class Remainder {
@@ -12,7 +12,7 @@ export class Remainder {
   constructor(r?: number, i?: number) {
     this.remainder = r || 1;
     this.dir = 1;
-    this.i = i || 1;
+    this.i = i || 0;
   }
   next(callback?: Function): Remainder {
     this.dir = 1;
