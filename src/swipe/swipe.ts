@@ -2,7 +2,7 @@
 * @Author: Just be free
 * @Date:   2020-11-25 14:11:49
 * @Last Modified by:   Just be free
-* @Last Modified time: 2020-12-29 17:31:56
+* @Last Modified time: 2020-12-30 16:29:48
 * @E-mail: justbefree@126.com
 */
 import VueGgy, { mixins, props, Options, VisibilityChangeStatus } from "../component/VueGgy";
@@ -71,6 +71,7 @@ export default class VgSwipe extends mixins(Props, VueGgy, EventEmulator) {
     if (showIndicator) {
       let type = [] as VNode[];
       if (indicatorType === "number") {
+        console.log("delayActivedIndex", delayActivedIndex);
         type = [
           h(
             "span",
@@ -167,10 +168,10 @@ export default class VgSwipe extends mixins(Props, VueGgy, EventEmulator) {
         that.delayActivedIndex = that.activedIndex;
         const disXY = that.vertical ? that.deltaY : that.deltaX;
         const timeDiff = Date.now() - startTime;
-        if (timeDiff < 200 && disXY === 0) {
-          that.openImageViewer();
-          return;
-        }
+        // if (timeDiff < 200 && disXY === 0) {
+        //   that.openImageViewer();
+        //   return;
+        // }
         if (moving || disXY === 0 || !prevEle || !curEle || !nextEle) {
           return;
         }
@@ -195,17 +196,10 @@ export default class VgSwipe extends mixins(Props, VueGgy, EventEmulator) {
       return;
     }
     this.moving = true;
-    let r;
-    const isPositive = num > 0;
-    if (isPositive) {
-      r = this.R.next((index: number) => {
-        this.activedIndex = index;
-      });
-    } else {
-      r = this.R.previous((index: number) => {
-        this.activedIndex = index;
-      });
-    }
+    const method = (num > 0) ? "next" : "previous";
+    const r = this.R[method]((index: number) => {
+      this.activedIndex = index;
+    });
     this.delayActivedIndex = this.activedIndex;
     const prevEle = this.children[r.getPrevious()] as HTMLElement;
     const curEle = this.children[r.getIndex()] as HTMLElement;
@@ -230,6 +224,7 @@ export default class VgSwipe extends mixins(Props, VueGgy, EventEmulator) {
     });
   }
   paly() {
+    console.log("paly", Date.now());
     if (Number(this.autoPlay) > 0 && this.children.length > 1) {
       this.stop();
       this.timer = setTimeout(() => {
