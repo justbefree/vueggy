@@ -2,11 +2,11 @@
 * @Author: Just be free
 * @Date:   2020-11-25 15:53:24
 * @Last Modified by:   Just be free
-* @Last Modified time: 2020-11-26 17:27:01
+* @Last Modified time: 2020-12-30 16:33:25
 * @E-mail: justbefree@126.com
 */
 
-export const move = (obj: HTMLElement, json: any, fn: Function, div: number = 4): void => {
+export const move = (obj: HTMLElement, json: any, fn: Function, div: number = 8): void => {
   let timer: number = -1;
   clearInterval(timer);
   let iCurrent = 0;
