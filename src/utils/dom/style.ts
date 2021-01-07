@@ -2,7 +2,7 @@
 * @Author: Just be free
 * @Date:   2020-10-14 15:14:37
 * @Last Modified by:   Just be free
-* @Last Modified time: 2020-10-14 16:28:24
+* @Last Modified time: 2021-01-07 18:24:04
 * @E-mail: justbefree@126.com
 */
 const hex = (c: string): string => {
@@ -18,8 +18,11 @@ const rgb2hex = (color: string): string => {
   }
   return color;
 }
-export const getStyle = (element: HTMLElement, attr: string): string => {
-  const compStyles = getComputedStyle(element);
+export const getStyle = (element: HTMLElement) => {
+  return window.getComputedStyle(element);
+}
+export const getPropertyValue = (element: HTMLElement, attr: string): string => {
+  const compStyles = getStyle(element);
   const value = compStyles.getPropertyValue(attr);
   return rgb2hex(value);
 }

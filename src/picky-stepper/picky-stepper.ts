@@ -2,7 +2,7 @@
 * @Author: Just be free
 * @Date:   2020-10-28 14:38:23
 * @Last Modified by:   Just be free
-* @Last Modified time: 2020-10-28 19:20:24
+* @Last Modified time: 2021-01-07 17:05:40
 * @E-mail: justbefree@126.com
 */
 import VueGgy, { mixins, props, Options } from "../component/VueGgy";
@@ -56,7 +56,10 @@ const Props = props({
 });
 @Options({
   name: "VgPickyStepper",
-  emits: ["update:modelValue", "input", "beforeenter", "enter", "afterenter", "beforeleave", "leave", "afterleave", "success"]
+  emits: ["update:modelValue", "input", "beforeenter", "enter", "afterenter", "beforeleave", "leave", "afterleave", "success"],
+  watch: {
+    steps: "initData"
+  }
 })
 export default class VgPickyStepper extends mixins(VueGgy, Props) {
   public static componentName = "VgPickyStepper";
@@ -68,26 +71,26 @@ export default class VgPickyStepper extends mixins(VueGgy, Props) {
     this.$emit("update:modelValue", e);
   }
   handleBeforeEnter() {
-    this.initData();
+    if (this.caculateSteps.length === 0) {
+      this.initData();
+    }
     this.$emit("beforeenter");
   }
   initData() {
-    if (this.caculateSteps.length === 0) {
-      const steps: Array<StepItemObject> = [];
-      this.steps.forEach((step: StepItemObject, index: number) => {
-        if (!step.key) {
-          step.key = index;
+    const steps: Array<StepItemObject> = [];
+    this.steps.forEach((step: StepItemObject, index: number) => {
+      if (!step.key) {
+        step.key = index;
+      }
+      step.list.forEach((item: StepItemObject, key: number) => {
+        if (!item.key) {
+          item.key = key;
         }
-        step.list.forEach((item: StepItemObject, key: number) => {
-          if (!item.key) {
-            item.key = key;
-          }
-        });
-        steps.push(step);
       });
-      this.caculateSteps = this.bindChain(steps);
-      this.currentStep = this.caculateSteps[0];
-    }
+      steps.push(step);
+    });
+    this.caculateSteps = this.bindChain(steps);
+    this.currentStep = this.caculateSteps[0];
   }
   bindChain(steps: Array<StepItemObject> = []): Array<StepItemObject> {
     return Array.apply(null, steps).map((step: any, index: number, arr: any[]) => {
