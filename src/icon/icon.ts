@@ -2,12 +2,12 @@
 * @Author: Just be free
 * @Date:   2020-09-23 16:16:46
 * @Last Modified by:   Just be free
-* @Last Modified time: 2020-10-15 10:56:42
+* @Last Modified time: 2021-01-07 17:41:16
 * @E-mail: justbefree@126.com
 */
 import VueGgy, { Options, mixins, props } from "../component/VueGgy";
 import Base642Svg from "../utils/dom/base642svg";
-import { getStyle } from "../utils/dom/style";
+import { getPropertyValue } from "../utils/dom/style";
 import { h } from "vue";
 import svgs from "./svgs";
 const Props = props({
@@ -37,7 +37,7 @@ export default class VgIcon extends mixins(VueGgy, Props) {
   }
   adjustColorHandler(): void {
     if (this.adjustColor) {
-      const color: string = getStyle(this.$el.parentNode, "color");
+      const color: string = getPropertyValue(this.$el.parentNode, "color");
       this.svgbase64 = Base642Svg.fill(this.svgbase64, color);
     }
   }
