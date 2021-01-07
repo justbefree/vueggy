@@ -2,13 +2,15 @@
 * @Author: Just be free
 * @Date:   2020-10-22 14:42:19
 * @Last Modified by:   Just be free
-* @Last Modified time: 2020-10-22 17:30:15
+* @Last Modified time: 2021-01-07 18:32:26
 * @E-mail: justbefree@126.com
 */
 
 import { h, withDirectives, vShow, VNode, nextTick } from "vue";
 import VueGgy, { mixins, props, Options } from "../component/VueGgy";
 import { isChineseCharacters, isPromise, throttle } from "../utils";
+import { getPropertyValue } from "../utils/dom/style";
+import { EventBus } from "../utils/event/bus";
 import VgFlex from "../flex";
 import VgFlexItem from "../flex-item";
 import VgPopup from "../popup";
@@ -177,6 +179,7 @@ export default class VgCitypicker extends mixins(VueGgy, Props) {
   public hotCityLoading = false;
   public isSearching = false;
   public keywords = "";
+  public textBoxWidth = 68;
   createTitle() {
     return h("span", { class: ["vg-city-picker-header-title"] }, { default: () => this.title });
   }
@@ -210,21 +213,6 @@ export default class VgCitypicker extends mixins(VueGgy, Props) {
       { default: () => [] }
     );
   }
-  textOverflow(text: string = ""): string[] {
-    if (!isChineseCharacters(text)) {
-      return [];
-    }
-    const length = text.length;
-    if (length > 4) {
-      if (length === 5) {
-        return ["text-small"];
-      } else {
-        return ["text-small", "normal-lineheight"];
-      }
-    } else {
-      return [];
-    }
-  }
   createBlock({ cities, loading }: { cities: any[]; loading: boolean }): VNode {
     if (loading) {
       return h("div", { class: ["vg-city-picker-searched-area"] }, {
@@ -237,15 +225,32 @@ export default class VgCitypicker extends mixins(VueGgy, Props) {
         {
           flexWrap: "wrap",
           justifyContent: "spaceBetween",
-          class: "vg-city-picker-cities"
+          class: "vg-city-picker-cities",
+          ref: "cityBox"
         }, {
         default: () => Array.apply(null, cities).map((city, key) => {
+          const text: string = this.parse(city);
+          const textLength: number = text.length;
+          let fontSize: number|string = this.textBoxWidth / textLength;
+          const textOverflow: string[] = [];
+          if (fontSize > 14) {
+            fontSize = "14px";
+          } else if (fontSize < 12) {
+            fontSize = "12px";
+            if (isChineseCharacters(text)) {
+              textOverflow.push(...["text-small", "normal-lineheight"]);
+            }
+          } else {
+            fontSize = `${fontSize}px`;
+          }
           return h(VgFlexItem,
             {
               key,
-              on: { click: this.handlePick.bind(this, city) },
+              onClick: this.handlePick.bind(this, city),
+              style: { fontSize },
               class: ["city-item", `column-${this.column}`,
-                ...this.textOverflow(this.parse(city))
+                // ...this.textOverflow(this.parse(city))
+                ...textOverflow
               ]
             },
             { default: () => [h("span", {}, { default: () => this.parse(city) })] }
@@ -579,6 +584,8 @@ export default class VgCitypicker extends mixins(VueGgy, Props) {
     }
   }
   beforeEnter() {
+    console.log("bindResize");
+    this.bindResize();
     if (this.showHistory) {
       this.getHistory(this.currentTab);
     }
@@ -594,6 +601,7 @@ export default class VgCitypicker extends mixins(VueGgy, Props) {
     this.$emit("afterenter");
   }
   beforeLeave() {
+    this.unbindResize();
     this.$emit("beforeleave");
   }
   leave() {
@@ -601,6 +609,28 @@ export default class VgCitypicker extends mixins(VueGgy, Props) {
   }
   afterLeave() {
     this.$emit("afterleave");
+  }
+  resizeEventHandler(el: HTMLElement, paddingLeft: string, paddingRight: string) {
+    const actualWidth =
+      el.getBoundingClientRect().width -
+      parseInt(paddingLeft) -
+      parseInt(paddingRight);
+    const textBoxWidth =
+      parseInt(this.column) === 3 ? actualWidth * 0.31 : actualWidth * 0.22;
+    this.textBoxWidth = textBoxWidth;
+  }
+  resize() {
+    const cityBox = (this.$refs.cityBox as VgFlex).$el;
+    const paddingLeft = getPropertyValue(cityBox, "padding-left");
+    const paddingRight = getPropertyValue(cityBox, "padding-right");
+    const el = this.$el;
+    this.resizeEventHandler(el, paddingLeft, paddingRight);
+    EventBus.on("window:resize", () => {
+      this.resizeEventHandler(el, paddingLeft, paddingRight);
+    });
+  }
+  mounted() {
+    this.resize();
   }
   render() {
     return h("div", { class: ["vg-city-picker"] }, [
