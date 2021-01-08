@@ -2,7 +2,7 @@
 * @Author: Just be free
 * @Date:   2020-11-05 13:22:37
 * @Last Modified by:   Just be free
-* @Last Modified time: 2020-11-05 13:23:39
+* @Last Modified time: 2021-01-08 15:44:41
 */
 .vg-picker {
   .vg-picker-header {
@@ -51,6 +51,11 @@
         margin: 0;
         text-align: center;
         user-select: none;
+        li {
+          &.disabled {
+            cursor: not-allowed;
+          }
+        }
       }
     }
     .scroll-viewer-window {

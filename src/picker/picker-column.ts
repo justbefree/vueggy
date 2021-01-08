@@ -2,7 +2,7 @@
 * @Author: Just be free
 * @Date:   2020-11-05 13:44:32
 * @Last Modified by:   Just be free
-* @Last Modified time: 2020-11-09 14:45:57
+* @Last Modified time: 2021-01-08 15:44:12
 * @E-mail: justbefree@126.com
 */
 export interface ColumnObject {
@@ -83,11 +83,9 @@ export default class VgPickerColumn extends mixins(VueGgy, Props, EventEmulator)
     }
   }
   handleItemClick(index: number): void {
-    console.log("点击了吗", index);
     if (this.moving) {
       return;
     }
-    console.log("点击了吗", index);
     this.duration = DEFAULT_DURATION;
     this.setIndex(index, true);
   }
@@ -218,10 +216,11 @@ export default class VgPickerColumn extends mixins(VueGgy, Props, EventEmulator)
           "ul",
           { style, ref: "wrapper", onTransitionend: this.onTransitionEnd },
           Array.apply(null, this.columns).map((column: any, key: number, arr: any[]) => {
+            const isObj = isObject(column);
             return h(
               "li",
-              { onClick: this.handleItemClick.bind(this, key), key },
-              { default: () => isObject(column) ? column.value : column }
+              { onClick: this.handleItemClick.bind(this, key), key, class: [isObj && column.disabled ? "disabled" : ""] },
+              { default: () => isObj ? column.value : column }
             );
           })
         )
