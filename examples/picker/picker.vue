@@ -6,6 +6,7 @@
         <li @click="handleClick(2)">multiple picker</li>
         <li @click="handleClick(3)">multiple picker2</li>
         <li @click="handleClick(4)">只有一个数据</li>
+        <li @click="handleClick(5)">禁止某一项</li>
       </ul>
       <vg-picker
         v-model="show1"
@@ -28,6 +29,12 @@
         :columns="columns4"
         @change="handleChange"
       ></vg-picker>
+      <vg-picker
+        v-model="show5"
+        :columns="columns5"
+        @change="handleChange"
+        @confirm="handleConfirm"
+      ></vg-picker>
     </div>
   </div>
 </template>
@@ -40,24 +47,26 @@ export default class Picker extends Vue {
   public show2 = false;
   public show3 = false;
   public show4 = false;
+  public show5 = false;
   public columns1 = [
-    { value: "Delaware", disabled: true },
-    { value: "Florida", disabled: false },
-    { value: "Georqia", disabled: true },
-    { value: "Indiana", disabled: true },
-    { value: "Maine", disabled: false },
-    { value: "Amenda", disabled: true }
+    { value: "Shanghai", disabled: true },
+    { value: "Beijing", disabled: false },
+    { value: "Shenzhen", disabled: true },
+    { value: "Guangzhou", disabled: true },
+    { value: "Hongkong", disabled: false },
+    { value: "Hangzhou", disabled: true }
   ];
   public columns2 = [
-    { value: ["Delaware", "Florida", "Georqia", "Indiana", "Maine"] },
-    { value: ["Delaware", "Florida", "Georqia", "Indiana", "Maine"] }
+    { value: ["Shanghai", "Beijing", "Shenzhen", "Guangzhou", "Hongkong"] },
+    { value: ["Shanghai", "Beijing", "Shenzhen", "Guangzhou", "Hongkong"] }
   ];
   public columns3 = [
-    { value: ["Delaware", "Florida", "Georqia", "Indiana", "Maine"] },
-    { value: ["Delaware", "Florida", "Georqia", "Indiana", "Maine"] },
-    { value: ["Delaware", "Florida", "Georqia", "Indiana", "Maine"] }
+    { value: [{ value: "Shanghai", disabled: true }, "Beijing", "Shenzhen", "Guangzhou", "Hongkong"] },
+    { value: ["Shanghai", "Beijing", "Shenzhen", "Guangzhou", "Hongkong"] },
+    { value: ["Shanghai", "Beijing", { value: "Shenzhen", disabled: true }, "Guangzhou", "Hongkong"] }
   ];
-  public columns4 = ["Delaware"];
+  public columns4 = ["Shanghai"];
+  public columns5 = [{ value: "北京", disabled: true }, { value: "上海" }, { value: "深圳" }, { value: "广州" }];
 
   handleChange({ value, index }): void {
     console.log(`选择第${index}个，值为${value}`);
