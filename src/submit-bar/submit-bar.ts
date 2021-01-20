@@ -2,7 +2,7 @@
 * @Author: Just be free
 * @Date:   2020-11-30 11:11:58
 * @Last Modified by:   Just be free
-* @Last Modified time: 2020-11-30 16:26:05
+* @Last Modified time: 2021-01-20 11:08:30
 * @E-mail: justbefree@126.com
 */
 import VueGgy, { mixins, props, Options } from "../component/VueGgy";
@@ -12,8 +12,9 @@ import VgPopup from "../popup";
 import VgIcon from "../icon";
 import VgButton from "../button";
 import { h, withDirectives, vShow, VNode } from "vue";
-const VALIDE_POPUP_CONTENT_COMPONENT = "VgSubmitBarPopupContent";
-const VALIDE_VALUE_COMPONENT = "VgSubmitBarValue";
+const VALID_POPUP_CONTENT_COMPONENT = "VgSubmitBarPopupContent";
+const VALID_VALUE_COMPONENT = "VgSubmitBarValue";
+const VALID_TEXT_COMPONENT = "VgSubmitBarText";
 
 const Props = props({
   submitText: {
@@ -22,11 +23,15 @@ const Props = props({
   },
   label: {
     type: String,
-    default: "总计:",
+    default: "",
   },
   value: {
     type: String,
     default: "0",
+  },
+  valueDescription: {
+    type: String,
+    default: ""
   },
   currencySymbol: {
     type: String,
@@ -64,16 +69,44 @@ export default class VgSubmitBar extends mixins(Props, VueGgy) {
     this.$emit("trigger", this.showPopup);
   }
   genValue(): VNode|VNode[] {
-    const value = this.getCustomSlotsByTagName(VALIDE_VALUE_COMPONENT);
+    const value = this.getCustomSlotsByTagName(VALID_VALUE_COMPONENT);
     if (Array.isArray(value) && value.length > 0) {
       return value;
     } else {
-      return h("span", { class: ["vg-submit-action-currency"] }, {
+      const hasDescription = this.valueDescription !== "";
+      // return h("span", { class: ["vg-submit-action-currency"] }, {
+      //   default: () => [
+      //     h("small", { innerHTML: this.currencySymbol }, { default: () => [] }),
+      //     h("b", {}, { default: () => [this.value] }),
+      //   ]
+      // });
+      return h(VgFlex, { class: ["custom-value", hasDescription ? "initial-line-height" : ""], flexDirection: "column", justifyContent: "spaceBetween" }, {
         default: () => [
-          h("small", { innerHTML: this.currencySymbol }, { default: () => [] }),
-          h("b", {}, { default: () => [this.value] }),
+          h(VgFlexItem, { flex: 2 }, { default: () => [
+            h(
+              "span",
+              {
+                class: [
+                  "vg-submit-action-currency",
+                  hasDescription ? "line-height-26" : "inherit-line-height",
+                ],
+              },
+              [
+                h(
+                  "small",
+                  { innerHTML: this.currencySymbol },
+                  { default: () => [] }
+                ),
+                h("b", {}, { default: () => [this.value] }),
+                hasDescription && this.genIcon(),
+              ]
+            ),
+          ] }),
+          hasDescription && h(VgFlexItem, { class: ["vg-submit-value-description"], flex: 1 }, {
+            default: () => [this.valueDescription]
+          })
         ]
-      });
+      })
     }
   }
   genIcon(): undefined|VNode {
@@ -122,6 +155,10 @@ export default class VgSubmitBar extends mixins(Props, VueGgy) {
     this.showPopup = true;
   }
   render() {
+    const popupContent = this.getCustomSlotsByTagName(VALID_POPUP_CONTENT_COMPONENT);
+    const hasPopup = popupContent && Array.isArray(popupContent) && popupContent.length > 0;
+    const hasDescription = this.valueDescription !== "";
+    const hasLabel = this.label !== "";
     return h(
       "div",
       { class: ["vg-submit-action", this.fixed ? "fixed" : ""] },
@@ -135,7 +172,7 @@ export default class VgSubmitBar extends mixins(Props, VueGgy) {
             },
             {
               default: () => [
-                h(VgPopup,
+                hasPopup && h(VgPopup,
                   {
                     style: { position: "absolute" },
                     modelValue: this.showPopup,
@@ -147,9 +184,7 @@ export default class VgSubmitBar extends mixins(Props, VueGgy) {
                   {
                     default: () => [
                       h("div", { class: ["vg-submit-action-content"] }, {
-                        default: () => [
-                          this.getCustomSlotsByTagName(VALIDE_POPUP_CONTENT_COMPONENT)
-                        ]
+                        default: () => popupContent
                       })
                     ]
                   }
@@ -159,11 +194,11 @@ export default class VgSubmitBar extends mixins(Props, VueGgy) {
           ), [[vShow, this.popupStatus]]),
           h(VgFlex, { class: ["vg-submit-action-flex"] }, {
             default: () => [
-              h(VgFlexItem,
+              hasLabel && h(VgFlexItem,
                 { flex: this.leftFlex, onClick: this.toggle },
                 {
                   default: () => [
-                    h(VgFlex, {}, {
+                    h(VgFlex, { alignItems: "center" }, {
                       default: () => [
                         h(VgFlexItem, {}, {
                           default: () => [
@@ -175,12 +210,17 @@ export default class VgSubmitBar extends mixins(Props, VueGgy) {
                           ]
                         }),
                         h(VgFlexItem, {}, { default: () => [this.genValue()] }),
-                        h(VgFlexItem, {}, { default: () => [this.genIcon()] }),
+                        h(VgFlexItem, {}, { default: () => [hasPopup && !hasDescription && this.genIcon()] }),
                       ]
                     }),
                   ]
                 }
               ),
+              !hasLabel && h(VgFlexItem, { flex: this.leftFlex }, {
+                default: () => [
+                  this.getCustomSlotsByTagName(VALID_TEXT_COMPONENT)
+                ]
+              }),
               h(VgFlexItem, { flex: this.rightFlex }, {
                 default: () => [
                   h(VgButton,
