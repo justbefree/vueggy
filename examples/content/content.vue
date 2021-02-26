@@ -109,6 +109,10 @@
         <img src="./svgs/field.svg">
         <span>field</span>
       </li>
+      <li @click="listClick('Dropdown')">
+        <img src="./svgs/field.svg">
+        <span>dropdown</span>
+      </li>
       <li @click="listClick('JSapi')">
         <img src="./svgs/js-api.svg">
         <span>js-api</span>
