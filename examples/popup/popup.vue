@@ -3,6 +3,7 @@
     <div id="container">
       <ul>
         <li @click="showPopup1()">底部</li>
+        <li @click="showPopup7()">左侧</li>
         <li @click="showPopup2()">右侧</li>
         <li @click="showPopup3()">上面</li>
         <li @click="showPopup4()">双层嵌套</li>
@@ -19,6 +20,9 @@
     </vg-popup>
     <vg-popup v-model="popup2" position="right" :showCloseIcon="true">
       <div class="popup-content">右侧出现遮罩</div>
+    </vg-popup>
+    <vg-popup v-model="popup7" position="left" :showCloseIcon="true">
+      <div class="popup-content">左侧出现遮罩</div>
     </vg-popup>
     <vg-popup v-model="popup3" position="top" :showCloseIcon="true">
       <div class="popup-content">上面出现遮罩</div>
@@ -50,6 +54,7 @@ export default class Spin extends Vue {
   popup4 = false;
   popup5 = false;
   popup6 = false;
+  popup7 = false;
   showPopup1() {
     this.popup1 = true;
   }
@@ -67,6 +72,9 @@ export default class Spin extends Vue {
   }
   showPopup6() {
     this.popup6 = true;
+  }
+  showPopup7() {
+    this.popup7 = true;
   }
 }
 </script>
