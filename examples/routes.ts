@@ -2,7 +2,7 @@
 * @Author: Just be free
 * @Date:   2020-09-22 14:17:59
 * @Last Modified by:   Just be free
-* @Last Modified time: 2020-12-11 16:12:42
+* @Last Modified time: 2021-02-23 15:35:28
 * @E-mail: justbefree@126.com
 */
 import { createRouter, createWebHashHistory } from "vue-router";
@@ -62,6 +62,7 @@ import SubmitBar from "./submit-bar/submitBar.vue";
 import SubmitBarCode from "./submit-bar/code.vue";
 import Field from "./field/field.vue";
 import FieldCode from "./field/code.vue";
+import Dropdown from "./dropdown/dropdown.vue";
 import JSapi from "./js-api/api.vue";
 const routes = [
   {
@@ -399,6 +400,12 @@ const routes = [
     name: "FieldCode",
     component: FieldCode,
     meta: { showFooter: false, showHeader: true, title: "source code" }
+  },
+  {
+    path: "/dropdown",
+    name: "Dropdown",
+    component: Dropdown,
+    meta: { showFooter: false, showHeader: true, title: "dropdown", code: true }
   },
   {
     path: "/js-api",

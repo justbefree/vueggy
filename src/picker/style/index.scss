@@ -2,7 +2,7 @@
 * @Author: Just be free
 * @Date:   2020-11-05 13:22:37
 * @Last Modified by:   Just be free
-* @Last Modified time: 2021-01-08 15:44:41
+* @Last Modified time: 2021-01-25 15:06:25
 */
 .vg-picker {
   .vg-picker-header {
@@ -31,7 +31,8 @@
   .vg-picker-cancel,
   .vg-picker-confirm {
     display: inline-block;
-    width: 50px;
+    // width: 50px;
+    padding: 0 5px;
     text-align: center;
     color: $theme-color;
   }

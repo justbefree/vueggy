@@ -2,7 +2,7 @@
 * @Author: Just be free
 * @Date:   2020-09-22 15:24:16
 * @Last Modified by:   Just be free
-* @Last Modified time: 2021-01-20 10:27:52
+* @Last Modified time: 2021-02-23 16:15:59
 * @E-mail: justbefree@126.com
 */
 import { version } from "../package.json";
@@ -46,11 +46,12 @@ import VgSubmitBarPopupContent from "./submit-bar-popup-content";
 import VgSubmitBarValue from "./submit-bar-value";
 import VgSubmitBarText from "./submit-bar-text";
 import VgField from "./field";
+import VgDropdown from "./dropdown";
 export interface VueggyConfigOptions {
   [propName: string]: any;
 }
 const configOptions = {} as VueggyConfigOptions;
-const components = [VgField, VgSubmitBarText, VgSubmitBarValue, VgSubmitBarPopupContent, VgSubmitBar, VgSwipeItem, VgSwipe, VgAnimationListItem, VgAnimationList, VgTabItem, VgTabs, VgDatePicker, VgPicker, VgSkeleton, VgPullRefresh, VgCounter, VgPickyStepper, VgActionSheet, VgSlider, VgCitypicker, VgLayout, VgCalendar, VgSticky, VgButton, VgFlex, VgFlexItem, VgSpin, VgPopup, VgIcon, VgCheckbox, VgRadiobox, VgDialog];
+const components = [VgDropdown, VgField, VgSubmitBarText, VgSubmitBarValue, VgSubmitBarPopupContent, VgSubmitBar, VgSwipeItem, VgSwipe, VgAnimationListItem, VgAnimationList, VgTabItem, VgTabs, VgDatePicker, VgPicker, VgSkeleton, VgPullRefresh, VgCounter, VgPickyStepper, VgActionSheet, VgSlider, VgCitypicker, VgLayout, VgCalendar, VgSticky, VgButton, VgFlex, VgFlexItem, VgSpin, VgPopup, VgIcon, VgCheckbox, VgRadiobox, VgDialog];
 
 const install = (app: any, options: any) => {
   components.map(component => {
@@ -73,5 +74,5 @@ const config = (options: VueggyConfigOptions) => {
   });
 };
 const Vueggy = { install, version, config, Tools };
-export { VgField, VgSubmitBarText, VgSubmitBarValue, VgSubmitBarPopupContent, VgSubmitBar, VgSwipeItem, VgSwipe, VgAnimationListItem, VgAnimationList, VgTabItem, VgTabs, VgDatePicker, VgPicker, VgSkeleton, VgPullRefresh, VgCounter, VgPickyStepper, VgActionSheet, VgSlider, VgIndicator, VgCitypicker, VgLayout, VgCalendar, VgSticky, VgButton, VgFlex, VgFlexItem, VgToast, VgSpin, VgPopup, VgIcon, VgCheckbox, VgRadiobox, VgDialog };
+export { VgDropdown, VgField, VgSubmitBarText, VgSubmitBarValue, VgSubmitBarPopupContent, VgSubmitBar, VgSwipeItem, VgSwipe, VgAnimationListItem, VgAnimationList, VgTabItem, VgTabs, VgDatePicker, VgPicker, VgSkeleton, VgPullRefresh, VgCounter, VgPickyStepper, VgActionSheet, VgSlider, VgIndicator, VgCitypicker, VgLayout, VgCalendar, VgSticky, VgButton, VgFlex, VgFlexItem, VgToast, VgSpin, VgPopup, VgIcon, VgCheckbox, VgRadiobox, VgDialog };
 export default Vueggy;

@@ -91,6 +91,7 @@
   transform: translate3d(-50%, 100%, 0);
 }
 .vg-popup-slide-left-enter,
+.vg-popup-slide-left-enter-active,
 .vg-popup-slide-left-leave-active {
   transform: translate3d(-100%, -50%, 0);
 }

@@ -2,7 +2,7 @@
 * @Author: Just be free
 * @Date:   2020-11-05 13:44:32
 * @Last Modified by:   Just be free
-* @Last Modified time: 2021-01-08 15:44:12
+* @Last Modified time: 2021-01-20 17:01:32
 * @E-mail: justbefree@126.com
 */
 export interface ColumnObject {
@@ -25,6 +25,12 @@ const range = (num: number, min: number, max: number): number => {
 }
 function isOptionDisabled(column: ColumnObject): boolean|undefined {
   return isObject(column) && column.disabled;
+}
+const polyfill = (arr: any[]): any[] => {
+  if (arr.length === 1 && typeof arr[0] === "number") {
+    return [String(arr[0])];
+  }
+  return arr;
 }
 const Props = props({
   columns: {
@@ -215,7 +221,7 @@ export default class VgPickerColumn extends mixins(VueGgy, Props, EventEmulator)
         h(
           "ul",
           { style, ref: "wrapper", onTransitionend: this.onTransitionEnd },
-          Array.apply(null, this.columns).map((column: any, key: number, arr: any[]) => {
+          Array.apply(null, polyfill(this.columns)).map((column: any, key: number, arr: any[]) => {
             const isObj = isObject(column);
             return h(
               "li",
