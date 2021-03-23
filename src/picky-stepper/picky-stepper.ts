@@ -2,11 +2,11 @@
 * @Author: Just be free
 * @Date:   2020-10-28 14:38:23
 * @Last Modified by:   Just be free
-* @Last Modified time: 2021-01-07 17:05:40
+* @Last Modified time: 2021-03-23 14:19:37
 * @E-mail: justbefree@126.com
 */
 import VueGgy, { mixins, props, Options } from "../component/VueGgy";
-import { hyphenate, isPromise } from "../utils";
+import { hyphenate, isPromise, hasOwnProperty } from "../utils";
 import { h, VNode, withDirectives, vShow } from "vue";
 import VgPopup from "../popup";
 import VgButton from "../button";
@@ -199,7 +199,8 @@ export default class VgPickyStepper extends mixins(VueGgy, Props) {
                 },
               }),
               class: ["input", item.value !== "" ? "active" : ""],
-              attrs: { placeholder: item.placeholder, maxlength: item.maxlength }
+              placeholder: item.placeholder,
+              maxlength: item.maxlength
             },
             []
           ),
@@ -220,7 +221,7 @@ export default class VgPickyStepper extends mixins(VueGgy, Props) {
             listItem: item,
             listIndex: key
           }
-        }), attrs: { placeholder: item.placeholder, maxlength: item.maxlength } }, []),
+        }), placeholder: item.placeholder, maxlength: item.maxlength }, []),
         withDirectives(h("div", { class: "textarea-counter" }, [`${count}/${item.maxlength}`]), [[vShow, item.counter && item.maxlength > 0]])
       ]);
     }
@@ -386,7 +387,8 @@ export default class VgPickyStepper extends mixins(VueGgy, Props) {
     if (currentStep && currentStep.list && currentStep.list.length > 0) {
       actived = currentStep.list.find((item: StepItemObject) => {
         if (["input", "textarea"].indexOf(item.type as string) > -1) {
-          return item.checked && item.value !== "";
+          const required = hasOwnProperty(item, "required") ? item.required : true;
+          return item.checked && (required ? item.value !== "" : true);
         } else {
           return item.checked;
         }
