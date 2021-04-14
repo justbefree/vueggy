@@ -2,7 +2,7 @@
 * @Author: Just be free
 * @Date:   2020-10-21 15:19:17
 * @Last Modified by:   Just be free
-* @Last Modified time: 2021-04-13 15:28:53
+* @Last Modified time: 2021-04-14 17:31:17
 * @E-mail: justbefree@126.com
 */
 import VueGgy, { mixins, prop, Options } from "../component/VueGgy";
@@ -17,7 +17,7 @@ class Props {
   headerHeight = prop<string|number>({ default: 44 })
   footerHeight = prop<string|number>({ default: 50 })
   showFooter = prop<boolean>({ default: true })
-  monitor = prop<boolean>({ default: true }) // 是否监听scroll事件，默认为true监听
+  monitor = prop<boolean>({ default: false }) // 是否监听scroll事件，默认为false监听
   footerTransitionName = prop<string>({ default: "slide-fade" })
   headerTransitionName = prop<string>({ default: "slide-fade-top" })
   topDistance = prop<number|string>({ default: 0 })
