@@ -2,7 +2,7 @@
 * @Author: Just be free
 * @Date:   2020-10-12 15:56:53
 * @Last Modified by:   Just be free
-* @Last Modified time: 2021-04-13 16:29:23
+* @Last Modified time: 2021-04-14 16:06:28
 * @E-mail: justbefree@126.com
 */
 import VueGgy, { mixins, prop, Options } from "../component/VueGgy";
@@ -50,9 +50,9 @@ class Props {
   fromDateMark = prop<string>({ default: "入住" })
   toDateMark = prop<string>({ default: "离店" })
   todayMark = prop<string>({ default: "今天" })
-  monthTtitleParser = prop<Function>({
-    default: (defaultText: string): string => {
-      return defaultText;
+  monthTtitleParser = prop<(v: string, a: any) => string>({
+    default: () => {
+      return (defaultText: string, a: any): string => defaultText
     }
   })
 }
