@@ -2,69 +2,36 @@
 * @Author: Just be free
 * @Date:   2020-09-23 16:16:46
 * @Last Modified by:   Just be free
-* @Last Modified time: 2020-12-24 17:04:23
+* @Last Modified time: 2021-04-13 16:17:09
 * @E-mail: justbefree@126.com
 */
-import VueGgy, { Options, mixins, props, } from "../component/VueGgy";
+import VueGgy, { Options, mixins, prop } from "../component/VueGgy";
 import { Transition, h, withDirectives, vShow, VNode } from "vue";
 import { addClass } from "../utils/dom";
 import { isPromise } from "../utils";
 import VgButton from "../button";
-// const Emits = emits([
-//   "update:modelValue",
-//   "modal-click",
-//   "before-enter",
-//   "after-enter",
-//   "before-leave",
-//   "after-leave",
-//   "button-click"
-// ]);
-const Props = props({
-  beforeOpen: Function,
-  opened: Function,
-  beforeClose: Function,
-  closed: Function,
-  modelValue: {
-    type: Boolean,
-    default: false
-  },
-  className: [String, Array],
-  zIndex: {
-    type: [String, Number],
-    default: 2
-  },
-  closeModelOnClick: {
-    type: Boolean,
-    default: false
-  },
-  message: String,
-  title: String,
-  showCancelButton: {
-    type: Boolean,
-    default: true
-  },
-  cancelButtonText: {
-    type: String,
-    default: "取消"
-  },
-  showConfirmButton: {
-    type: Boolean,
-    default: true
-  },
-  confirmButtonText: {
-    type: String,
-    default: "确定"
-  },
-  textHideWhenLoading: {
-    type: Boolean,
-    default: false
-  }
-});
+class Props {
+  beforeOpen?: Function
+  opened?: Function
+  beforeClose?: Function
+  closed?: Function
+  modelValue = prop<boolean>({ default: false })
+  className?: string|number
+  zIndex = prop<string|number>({ default: 2 })
+  closeModelOnClick = prop<boolean>({ default: false })
+  message?: string
+  title?: string
+  showCancelButton = prop<boolean>({ default: true })
+  cancelButtonText = prop<string>({ default: "取消" })
+  showConfirmButton = prop<boolean>({ default: true })
+  confirmButtonText = prop<string>({ default: "确定" })
+  textHideWhenLoading = prop<boolean>({ default: false })
+}
 @Options({
   emits: ["update:modelValue", "modal-click", "before-enter", "after-enter", "before-leave", "after-leave", "button-click"],
   name: "VgDialog"
 })
-export default class VgDialog extends mixins(VueGgy, Props) {
+export default class VgDialog extends mixins(VueGgy).with(Props) {
   public static componentName = "VgDialog";
   public bodyOverflow = "";
   public events = {} as any;

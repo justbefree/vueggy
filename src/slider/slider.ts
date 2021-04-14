@@ -2,38 +2,29 @@
 * @Author: Just be free
 * @Date:   2020-10-23 16:35:16
 * @Last Modified by:   Just be free
-* @Last Modified time: 2020-10-27 18:28:05
+* @Last Modified time: 2021-04-13 17:02:23
 * @E-mail: justbefree@126.com
 */
 import { h, withDirectives, vShow, VNode, nextTick, Transition } from "vue";
-import VueGgy, { mixins, props, Options } from "../component/VueGgy";
+import VueGgy, { mixins, prop, Options } from "../component/VueGgy";
 import { EventEmulator, EventCallbackOptions } from "../component/EventEmulator";
 import { isObject, getCharLength, hasOwnProperty } from "../utils";
 import { preventDefault } from "../utils/event";
 import { getOffset } from "../utils/dom";
-const Props = props({
-  modelValue: [Number, Object],
-  tip: Boolean,
-  dragIcon: String,
-  min: {
-    type: [String, Number],
-    default: 0
-  },
-  max: {
-    type: [String, Number],
-    default: 100
-  },
-  step: {
-    type: [String, Number],
-    default: 1
-  },
-  parse: {
-    type: Function,
+
+class Props {
+  modelValue: any
+  tip?: boolean
+  dragIcon?: string
+  min = prop<string|number>({ default: 0 })
+  max = prop<string|number>({ default: 100 })
+  step = prop<string|number>({ default: 1 })
+  parse = prop<Function>({
     default: (e: any): any => {
       return e;
     }
-  }
-});
+  })
+}
 @Options({
   name: "VgSlider",
   emits: ["update:modelValue"],
@@ -63,7 +54,7 @@ const Props = props({
     }
   }
 })
-export default class VgSlider extends mixins(VueGgy, Props, EventEmulator) {
+export default class VgSlider extends mixins(VueGgy, EventEmulator).with(Props) {
   public static componentName = "VgSlider";
   public startLeft = 0;
   public endLeft = 0;
@@ -198,7 +189,7 @@ export default class VgSlider extends mixins(VueGgy, Props, EventEmulator) {
       Math.round(width / (Number(this.max) - 1)) * Number(this.step);
     this.width = width;
     this[`${type}Left`] = this.transformValueToDistance(iValue);
-    this.bindEvent(el, {
+    this.bindEvent(el as EventTarget, {
       start(event: EventCallbackOptions) {
         preventDefault(event.e, true);
         barWidth = (that.$refs[`${type}SliderBar`] as HTMLElement).offsetWidth;

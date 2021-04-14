@@ -2,28 +2,25 @@
 * @Author: Just be free
 * @Date:   2020-11-02 17:10:04
 * @Last Modified by:   Just be free
-* @Last Modified time: 2020-11-02 17:51:59
+* @Last Modified time: 2021-04-13 17:17:18
 * @E-mail: justbefree@126.com
 */
-import VueGgy, { mixins, props, Options } from "../component/VueGgy";
+import VueGgy, { mixins, prop, Options } from "../component/VueGgy";
 import { EventEmulator, EventCallbackOptions } from "../component/EventEmulator";
 import { preventDefault } from "../utils/event";
 import { getScroller } from "../utils/dom/scroller";
 import { getScrollTop } from "../utils/dom";
 import { h } from "vue";
 import VgSpin from "../spin";
-const Props = props({
-  loadingText: String,
-  draggingTip: {
-    type: String,
-    default: "松手下拉刷新",
-  },
-  loading: Boolean
-});
+class Props {
+  loadingText?: string
+  draggingTip = prop<string>({ default: "松手下拉刷新" })
+  loading?: boolean
+}
 @Options({
   name: "VgPullRefresh"
 })
-export default class VgPullRefresh extends mixins(VueGgy, Props, EventEmulator) {
+export default class VgPullRefresh extends mixins(VueGgy, EventEmulator).with(Props) {
   public static componentName = "VgPullRefresh";
   public className = "";
   public dragging = false;

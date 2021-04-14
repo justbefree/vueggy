@@ -2,14 +2,14 @@
 * @Author: Just be free
 * @Date:   2020-09-28 14:57:46
 * @Last Modified by:   Just be free
-* @Last Modified time: 2020-10-28 14:25:43
+* @Last Modified time: 2021-04-13 15:46:23
 * @E-mail: justbefree@126.com
 */
 /**
 references
 https://v3.vuejs.org/guide/migration/v-model.html
 */
-import VueGgy, { mixins, props, Options } from "../component/VueGgy";
+import VueGgy, { mixins, prop, Options } from "../component/VueGgy";
 import { h, Transition, withDirectives, vShow, VNode } from "vue";
 import VgIcon from "../icon";
 const VALIDATE_POSITION_VALUE = ["left", "right", "top", "bottom", "middle"];
@@ -17,42 +17,21 @@ import PopupManager from "../component/popupManager";
 import { addClass } from "../utils/dom";
 let idSeed = 1;
 // const Emits = emits(["update:modelValue", "before-enter", "enter", "after-enter", "before-leave", "leave", "after-leave"]);
-const Props = props({
-  modelValue: {
-    type: Boolean,
-    default: false
-  },
-  position: {
-    type: String,
-    default: "bottom"
-  },
-  closeOnClickModal: {
-    type: Boolean,
-    default: true
-  },
-  borderRadius: {
-    type: Number,
-    default: 10
-  },
-  lockScreen: {
-    type: Boolean,
-    default: true
-  },
-  showCloseIcon: {
-    type: Boolean,
-    default: false
-  },
-  singleton: {
-    type: Boolean,
-    default: false
-  },
-  fixed: Boolean
-});
+class Props {
+  modelValue = prop<boolean>({ default: false })
+  position = prop<string>({ default: "bottom" })
+  closeOnClickModal = prop<boolean>({ default: true })
+  borderRadius = prop<number>({ default: 10 })
+  lockScreen = prop<boolean>({ default: true })
+  showCloseIcon = prop<boolean>({ default: false })
+  singleton = prop<boolean>({ default: false })
+  fixed?: boolean
+}
 @Options({
   emits: ["update:modelValue", "beforeenter", "enter", "afterenter", "beforeleave", "leave", "afterleave", "input"],
   name: "VgPopup"
 })
-export default class VgPopup extends mixins(VueGgy, Props) {
+export default class VgPopup extends mixins(VueGgy).with(Props) {
   public static componentName = "VgPopup";
   public bodyOverflow = "";
   public time = 0;

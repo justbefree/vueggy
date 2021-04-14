@@ -2,33 +2,24 @@
 * @Author: Just be free
 * @Date:   2020-09-23 16:16:46
 * @Last Modified by:   Just be free
-* @Last Modified time: 2021-01-07 17:41:16
+* @Last Modified time: 2021-04-13 15:29:33
 * @E-mail: justbefree@126.com
 */
-import VueGgy, { Options, mixins, props } from "../component/VueGgy";
+import VueGgy, { Options, mixins, prop } from "../component/VueGgy";
 import Base642Svg from "../utils/dom/base642svg";
 import { getPropertyValue } from "../utils/dom/style";
 import { h } from "vue";
 import svgs from "./svgs";
-const Props = props({
-  name: String,
-  size: {
-    type: [Number, String],
-    default: 26
-  },
-  cursor: {
-    type: String,
-    default: "auto"
-  },
-  adjustColor: {
-    type: Boolean,
-    default: false
-  }
-});
+class Props {
+  name!: string
+  size = prop<string|number>({ default: 26 })
+  cursor = prop<string>({ default: "auto" })
+  adjustColor = prop<boolean>({ default: false })
+}
 @Options({
   name: "VgIcon"
 })
-export default class VgIcon extends mixins(VueGgy, Props) {
+export default class VgIcon extends mixins(VueGgy).with(Props) {
   public static componentName = "VgIcon";
   public static svgs = svgs;
   public svgbase64 = VgIcon.svgs[this.name as string];

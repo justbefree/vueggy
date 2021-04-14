@@ -2,12 +2,12 @@
 * @Author: Just be free
 * @Date:   2020-10-22 14:42:19
 * @Last Modified by:   Just be free
-* @Last Modified time: 2021-01-07 18:32:26
+* @Last Modified time: 2021-04-13 16:50:23
 * @E-mail: justbefree@126.com
 */
 
 import { h, withDirectives, vShow, VNode, nextTick } from "vue";
-import VueGgy, { mixins, props, Options } from "../component/VueGgy";
+import VueGgy, { mixins, prop, Options } from "../component/VueGgy";
 import { isChineseCharacters, isPromise, throttle } from "../utils";
 import { getPropertyValue } from "../utils/dom/style";
 import { EventBus } from "../utils/event/bus";
@@ -25,65 +25,35 @@ export interface Tab {
   label: string;
   [propName: string]: any;
 }
-const Props = props({
-  modelValue: {
-    type: Boolean,
-    default: false
-  },
-  title: {
-    type: String,
-    default: "标题"
-  },
-  column: {
-    type: [Number, String],
+class Props {
+  modelValue = prop<boolean>({ default: false })
+  title = prop<string>({ default: "标题" })
+  column = prop<string|number>({
     default: 4,
-    validator: (c: any) => {
+    validator: (c: any): boolean => {
       return String(c) === "4" || String(c) === "3";
     }
-  },
-  parse: {
-    type: Function,
+  })
+  parse = prop<Function>({
     default: (city: any): string => {
       return city.CityName as string;
     }
-  },
-  limited: {
-    type: Boolean,
-    default: false
-  },
-  limitedData: {
-    type: Array,
-    default: () => {
-      return [];
-    }
-  },
-  tabs: {
-    type: Array,
+  })
+  limited = prop<boolean>({ default: false })
+  limitedData = prop<Array<any>>({ default: () => [] })
+  tabs = prop<Array<any>>({
     default: () => {
       return [
         { label: "中国", key: "mainland-china" },
         { label: "非中国大陆(国际/港澳台)", key: "overseas" }
-      ];
+      ]
     }
-  },
-  searchable: {
-    type: Boolean,
-    default: true
-  },
-  placeholder: {
-    type: String,
-    default: "请输入城市名称"
-  },
-  showHistory: {
-    type: Boolean,
-    default: false
-  },
-  showHotCity: {
-    type: Boolean,
-    default: true
-  },
-  search: {
-    type: Object,
+  })
+  searchable = prop<boolean>({ default: true })
+  placeholder = prop<string>({ default: "请输入城市名称" })
+  showHistory = prop<boolean>({ default: false })
+  showHotCity = prop<boolean>({ default: true })
+  search = prop<any>({
     default: () => {
       return {
         params: {},
@@ -93,11 +63,10 @@ const Props = props({
         parse: (e: any) => {
           return e;
         }
-      };
+      }
     }
-  },
-  history: {
-    type: Object,
+  })
+  history = prop<any>({
     default: () => {
       return {
         params: {},
@@ -108,11 +77,10 @@ const Props = props({
           return e;
         },
         title: "历史查询"
-      };
+      }
     }
-  },
-  hotCity: {
-    type: Object,
+  })
+  hotCity = prop<any>({
     default: () => {
       return {
         params: {},
@@ -123,11 +91,10 @@ const Props = props({
           return e;
         },
         title: "热门城市"
-      };
+      }
     }
-  },
-  alphaBeta: {
-    type: Object,
+  })
+  alphaBeta = prop<any>({
     default: () => {
       return {
         params: {},
@@ -138,10 +105,11 @@ const Props = props({
           return e;
         },
         title: "按字母查询"
-      };
+      }
     }
-  }
-});
+  })
+}
+
 @Options({
   name: "VgCitypicker",
   emits: ["update:modelValue", "pick", "beforeenter", "enter", "afterenter", "beforeleave", "leave", "afterleave"],
@@ -164,7 +132,7 @@ const Props = props({
     }
   }
 })
-export default class VgCitypicker extends mixins(VueGgy, Props) {
+export default class VgCitypicker extends mixins(VueGgy).with(Props) {
   public static componentName = "VgCitypicker";
   public isCompose = false;
   public caculatedTabs = [] as Array<Tab>;
@@ -616,7 +584,7 @@ export default class VgCitypicker extends mixins(VueGgy, Props) {
       parseInt(paddingLeft) -
       parseInt(paddingRight);
     const textBoxWidth =
-      parseInt(this.column) === 3 ? actualWidth * 0.31 : actualWidth * 0.22;
+      parseInt(String(this.column)) === 3 ? actualWidth * 0.31 : actualWidth * 0.22;
     this.textBoxWidth = textBoxWidth;
   }
   resize() {

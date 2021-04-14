@@ -2,31 +2,23 @@
 * @Author: Just be free
 * @Date:   2020-09-22 15:24:40
 * @Last Modified by:   Just be free
-* @Last Modified time: 2020-10-15 10:57:02
+* @Last Modified time: 2021-04-13 16:06:31
 * @E-mail: justbefree@126.com
 */
-import VueGgy, { mixins, props, Options } from "../component/VueGgy";
+import VueGgy, { mixins, prop, Options } from "../component/VueGgy";
 import VgIcon from "../icon";
 import { h, computed, ref } from "vue";
-const Props = props({
-  size: {
-    type: [Number, String],
-    default: 26
-  },
-  modelValue: {
-    type: Boolean,
-    default: false
-  },
-  disabled: {
-    type: Boolean,
-    default: false
-  }
-});
+
+class Props {
+  size = prop<string|number>({ default: 26 })
+  modelValue = prop<boolean>({ default: false })
+  disabled = prop<boolean>({ default: false })
+}
 @Options({
   emits: ["update:modelValue"],
   name: "VgCheckbox"
 })
-export default class VgCheckbox extends mixins(VueGgy, Props) {
+export default class VgCheckbox extends mixins(VueGgy).with(Props) {
   public static componentName = "VgCheckbox";
   public status = ref(this.modelValue).value;
   toggle(): void {

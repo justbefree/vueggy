@@ -2,42 +2,24 @@
 * @Author: Just be free
 * @Date:   2020-10-12 15:56:53
 * @Last Modified by:   Just be free
-* @Last Modified time: 2020-11-30 15:54:41
+* @Last Modified time: 2021-04-13 15:42:12
 * @E-mail: justbefree@126.com
 */
-import VueGgy, { mixins, props, Options } from "../component/VueGgy";
+import VueGgy, { mixins, prop, Options } from "../component/VueGgy";
 import VgIcon from "../icon";
 import { h } from "vue";
-const Props = props({
-  size: {
-    type: String,
-    default: "default"
-  },
-  type: {
-    type: String,
-    default: "default"
-  },
-  disabled: {
-    type: Boolean,
-    default: false
-  },
-  danger: {
-    type: Boolean,
-    default: false
-  },
-  loading: {
-    type: Boolean,
-    default: false
-  },
-  textHideWhenLoading: {
-    type: Boolean,
-    default: false
-  }
-});
+class Props {
+  size = prop<string>({ default: "default" })
+  type = prop<string>({ default: "default" })
+  disabled = prop<boolean>({ default: false })
+  danger = prop<boolean>({ default: false })
+  loading = prop<boolean>({ default: false })
+  textHideWhenLoading = prop<boolean>({ default: false })
+}
 @Options({
   name: "VgButton"
 })
-export default class VgButton extends mixins(VueGgy, Props) {
+export default class VgButton extends mixins(VueGgy).with(Props) {
   public static componentName = "VgButton";
   validType(type: string): boolean {
     return ["default", "primary", "dashed"].indexOf(type) > -1;

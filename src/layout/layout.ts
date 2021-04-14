@@ -2,59 +2,32 @@
 * @Author: Just be free
 * @Date:   2020-10-21 15:19:17
 * @Last Modified by:   Just be free
-* @Last Modified time: 2020-10-22 10:51:20
+* @Last Modified time: 2021-04-13 15:28:53
 * @E-mail: justbefree@126.com
 */
-import VueGgy, { mixins, props, Options } from "../component/VueGgy";
+import VueGgy, { mixins, prop, Options } from "../component/VueGgy";
 import { h, VNode, Transition, withDirectives, vShow } from "vue";
 import VgFlex from "../flex";
 import VgFlexItem from "../flex-item";
 import { getScrollTop } from "../utils/dom";
 import { on, off } from "../utils/event";
-const Props = props({
-  showHeader: {
-    type: Boolean,
-    default: false
-  },
-  headerHeight: {
-    type: [Number, String],
-    default: 44
-  },
-  footerHeight: {
-    type: [String, Number],
-    default: 50
-  },
-  showFooter: {
-    type: Boolean,
-    default: true
-  },
-  monitor: {
-    // 是否监听scroll事件，默认为true监听
-    type: Boolean,
-    default: true
-  },
-  footerTransitionName: {
-    type: String,
-    default: "slide-fade"
-  },
-  headerTransitionName: {
-    type: String,
-    default: "slide-fade-top"
-  },
-  topDistance: {
-    type: [Number, String],
-    default: 0
-  },
-  bottomDistance: {
-    type: [Number, String],
-    default: 0
-  }
-});
+
+class Props {
+  showHeader = prop<boolean>({ default: false })
+  headerHeight = prop<string|number>({ default: 44 })
+  footerHeight = prop<string|number>({ default: 50 })
+  showFooter = prop<boolean>({ default: true })
+  monitor = prop<boolean>({ default: true }) // 是否监听scroll事件，默认为true监听
+  footerTransitionName = prop<string>({ default: "slide-fade" })
+  headerTransitionName = prop<string>({ default: "slide-fade-top" })
+  topDistance = prop<number|string>({ default: 0 })
+  bottomDistance = prop<number|string>({ default: 0 })
+}
 @Options({
   name: "VgLayout",
   emits: ["reachtop", "reachbottom", "scroll"]
 })
-export default class VgLayout extends mixins(VueGgy, Props) {
+export default class VgLayout extends mixins(VueGgy).with(Props) {
   public static componentName = "VgLayout";
   public scrollTop = 0;
   public clientHeight = 0;

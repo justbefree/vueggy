@@ -2,14 +2,15 @@
 * @Author: Just be free
 * @Date:   2020-11-19 17:56:43
 * @Last Modified by:   Just be free
-* @Last Modified time: 2020-12-16 09:48:52
+* @Last Modified time: 2021-04-14 13:53:05
 * @E-mail: justbefree@126.com
 */
-import VueGgy, { mixins, props, Options } from "../component/VueGgy";
+import VueGgy, { mixins, prop, Options } from "../component/VueGgy";
 import { h, Transition, withDirectives, vShow, VNode } from "vue";
-const Props = props({
-  height: [String, Number]
-});
+
+class Props {
+  height?: string|number
+}
 @Options({
   name: "VgAnimationListItem",
   inject: ["parentList"],
@@ -19,7 +20,7 @@ const Props = props({
     }
   }
 })
-export default class VgAnimationListItem extends mixins(VueGgy, Props) {
+export default class VgAnimationListItem extends mixins(VueGgy).with(Props) {
   public static componentName = "VgAnimationListItem";
   public show = false;
   private entered = false;

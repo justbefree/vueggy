@@ -2,10 +2,10 @@
 * @Author: Just be free
 * @Date:   2020-10-28 14:38:23
 * @Last Modified by:   Just be free
-* @Last Modified time: 2021-03-23 14:19:37
+* @Last Modified time: 2021-04-13 17:09:17
 * @E-mail: justbefree@126.com
 */
-import VueGgy, { mixins, props, Options } from "../component/VueGgy";
+import VueGgy, { mixins, prop, Options } from "../component/VueGgy";
 import { hyphenate, isPromise, hasOwnProperty } from "../utils";
 import { h, VNode, withDirectives, vShow } from "vue";
 import VgPopup from "../popup";
@@ -30,30 +30,15 @@ export interface CreateCustomeElementOptions {
   display: string;
   [propName: string]: any;
 }
-const Props = props({
-  modelValue: {
-    type: Boolean,
-    default: false,
-  },
-  steps: {
-    type: Array,
-    default: () => {
-      return [];
-    },
-  },
-  submit: {
-    type: Function,
-    default: () => {},
-  },
-  confirmText: {
-    type: String,
-    default: "确认",
-  },
-  closeOnClickModal: {
-    type: Boolean,
-    default: false
-  }
-});
+class Props {
+  modelValue = prop<boolean>({ default: false })
+  steps = prop<Array<any>>({ default: () => [] })
+  submit = prop<Function>({
+    default: () => {}
+  })
+  confirmText = prop<string>({ default: "确认" })
+  closeOnClickModal = prop<boolean>({ default: false })
+}
 @Options({
   name: "VgPickyStepper",
   emits: ["update:modelValue", "input", "beforeenter", "enter", "afterenter", "beforeleave", "leave", "afterleave", "success"],
@@ -61,7 +46,7 @@ const Props = props({
     steps: "initData"
   }
 })
-export default class VgPickyStepper extends mixins(VueGgy, Props) {
+export default class VgPickyStepper extends mixins(VueGgy).with(Props) {
   public static componentName = "VgPickyStepper";
   public title = "";
   public caculateSteps = [] as any;

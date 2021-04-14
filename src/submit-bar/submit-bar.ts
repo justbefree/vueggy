@@ -2,10 +2,10 @@
 * @Author: Just be free
 * @Date:   2020-11-30 11:11:58
 * @Last Modified by:   Just be free
-* @Last Modified time: 2021-01-20 11:08:30
+* @Last Modified time: 2021-04-14 14:10:39
 * @E-mail: justbefree@126.com
 */
-import VueGgy, { mixins, props, Options } from "../component/VueGgy";
+import VueGgy, { mixins, prop, Options } from "../component/VueGgy";
 import VgFlex from "../flex";
 import VgFlexItem from "../flex-item";
 import VgPopup from "../popup";
@@ -15,51 +15,24 @@ import { h, withDirectives, vShow, VNode } from "vue";
 const VALID_POPUP_CONTENT_COMPONENT = "VgSubmitBarPopupContent";
 const VALID_VALUE_COMPONENT = "VgSubmitBarValue";
 const VALID_TEXT_COMPONENT = "VgSubmitBarText";
+class Props {
+  submitText = prop<string>({ default: "提交" })
+  label = prop<string>({ default: "" })
+  value = prop<string>({ default: "0" })
+  valueDescription = prop<string>({ default: "" })
+  currencySymbol = prop<string>({ default: "&yen;" })
+  showIcon = prop<boolean>({ default: true })
+  fixed?: boolean
+  disabled = prop<boolean>({ default: false })
+  leftFlex = prop<string|number>({ default: 2 })
+  rightFlex = prop<string|number>({ default: 1 })
+}
 
-const Props = props({
-  submitText: {
-    type: String,
-    default: "提交",
-  },
-  label: {
-    type: String,
-    default: "",
-  },
-  value: {
-    type: String,
-    default: "0",
-  },
-  valueDescription: {
-    type: String,
-    default: ""
-  },
-  currencySymbol: {
-    type: String,
-    default: "&yen;",
-  },
-  showIcon: {
-    type: Boolean,
-    default: true,
-  },
-  fixed: Boolean,
-  disabled: {
-    type: Boolean,
-    default: false
-  },
-  leftFlex: {
-    type: [String, Number],
-    default: 2
-  },
-  rightFlex: {
-    type: [String, Number],
-    default: 1
-  }
-});
 @Options({
   name: "VgSubmitBar",
   emits: ["trigger", "beforeenter", "afterleave", "submit"]
 })
-export default class VgSubmitBar extends mixins(Props, VueGgy) {
+export default class VgSubmitBar extends mixins(VueGgy).with(Props) {
   public static componentName = "VgSubmitBar";
   public showPopup = false;
   public popupStatus = false;

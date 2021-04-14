@@ -2,7 +2,7 @@
 * @Author: Just be free
 * @Date:   2020-09-22 15:24:16
 * @Last Modified by:   Just be free
-* @Last Modified time: 2021-02-23 16:15:59
+* @Last Modified time: 2021-04-14 14:27:54
 * @E-mail: justbefree@126.com
 */
 import { version } from "../package.json";
@@ -52,7 +52,6 @@ export interface VueggyConfigOptions {
 }
 const configOptions = {} as VueggyConfigOptions;
 const components = [VgDropdown, VgField, VgSubmitBarText, VgSubmitBarValue, VgSubmitBarPopupContent, VgSubmitBar, VgSwipeItem, VgSwipe, VgAnimationListItem, VgAnimationList, VgTabItem, VgTabs, VgDatePicker, VgPicker, VgSkeleton, VgPullRefresh, VgCounter, VgPickyStepper, VgActionSheet, VgSlider, VgCitypicker, VgLayout, VgCalendar, VgSticky, VgButton, VgFlex, VgFlexItem, VgSpin, VgPopup, VgIcon, VgCheckbox, VgRadiobox, VgDialog];
-
 const install = (app: any, options: any) => {
   components.map(component => {
     const merge = (component as any).extendData;

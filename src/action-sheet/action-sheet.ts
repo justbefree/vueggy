@@ -2,57 +2,32 @@
 * @Author: Just be free
 * @Date:   2020-10-28 12:10:05
 * @Last Modified by:   Just be free
-* @Last Modified time: 2020-10-28 14:26:12
+* @Last Modified time: 2021-04-13 17:05:49
 * @E-mail: justbefree@126.com
 */
 import { h, withDirectives, vShow, VNode } from "vue";
-import VueGgy, { mixins, props, Options } from "../component/VueGgy";
+import VueGgy, { mixins, prop, Options } from "../component/VueGgy";
 import VgFlex from "../flex";
 import VgFlexItem from "../flex-item";
 import VgPopup from "../popup";
 import VgSpin from "../spin";
-const Props = props({
-  modelValue: {
-    type: Boolean,
-    default: false
-  },
-  title: {
-    type: String,
-    default: "标题"
-  },
-  actions: {
-    type: Array,
-    default: () => {
-      return [];
-    }
-  },
-  showCancel: {
-    type: Boolean,
-    default: false
-  },
-  cancelText: {
-    type: String,
-    default: "取消"
-  },
-  loading: {
-    type: Boolean,
-    default: false
-  },
-  iconType: {
-    type: String,
-    default: "tripleBounce"
-  },
-  iconSize: {
-    type: Number,
-    default: 36
-  },
-  iconColor: String
-});
+class Props {
+  modelValue = prop<boolean>({ default: false })
+  title = prop<string>({ default: "标题" })
+  actions = prop<Array<any>>({ default: () => [] })
+  showCancel = prop<boolean>({ default: false })
+  cancelText = prop<string>({ default: "取消" })
+  loading = prop<boolean>({ default: false })
+  iconType = prop<string>({ default: "tripleBounce" })
+  iconSize = prop<number>({ default: 36 })
+  iconColor?: string
+}
+
 @Options({
   name: "VgActionSheet",
   emits: ["update:modelValue", "getselected", "beforeenter", "enter", "afterenter", "beforeleave", "leave", "afterleave"]
 })
-export default class VgActionSheet extends mixins(VueGgy, Props) {
+export default class VgActionSheet extends mixins(VueGgy).with(Props) {
   public static componentName = "VgActionSheet";
   handleChange(e: boolean): void {
     this.$emit("update:modelValue", e);

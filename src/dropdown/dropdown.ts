@@ -2,24 +2,24 @@
 * @Author: Just be free
 * @Date:   2021-02-23 15:21:59
 * @Last Modified by:   Just be free
-* @Last Modified time: 2021-02-26 16:37:30
+* @Last Modified time: 2021-04-14 14:27:06
 * @E-mail: justbefree@126.com
 */
 
-import VueGgy, { mixins, props, Options } from "../component/VueGgy";
+import VueGgy, { mixins, prop, Options } from "../component/VueGgy";
 import { h, VNode, vShow, withDirectives } from "vue";
 import { renderDOM } from "../component/renderDOM";
 import VgPopup from "../popup";
-const Props = props({
-  borderRadius: Number,
-  direction: {
-    type: String,
+
+class Props {
+  borderRadius?: number
+  direction = prop<string>({
     default: "down",
-    validator: function (dir: string) {
+    validator: (dir: string): boolean => {
       return ["down", "up", "right", "left"].indexOf(dir) > -1;
-    },
-  }
-});
+    }
+  })
+}
 @Options({
   name: "VgDropdown",
   emits: ["beforeenter", "afterenter", "beforeleave", "afterleave"],
@@ -30,7 +30,7 @@ const Props = props({
     }
   }
 })
-export default class VgDropdown extends mixins(VueGgy, Props) {
+export default class VgDropdown extends mixins(VueGgy).with(Props) {
   public static componentName = "VgDropdown";
   public status = false;
   public show = false;

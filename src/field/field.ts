@@ -2,72 +2,36 @@
 * @Author: Just be free
 * @Date:   2020-12-07 14:36:07
 * @Last Modified by:   Just be free
-* @Last Modified time: 2020-12-18 16:37:23
+* @Last Modified time: 2021-04-14 14:24:54
 * @E-mail: justbefree@126.com
 */
-import VueGgy, { mixins, props, Options } from "../component/VueGgy";
+import VueGgy, { mixins, prop, Options } from "../component/VueGgy";
 import { h, VNode, vShow, withDirectives } from "vue";
 import { encrypt } from "../utils/string";
 import VgFlex from "../flex";
 import VgFlexItem from "../flex-item";
 import VgIcon from "../icon";
 const VALID_TYPE = ["number", "textarea", "password", "text", "email", "tel"];
-const Props = props({
-  modelValue: {
-    type: [Number, String],
-    default: "",
-  },
-  label: String,
-  placeholder: String,
-  maxlength: [Number, String],
-  readonly: {
-    type: Boolean,
-    default: false,
-  },
-  autofocus: {
-    type: Boolean,
-    default: false,
-  },
-  required: {
-    type: Boolean,
-    default: false,
-  },
-  disabled: {
-    type: Boolean,
-    default: false,
-  },
-  clearable: {
-    type: Boolean,
-    default: false,
-  },
-  interactive: {
-    type: String,
-    default: "address",
-    require: false,
-  },
-  type: {
-    type: String,
-    default: "text",
-  },
-  iconName: String,
-  showTextareaCounter: {
-    type: Boolean,
-    default: false,
-  },
-  encrypted: {
-    type: Boolean,
-    default: false,
-  },
-  display: {
-    type: String,
-    default: "row",
-  },
-  pattern: String,
-  encrypt: {
-    type: Function,
-    default: encrypt
-  }
-});
+class Props {
+  modelValue = prop<string|number>({ default: "" })
+  label?: string
+  placeholder?: string
+  maxlength?: number|string
+  readonly = prop<boolean>({ default: false })
+  autofocus = prop<boolean>({ default: false })
+  required = prop<boolean>({ default: false })
+  disabled = prop<boolean>({ default: false })
+  clearable = prop<boolean>({ default: false })
+  interactive = prop<string>({ default: "address" })
+  type = prop<string>({ default: "text" })
+  iconName?: string
+  showTextareaCounter = prop<boolean>({ default: false })
+  encrypted = prop<boolean>({ default: false })
+  display = prop<string>({ default: "row" })
+  pattern?: string
+  encrypt = prop<Function>({ default: encrypt })
+}
+
 @Options({
   name: "VgField",
   emits: ["blur", "update:modelValue", "focus", "click"],
@@ -77,7 +41,7 @@ const Props = props({
     }
   }
 })
-export default class VgField extends mixins(Props, VueGgy) {
+export default class VgField extends mixins(VueGgy).with(Props) {
   public static componentName = "VgField";
   public target: null|HTMLInputElement = null;
   public showIcon = false;
@@ -123,7 +87,7 @@ export default class VgField extends mixins(Props, VueGgy) {
   }
   createIcon(): VNode[] {
     const icon = [] as VNode[];
-    const name = this.clearable ? "clear" : this.iconName;
+    const name = this.clearable ? "clear" : this.iconName as string;
     if (this.clearable || this.iconName) {
       if (this.modelValue !== "") {
         this.showIcon = true;
@@ -188,7 +152,7 @@ export default class VgField extends mixins(Props, VueGgy) {
                   },
                   {
                     default: () => [
-                      h("span", {}, { default: () => `${this.modelValue.length}/${this.maxlength}` })
+                      h("span", {}, { default: () => `${String(this.modelValue).length}/${this.maxlength}` })
                     ]
                   }
                 ), [[vShow, this.showTextareaCounter]]),
@@ -231,8 +195,8 @@ export default class VgField extends mixins(Props, VueGgy) {
   render() {
     const slots = this.getSlots("label");
     const label = [] as VNode[];
-    if (slots && slots.length > 0) {
-      label.push(this.genLabel(slots));
+    if (slots && String(slots).length > 0) {
+      label.push(this.genLabel(String(slots)));
     } else if (this.label) {
       label.push(this.genLabel(this.label));
     }

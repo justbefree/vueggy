@@ -2,17 +2,20 @@
 * @Author: Just be free
 * @Date:   2020-09-23 17:32:46
 * @Last Modified by:   Just be free
-* @Last Modified time: 2020-12-29 17:31:47
+* @Last Modified time: 2021-04-13 14:58:39
 * @E-mail: justbefree@126.com
 */
 const pkg = require("../../package.json");
-import { Vue, mixins, props, emits, createDecorator, setup, Options } from "vue-class-component";
+import { Vue, mixins, prop, createDecorator, setup, Options } from "vue-class-component";
+import * as vcc from "vue-class-component";
+console.log(vcc);
 import { VNode } from "vue";
 import { EventBus } from "../utils/event/bus";
 import { on, off } from "../utils/event";
 import { throttle } from "../utils";
 export type VisibilityChangeStatus = "hidden" | "visible";
-export default class VueGgy extends Vue {
+class Props {}
+export default class VueGgy extends Vue.with(Props) {
   [propName: string]: any;
   private version = pkg.version;
   public static componentName = "VueGgy";
@@ -75,4 +78,4 @@ export default class VueGgy extends Vue {
     off(window, "resize", this.resizeEvent);
   }
 }
-export { Vue, mixins, props, emits, createDecorator, setup, Options };
+export { Vue, mixins, prop, createDecorator, setup, Options };

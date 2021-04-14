@@ -2,25 +2,24 @@
 * @Author: Just be free
 * @Date:   2020-09-23 16:16:46
 * @Last Modified by:   Just be free
-* @Last Modified time: 2020-10-13 12:12:51
+* @Last Modified time: 2021-04-13 15:33:33
 * @E-mail: justbefree@126.com
 */
-import VueGgy, { Options, mixins, props } from "../component/VueGgy";
+import VueGgy, { Options, mixins, prop } from "../component/VueGgy";
 import { Transition, h, withDirectives, vShow } from "vue";
-const Props = props({
-  position: {
-    type: String,
+class Props {
+  message!: string
+  position = prop<string>({
     default: "middle",
-    validator: function(value: string) {
+    validator: function(value: string): boolean {
       return ["bottom", "middle", "top"].indexOf(value) !== -1;
     }
-  },
-  message: String
-});
+  })
+}
 @Options({
   name: "VgToast"
 })
-export default class VgToast extends mixins(VueGgy, Props) {
+export default class VgToast extends mixins(VueGgy).with(Props) {
   public static componentName = "VgToast";
   public visible = false;
   public closed = false;

@@ -2,10 +2,10 @@
 * @Author: Just be free
 * @Date:   2020-11-05 13:22:24
 * @Last Modified by:   Just be free
-* @Last Modified time: 2020-11-09 17:57:58
+* @Last Modified time: 2021-04-13 17:32:32
 * @E-mail: justbefree@126.com
 */
-import VueGgy, { mixins, props, Options } from "../component/VueGgy";
+import VueGgy, { mixins, prop, Options } from "../component/VueGgy";
 import { h, vShow, withDirectives, VNode } from "vue";
 import { deepClone } from "../utils/deep-clone";
 import VgPickerColumn from "./picker-column";
@@ -18,44 +18,24 @@ export interface ChangeCallbackEvent {
   index: number;
   key: number;
 }
-const Props = props({
-  modelValue: Boolean,
-  itemHeight: {
-    type: [String, Number],
-    default: 44,
-  },
-  columns: {
-    type: Array,
-    default: () => {
-      return [];
-    },
-  },
-  confirmText: {
-    type: String,
-    default: "确认",
-  },
-  cancelText: {
-    type: String,
-    default: "取消",
-  },
-  title: {
-    type: String,
-    default: "请选择日期",
-  },
-  showBack: {
-    type: Boolean,
-    default: true,
-  },
-  showClose: {
-    type: Boolean,
-    default: true,
-  }
-});
+class Props {
+  modelValue!: boolean
+  itemHeight = prop<string|number>({ default: 44 })
+  columns = prop<Array<any>>({
+    default: () => []
+  })
+  confirmText = prop<string>({ default: "确认" })
+  cancelText = prop<string>({ default: "取消" })
+  title = prop<string>({ default: "请选择日期" })
+  showBack = prop<boolean>({ default: true })
+  showClose = prop<boolean>({ default: true })
+}
+
 @Options({
   name: "VgPicker",
   emits: ["close", "update:modelValue", "confirm", "change"]
 })
-export default class VgPicker extends mixins(VueGgy, Props) {
+export default class VgPicker extends mixins(VueGgy).with(Props) {
   public static componentName = "VgPicker";
   public computedColumn: ColumnObject[] = [];
   public pickColumns = {} as any;
@@ -194,7 +174,7 @@ export default class VgPicker extends mixins(VueGgy, Props) {
     this.getData();
   }
   mounted() {
-    (this.$refs.pickerMask as HTMLDivElement).style.backgroundSize = `100% ${this.itemHeight * 2}px`;
+    (this.$refs.pickerMask as HTMLDivElement).style.backgroundSize = `100% ${Number(this.itemHeight) * 2}px`;
   }
   render() {
     return h("div", { class: ["vg-picker"] }, {

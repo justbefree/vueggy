@@ -2,39 +2,27 @@
 * @Author: Just be free
 * @Date:   2020-11-25 14:11:49
 * @Last Modified by:   Just be free
-* @Last Modified time: 2020-12-30 16:37:29
+* @Last Modified time: 2021-04-14 14:06:24
 * @E-mail: justbefree@126.com
 */
-import VueGgy, { mixins, props, Options, VisibilityChangeStatus } from "../component/VueGgy";
+import VueGgy, { mixins, prop, Options, VisibilityChangeStatus } from "../component/VueGgy";
 import { h, VNode } from "vue";
 import { Remainder } from "../utils/number/remainder";
 import { move } from "../utils/dom/animate";
 import { EventBus } from "../utils/event/bus";
 import { EventEmulator, EventCallbackOptions } from "../component/EventEmulator";
 const VALID_CHILD_COMPONENT = "VgSwipeItem";
-const Props = props({
-  vertical: Boolean,
-  autoPlay: {
-    type: [Number, String],
+class Props {
+  vertical?: boolean
+  autoPlay = prop<string|number>({
     default: 3000
-  },
-  showIndicator: {
-    type: Boolean,
-    default: true
-  },
-  indicatorType: {
-    type: String,
-    default: "dashed"
-  },
-  height: {
-    type: [String, Number],
-    default: 240
-  },
-  loadingText: {
-    type: String,
-    default: "图片加载中..."
-  }
-});
+  })
+  showIndicator = prop<boolean>({ default: true })
+  indicatorType = prop<string>({ default: "dashed" })
+  height = prop<string|number>({ default: 240 })
+  loadingText = prop<string>({ default: "图片加载中..." })
+}
+
 @Options({
   name: "VgSwipe",
   provide() {
@@ -53,7 +41,7 @@ const Props = props({
     }
   }
 })
-export default class VgSwipe extends mixins(Props, VueGgy, EventEmulator) {
+export default class VgSwipe extends mixins(VueGgy, EventEmulator).with(Props) {
   public static componentName = "VgSwipe";
   public rect = {} as DOMRect;
   public width = 0;
@@ -122,7 +110,7 @@ export default class VgSwipe extends mixins(Props, VueGgy, EventEmulator) {
     const that = this;
     let r: null|Remainder = null;
     let startTime = 0;
-    this.bindEvent(el, {
+    this.bindEvent(el as EventTarget, {
       start() {
         that.stop();
         that.dragging = true;

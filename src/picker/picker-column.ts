@@ -2,7 +2,7 @@
 * @Author: Just be free
 * @Date:   2020-11-05 13:44:32
 * @Last Modified by:   Just be free
-* @Last Modified time: 2021-01-20 17:01:32
+* @Last Modified time: 2021-04-13 17:31:54
 * @E-mail: justbefree@126.com
 */
 export interface ColumnObject {
@@ -11,7 +11,7 @@ export interface ColumnObject {
   disabled?: boolean;
   [propName: string]: any;
 }
-import VueGgy, { mixins, props, Options } from "../component/VueGgy";
+import VueGgy, { mixins, prop, Options } from "../component/VueGgy";
 import { EventEmulator, EventCallbackOptions } from "../component/EventEmulator";
 import { deepClone } from "../utils/deep-clone";
 import { getElementsTranslate } from "../utils/dom";
@@ -32,27 +32,17 @@ const polyfill = (arr: any[]): any[] => {
   }
   return arr;
 }
-const Props = props({
-  columns: {
-    type: Array,
-    default: () => {
-      return [];
-    }
-  },
-  defaultIndex: Number,
-  itemHeight: {
-    type: [String, Number],
+class Props {
+  columns = prop<Array<any>>({
+    default: () => []
+  })
+  defaultIndex!: number
+  itemHeight = prop<string|number>({
     default: 44
-  },
-  // visibleItemCount: {
-  //   type: [String, Number],
-  //   default: 6
-  // },
-  swipeDuration: {
-    type: [String, Number],
-    default: 1000
-  }
-});
+  })
+  // visibleItemCount = prop<string|number>({ default: 6 })
+  swipeDuration = prop<string|number>({ default: 1000 })
+}
 @Options({
   name: "VgPickerColumn",
   emits: ["change"],
@@ -71,7 +61,7 @@ const Props = props({
     }
   }
 })
-export default class VgPickerColumn extends mixins(VueGgy, Props, EventEmulator) {
+export default class VgPickerColumn extends mixins(VueGgy, EventEmulator).with(Props) {
   public static componentName = "VgPickerColumn";
   public options = deepClone(this.columns);
   public currentIndex = this.defaultIndex;
@@ -116,7 +106,7 @@ export default class VgPickerColumn extends mixins(VueGgy, Props, EventEmulator)
     return this.options[this.currentIndex];
   }
   getIndexByOffset(offset: number): number {
-    return range(Math.round(-offset / this.itemHeight), 0, this.count - 1);
+    return range(Math.round(-offset / Number(this.itemHeight)), 0, this.count - 1);
   }
   momentum(distance: number, duration: number): void {
     const speed = Math.abs(distance / duration);
@@ -127,7 +117,7 @@ export default class VgPickerColumn extends mixins(VueGgy, Props, EventEmulator)
   }
   setIndex(index: number, emitChange?: boolean): void {
     index = this.adjustIndex(index) || 0;
-    const offset = -index * this.itemHeight;
+    const offset = -index * Number(this.itemHeight);
     const trigger = () => {
       if (index !== this.currentIndex) {
         this.currentIndex = index;
@@ -150,7 +140,7 @@ export default class VgPickerColumn extends mixins(VueGgy, Props, EventEmulator)
       return;
     }
     const that = this;
-    this.bindEvent(el, {
+    this.bindEvent(el as EventTarget, {
       start() {
         if (that.moving) {
           const translateY = getElementsTranslate(that.$refs.wrapper as HTMLElement).y;
@@ -171,8 +161,8 @@ export default class VgPickerColumn extends mixins(VueGgy, Props, EventEmulator)
 
         that.offset = range(
           that.startOffset + that.deltaY,
-          -(that.count * that.itemHeight),
-          that.itemHeight
+          -(that.count * Number(that.itemHeight)),
+          Number(that.itemHeight)
         );
         const now = Date.now();
         if (now - that.touchStartTime > MOMENTUM_LIMIT_TIME) {

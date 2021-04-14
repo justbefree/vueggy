@@ -2,10 +2,10 @@
 * @Author: Just be free
 * @Date:   2020-11-09 17:02:32
 * @Last Modified by:   Just be free
-* @Last Modified time: 2021-01-25 15:22:16
+* @Last Modified time: 2021-04-13 18:23:36
 * @E-mail: justbefree@126.com
 */
-import VueGgy, { mixins, props, Options } from "../component/VueGgy";
+import VueGgy, { mixins, prop, Options } from "../component/VueGgy";
 import { h } from "vue";
 import { VgDateInstance, validateFormatedDate } from "../utils/vg-date";
 import { ColumnObject } from "../picker/picker-column";
@@ -20,26 +20,21 @@ const m = now.getMonth() + 1;
 const month = m < 10 ? `0${m}` : m;
 const d = now.getDate();
 const date = d < 10 ? `0${d}` : d;
-const Props = props({
-  modelValue: Boolean,
-  start: {
-    type: String,
-    default: `${year - 100}-${month}-${date}`,
-  },
-  end: {
-    type: String,
-    default: `${year}-${month}-${date}`,
-  },
-  defaultDate: String,
-  confirmText: String,
-  cancelText: String,
-  title: String
-});
+
+class Props {
+  modelValue!: boolean
+  start = prop<string>({ default: `${year - 100}-${month}-${date}` })
+  end = prop<string>({ default: `${year}-${month}-${date}` })
+  defaultDate?: string
+  confirmText?: string
+  cancelText?: string
+  title?: string
+}
 @Options({
   name: "VgDatePicker",
   emits: ["update:modelValue", "confirm", "beforeenter", "enter", "afterenter", "beforeleave", "leave", "afterleave"]
 })
-export default class VgDatePicker extends mixins(VueGgy, Props) {
+export default class VgDatePicker extends mixins(VueGgy).with(Props) {
   public static componentName = "VgDatePicker";
   public year: string|number = "";
   public month: string|number = "";
@@ -123,13 +118,13 @@ export default class VgDatePicker extends mixins(VueGgy, Props) {
       this.updateMonthDayCount();
       if (isEqual(this.year, startYear)) {
         if (isEqual(value, startMonth)) {
-          this.genDate(startDate, this.dayCount);
+          this.genDate(Number(startDate), this.dayCount);
         } else {
           this.genDate(1, this.dayCount);
         }
       } else if (isEqual(this.year, endYear)) {
         if (isEqual(value, endMonth)) {
-          this.genDate(1, endDate);
+          this.genDate(1, Number(endDate));
         } else {
           this.genDate(1, this.dayCount);
         }
@@ -179,7 +174,7 @@ export default class VgDatePicker extends mixins(VueGgy, Props) {
     const date = [];
     const [startYear] = this.start.split("-");
     const [endYear] = this.end.split("-");
-    for (let i = startYear; i <= endYear; i++) {
+    for (let i = Number(startYear); i <= Number(endYear); i++) {
       // 创建年集合
       year.push(i);
     }
@@ -204,8 +199,8 @@ export default class VgDatePicker extends mixins(VueGgy, Props) {
     return columns;
   }
   initData(): void {
-    if (validateFormatedDate(this.defaultDate)) {
-      this.defaultDisplayDate = this.defaultDate;
+    if (validateFormatedDate(this.defaultDate as string)) {
+      this.defaultDisplayDate = this.defaultDate as string;
     } else {
       this.defaultDisplayDate = this.end;
     }

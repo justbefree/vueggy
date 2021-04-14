@@ -2,32 +2,29 @@
 * @Author: Just be free
 * @Date:   2020-09-22 15:24:40
 * @Last Modified by:   Just be free
-* @Last Modified time: 2020-10-22 11:11:25
+* @Last Modified time: 2021-04-13 15:29:13
 * @E-mail: justbefree@126.com
 */
-import VueGgy, { mixins, props, Options } from "../component/VueGgy";
+import VueGgy, { mixins, prop, Options } from "../component/VueGgy";
 import { hyphenate, camelize } from "../utils";
 import { ValidFlexAttribute } from "./types";
 import { h } from "vue";
-const Props = props({
-  flexDirection: String,
-  flexWrap: String,
-  justifyContent: String,
-  alignItems: String,
-  alignContent: String,
-  xs: String,
-  sm: String,
-  md: String,
-  lg: String,
-  fixBottomLine: {
-    type: Boolean,
-    default: false
-  }
-});
+class Props {
+  flexDirection?: string
+  flexWrap?: string
+  justifyContent?: string
+  alignItems?: string
+  alignContent?: string
+  xs?: string
+  sm?: string
+  md?: string
+  lg?: string
+  fixBottomLine = prop<boolean>({ default: false })
+}
 @Options({
   name: "VgFlex"
 })
-export default class VgFlex extends mixins(VueGgy, Props) {
+export default class VgFlex extends mixins(VueGgy).with(Props) {
   public static componentName = "VgFlex";
   isValidColumnsAttribute(key: ValidFlexAttribute): boolean {
     const validates = ["xs", "sm", "md", "lg"];

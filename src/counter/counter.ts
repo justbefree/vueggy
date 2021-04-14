@@ -2,46 +2,34 @@
 * @Author: Just be free
 * @Date:   2020-11-02 14:26:49
 * @Last Modified by:   Just be free
-* @Last Modified time: 2020-11-02 16:51:40
+* @Last Modified time: 2021-04-13 17:15:25
 * @E-mail: justbefree@126.com
 */
-import VueGgy, { mixins, props, Options } from "../component/VueGgy";
+import VueGgy, { mixins, prop, Options } from "../component/VueGgy";
 import { EventEmulator, EventCallbackOptions } from "../component/EventEmulator";
 import { preventDefault } from "../utils/event";
 import VgIcon from "../icon";
 import { h } from "vue";
-const Props = props({
-  max: {
-    default: Number.MAX_VALUE,
-    type: [Number, String],
-  },
-  min: {
-    default: Number.MIN_VALUE,
-    type: [Number, String],
-  },
-  steps: {
-    default: 1,
-    type: [Number, String],
-  },
-  modelValue: {
-    default: -1,
-    type: [Number, String],
-  },
-  parse: {
-    type: Function,
+class Props {
+  max = prop<number|string>({ default: Number.MAX_VALUE })
+  min = prop<number|string>({ default: Number.MIN_VALUE })
+  steps = prop<number|string>({ default: 1 })
+  modelValue = prop<number|string>({ default: -1 })
+  prase = prop<Function>({
     default: (e: any) => {
       return e;
-    },
-  },
-  name: String
-});
+    }
+  })
+  name?: string
+}
+
 @Options({
   name: "VgCounter",
   emits: ["update:modelValue", "change"]
 })
-export default class VgCounter extends mixins(VueGgy, Props, EventEmulator) {
+export default class VgCounter extends mixins(VueGgy, EventEmulator).with(Props) {
   public static componentName = "VgCounter";
-  public count = this.modelValue;
+  public count = Number(this.modelValue);
   isEqual(val1: string|number, val2: string|number): boolean {
     return Number(val2) === Number(val1);
   }

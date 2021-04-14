@@ -2,10 +2,10 @@
 * @Author: Just be free
 * @Date:   2020-11-10 10:41:55
 * @Last Modified by:   Just be free
-* @Last Modified time: 2020-12-01 10:30:47
+* @Last Modified time: 2021-04-14 13:49:27
 * @E-mail: justbefree@126.com
 */
-import VueGgy, { mixins, props, Options } from "../component/VueGgy";
+import VueGgy, { mixins, prop, Options } from "../component/VueGgy";
 import { h, VNode } from "vue";
 import VgFlex from "../flex";
 import VgFlexItem from "../flex-item";
@@ -16,9 +16,9 @@ export interface Tab {
   index: number;
   name: string;
 }
-const Props = props({
-  modelValue: [String, Number]
-});
+class Props {
+  modelValue!: string|number
+}
 @Options({
   name: "VgTabs",
   emits: ["click", "change"],
@@ -28,7 +28,7 @@ const Props = props({
     }
   }
 })
-export default class VgTabs extends mixins(VueGgy, Props) {
+export default class VgTabs extends mixins(VueGgy).with(Props) {
   public static componentName = "VgTabs";
   public currentTab = this.modelValue;
   getTitles(slots: VNode[] = []): Tab[] {

@@ -2,10 +2,10 @@
 * @Author: Just be free
 * @Date:   2020-10-12 15:56:53
 * @Last Modified by:   Just be free
-* @Last Modified time: 2020-12-02 11:52:42
+* @Last Modified time: 2021-04-13 16:29:23
 * @E-mail: justbefree@126.com
 */
-import VueGgy, { mixins, props, Options } from "../component/VueGgy";
+import VueGgy, { mixins, prop, Options } from "../component/VueGgy";
 import VgIcon from "../icon";
 import VgPopup from "../popup";
 import VgFlex from "../flex";
@@ -32,86 +32,30 @@ export interface CalendarMonthNode {
   year: number|string;
   month: number|string;
 }
-const Props = props({
-  modelValue: {
-    type: Boolean,
-    default: false
-  },
-  title: {
-    type: [String, Array],
-    default: "日历"
-  },
-  mode: {
-    type: String,
-    default: "single"
-  },
-  doubleModeAllowSameDate: {
-    type: Boolean,
-    default: true
-  },
-  crossed: {
-    type: Boolean,
-    default: true
-  },
-  before: {
-    type: [Number, String],
-    default: 1
-  },
-  after: {
-    type: [Number, String],
-    default: 1
-  },
-  unit: {
-    type: String,
-    default: "days"
-  },
-  weekText: {
-    type: Array,
-    default: () => {
-      return ["日", "一", "二", "三", "四", "五", "六"];
-    }
-  },
-  defaultDate: {
-    type: String,
-    default: VgDateInstance().format()
-  },
-  defaultStartDate: {
-    type: String,
-    default: VgDateInstance().format()
-  },
-  defaultEndDate: {
-    type: String,
-    default: VgDateInstance()
-      .add(1, "day")
-      .format()
-  },
-  showConfirmButton: {
-    type: Boolean,
-    default: false
-  },
-  confirmText: {
-    type: String,
-    default: "确认"
-  },
-  fromDateMark: {
-    type: String,
-    default: "入住"
-  },
-  toDateMark: {
-    type: String,
-    default: "离店"
-  },
-  todayMark: {
-    type: String,
-    default: "今天"
-  },
-  monthTtitleParser: {
-    type: Function,
+class Props {
+  modelValue = prop<boolean>({ default: false })
+  title = prop<string|Array<string>>({ default: "日历" })
+  mode = prop<string>({ default: "single" })
+  doubleModeAllowSameDate = prop<boolean>({ default: true })
+  crossed = prop<boolean>({ default: true })
+  before = prop<string|number>({ default: 1 })
+  after = prop<string|number>({ default: 1 })
+  unit = prop<string>({ default: "days" })
+  weekText = prop<Array<string>>({ default: () => ["日", "一", "二", "三", "四", "五", "六"] })
+  defaultDate = prop<string>({ default: VgDateInstance().format() })
+  defaultStartDate = prop<string>({ default: VgDateInstance().format() })
+  defaultEndDate = prop<string>({ default: VgDateInstance().add(1, "day").format() })
+  showConfirmButton = prop<boolean>({ default: false })
+  confirmText = prop<string>({ default: "确认" })
+  fromDateMark = prop<string>({ default: "入住" })
+  toDateMark = prop<string>({ default: "离店" })
+  todayMark = prop<string>({ default: "今天" })
+  monthTtitleParser = prop<Function>({
     default: (defaultText: string): string => {
       return defaultText;
     }
-  }
-});
+  })
+}
 @Options({
   emits: ["update:modelValue", "getdate", "beforeenter", "enter", "afterenter", "beforeleave", "leave", "afterleave"],
   name: "VgCalendar",
@@ -119,7 +63,7 @@ const Props = props({
     mode: "highLightDefault"
   }
 })
-export default class VgCalendar extends mixins(VueGgy, Props) {
+export default class VgCalendar extends mixins(VueGgy).with(Props) {
   public static componentName = "VgCalendar";
   public changedNode = {} as { [propName: string]: any };
   public fromDate: null|CalendarDateNode = null;
