@@ -1,6 +1,6 @@
 <template>
   <vg-layout
-    monitor
+    :monitor="true"
     @scroll="handleScroll"
     :showHeader="showHeader"
     @reachbottom="handleReachBottom"
