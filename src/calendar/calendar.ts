@@ -2,7 +2,7 @@
 * @Author: Just be free
 * @Date:   2020-10-12 15:56:53
 * @Last Modified by:   Just be free
-* @Last Modified time: 2021-04-14 16:06:28
+* @Last Modified time: 2021-04-14 16:43:27
 * @E-mail: justbefree@126.com
 */
 import VueGgy, { mixins, prop, Options } from "../component/VueGgy";
@@ -482,14 +482,15 @@ export default class VgCalendar extends mixins(VueGgy).with(Props) {
       // 解决iOS 13.4.1 日历显示选择区域异常。
       // 原因是因为在iOS 13.4.1中 获取popup 的translateY的时候有值（按理说这里应该是0）
       // 猜测：可能是iOS 13.4.1的渲染机制跟其他版本浏览器渲染不一致，测试发现跟Vue transition有关系，具体还得查一下
-      // 解决方法：延迟30ms，再进行设置scrollTop值
+      // 解决方法：延迟200ms，再进行设置scrollTop值
       const timer = setTimeout(() => {
         (this.$refs.scroller as VgFlexItem).$el.scrollTop =
           getOffset(el).top -
           (this.$refs.header as VgFlexItem).$el.offsetHeight -
           getOffset(parent).top;
+          console.log(getOffset(el).top);
           clearTimeout(timer);
-      }, 30);
+      }, 200);
     });
   }
   handleBeforeEnter(): void {
