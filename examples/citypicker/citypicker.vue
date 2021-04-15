@@ -19,13 +19,13 @@
         :alphaBeta="getAlphaBeta()"
         :history="getHistory()"
         :hotCity="getHotCity()"
-        showHistory
+        :showHistory="true"
       ></vg-citypicker>
       <vg-citypicker
         :alphaBeta="getAlphaBeta()"
         :history="getHistory()"
         :hotCity="getHotCity()"
-        showHistory
+        :showHistory="true"
         :searchable="false"
         @pick="handlePick"
         v-model="picker2"
@@ -43,13 +43,13 @@
         @pick="handlePick"
         v-model="picker4"
         :limitedData="data.cnCitiesList"
-        limited
+        :limited="true"
       ></vg-citypicker>
       <vg-citypicker
         @pick="handlePick"
         v-model="picker5"
         :hotCity="getHotCity()"
-        showHistory
+        :showHistory="true"
         :history="getHistory()"
         :alphaBeta="getAlphaBeta()"
       ></vg-citypicker>
@@ -66,7 +66,7 @@
         :alphaBeta="getAlphaBeta()"
         :history="getHistory()"
         :hotCity="getHotCity()"
-        showHistory
+        :showHistory="true"
         @pick="handlePick"
         v-model="picker7"
       ></vg-citypicker>
@@ -75,7 +75,7 @@
         :alphaBeta="getAlphaBeta()"
         :history="getHistory()"
         :hotCity="getHotCity()"
-        showHistory
+        :showHistory="true"
         @pick="handlePick"
         v-model="picker8"
         column="3"
