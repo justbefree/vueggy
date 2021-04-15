@@ -2,7 +2,7 @@
 * @Author: Just be free
 * @Date:   2020-11-02 14:26:49
 * @Last Modified by:   Just be free
-* @Last Modified time: 2021-04-13 17:15:25
+* @Last Modified time: 2021-04-15 18:10:40
 * @E-mail: justbefree@126.com
 */
 import VueGgy, { mixins, prop, Options } from "../component/VueGgy";
@@ -15,9 +15,11 @@ class Props {
   min = prop<number|string>({ default: Number.MIN_VALUE })
   steps = prop<number|string>({ default: 1 })
   modelValue = prop<number|string>({ default: -1 })
-  prase = prop<Function>({
-    default: (e: any) => {
-      return e;
+  parse = prop<(e: any) => any>({
+    default: () => {
+      return (e: any) => {
+        return e;
+      };
     }
   })
   name?: string
