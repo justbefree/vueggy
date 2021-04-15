@@ -28,7 +28,7 @@
         </vg-swipe-item>
       </vg-swipe>
       <h3>上下滑动轮播图</h3>
-      <vg-swipe ref="swipe2" vertical>
+      <vg-swipe ref="swipe2" :vertical="true">
         <vg-swipe-item>
           <div>
             <img src="./images/10b85799aaec02b8.jpg.webp" />
