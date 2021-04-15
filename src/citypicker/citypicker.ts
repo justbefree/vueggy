@@ -2,7 +2,7 @@
 * @Author: Just be free
 * @Date:   2020-10-22 14:42:19
 * @Last Modified by:   Just be free
-* @Last Modified time: 2021-04-13 16:50:23
+* @Last Modified time: 2021-04-15 17:03:58
 * @E-mail: justbefree@126.com
 */
 
@@ -25,6 +25,12 @@ export interface Tab {
   label: string;
   [propName: string]: any;
 }
+export interface AsyncActionObject {
+  params: any;
+  action: (e: any, f?: any) => any;
+  parse: (e: any, f?: any) => any;
+  title?: string;
+}
 class Props {
   modelValue = prop<boolean>({ default: false })
   title = prop<string>({ default: "标题" })
@@ -34,9 +40,9 @@ class Props {
       return String(c) === "4" || String(c) === "3";
     }
   })
-  parse = prop<Function>({
-    default: (city: any): string => {
-      return city.CityName as string;
+  parse = prop<(v: any, o?: any) => string>({
+    default: () => {
+      return (city: any, o?: any) => city.CityName as string;
     }
   })
   limited = prop<boolean>({ default: false })
@@ -53,7 +59,7 @@ class Props {
   placeholder = prop<string>({ default: "请输入城市名称" })
   showHistory = prop<boolean>({ default: false })
   showHotCity = prop<boolean>({ default: true })
-  search = prop<any>({
+  search = prop<AsyncActionObject>({
     default: () => {
       return {
         params: {},
@@ -66,21 +72,21 @@ class Props {
       }
     }
   })
-  history = prop<any>({
+  history = prop<AsyncActionObject>({
     default: () => {
       return {
         params: {},
-        action: () => {
+        action: (e: any) => {
           return Promise.resolve();
         },
-        parse: (e: any) => {
+        parse: (e: any, f?: any) => {
           return e;
         },
         title: "历史查询"
       }
     }
   })
-  hotCity = prop<any>({
+  hotCity = prop<AsyncActionObject>({
     default: () => {
       return {
         params: {},
@@ -386,6 +392,35 @@ export default class VgCitypicker extends mixins(VueGgy).with(Props) {
     if (this.isCompose) return;
     throttle(this.searchRequest)(e);
   }
+  searchRequest(e: InputEvent) {
+    const value = (e.target as HTMLInputElement).value.trim();
+    this.keywords = value;
+    if (value) {
+      this.isSearching = true;
+    } else {
+      this.isSearching = false;
+      this.clearSearchResult();
+      // 内容为空， 不搜索
+      return;
+    }
+    const params = { ...this.search.params, tab: this.currentTab, value };
+    const promise = this.search.action(params);
+    promise
+      .then((res: any) => {
+        const data = this.search.parse(res, params);
+        if (data && data.length) {
+          this.searchList = data;
+        }
+      })
+      .catch((err: any) => {
+        this.clearSearchResult();
+        if (err.errmsg) {
+          this.Toast(err.errmsg);
+        } else {
+          this.print(err);
+        }
+      });
+  }
   onComposeStart() {
     this.isCompose = true;
   }
@@ -552,7 +587,6 @@ export default class VgCitypicker extends mixins(VueGgy).with(Props) {
     }
   }
   beforeEnter() {
-    console.log("bindResize");
     this.bindResize();
     if (this.showHistory) {
       this.getHistory(this.currentTab);
