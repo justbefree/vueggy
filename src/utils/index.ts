@@ -2,7 +2,7 @@
 * @Author: Just be free
 * @Date:   2020-09-22 16:20:15
 * @Last Modified by:   Just be free
-* @Last Modified time: 2020-10-30 09:53:37
+* @Last Modified time: 2021-04-15 16:56:40
 * @E-mail: justbefree@126.com
 */
 export const hasOwnProperty = (obj: any, props: string): boolean => {
@@ -89,7 +89,7 @@ export const throttle = (callback: Function, delay: number = 800): Function => {
       clearTimeout(timer);
     }
     timer = setTimeout(() => {
-      callback(arguments);
+      callback(...arguments);
       timer = null;
     }, delay);
   };
