@@ -2,7 +2,7 @@
 * @Author: Just be free
 * @Date:   2020-12-07 14:36:07
 * @Last Modified by:   Just be free
-* @Last Modified time: 2021-04-14 14:24:54
+* @Last Modified time: 2021-04-15 18:19:25
 * @E-mail: justbefree@126.com
 */
 import VueGgy, { mixins, prop, Options } from "../component/VueGgy";
@@ -29,7 +29,11 @@ class Props {
   encrypted = prop<boolean>({ default: false })
   display = prop<string>({ default: "row" })
   pattern?: string
-  encrypt = prop<Function>({ default: encrypt })
+  encrypt = prop<(v: string|number) => string>({
+    default: () => {
+      return encrypt
+    }
+  })
 }
 
 @Options({
