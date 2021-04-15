@@ -2,7 +2,7 @@
 * @Author: Just be free
 * @Date:   2020-10-23 16:35:16
 * @Last Modified by:   Just be free
-* @Last Modified time: 2021-04-13 17:02:23
+* @Last Modified time: 2021-04-15 17:58:20
 * @E-mail: justbefree@126.com
 */
 import { h, withDirectives, vShow, VNode, nextTick, Transition } from "vue";
@@ -19,9 +19,11 @@ class Props {
   min = prop<string|number>({ default: 0 })
   max = prop<string|number>({ default: 100 })
   step = prop<string|number>({ default: 1 })
-  parse = prop<Function>({
-    default: (e: any): any => {
-      return e;
+  parse = prop<(e: any) => any>({
+    default: () => {
+      return (e: any) => {
+        return e;
+      };
     }
   })
 }
