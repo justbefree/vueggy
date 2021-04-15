@@ -48,7 +48,7 @@
             v-model="encryptedValue"
             label="Encrypted"
             type="text"
-            encrypted
+            :encrypted="true"
             ref="encrypted"
           ></vg-field>
         </li>
@@ -58,7 +58,7 @@
             v-model="disabled"
             label="Keyword"
             type="text"
-            disabled
+            :disabled="true"
           ></vg-field>
         </li>
         <li>
@@ -68,7 +68,7 @@
             v-model="clear"
             label="Clear"
             type="text"
-            clearable
+            :clearable="true"
           ></vg-field>
         </li>
         <li>
@@ -78,8 +78,8 @@
             label="Textarea"
             type="textarea"
             maxlength="50"
-            showTextareaCounter
-            clearable
+            :showTextareaCounter="true"
+            :clearable="true"
           ></vg-field>
         </li>
         <li>
