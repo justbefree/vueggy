@@ -2,72 +2,55 @@
 * @Author: Just be free
 * @Date:   2020-11-19 17:53:44
 * @Last Modified by:   Just be free
-* @Last Modified time: 2021-04-14 14:01:19
+* @Last Modified time: 2021-07-07 15:23:56
 * @E-mail: justbefree@126.com
 */
 import VueGgy, { mixins, prop, Options } from "../component/VueGgy";
-import { h, VNode } from "vue";
+import { h, VNode, TransitionGroup } from "vue";
 import VgFlex from "../flex";
 import VgFlexItem from "../flex-item";
-// const VALID_CHILD_COMPONENT = "animation-list-item";
-
+export type animationTypes = "list" | "paragraph";
 class Props {
-  dataList = prop<Array<any>>({ default: () => [] })
-  animation = prop<boolean>({ default: true })
+  animationType = prop<animationTypes>({ default: "list" })
+  duration = prop<number>({ default: 400 })
 }
 @Options({
-  name: "VgAnimationList",
-  provide() {
-    return {
-      parentList: this
-    }
-  },
-  watch: {
-    // dataList: function (newValue, oldValue) {
-    dataList: function () {
-      this.$nextTick(() => {
-        this.init();
-      });
-    }
-  }
+  name: "VgAnimationList"
 })
 export default class VgAnimationList extends mixins(VueGgy).with(Props) {
   public static componentName = "VgAnimationList";
-  public stackList: VNode[] = [];
-  infinite(slots: VNode[]) {
-    if (slots.length > 0) {
-      const slot = slots.shift();
-      this.stackList.push(slot as VNode);
-      const timer = setTimeout(() => {
-        this.infinite(slots);
-        clearTimeout(timer);
-      }, 50);
-    }
+  handleBeforeEnter(el: HTMLElement) {
+    el.style.opacity = "0";
   }
-  init() {
-    this.stackList = [] as VNode[];
-    const slots = this.getSlots() as any;
-    const children = slots && slots[0] && slots[0].children;
-    if (this.animation) {
-      this.infinite(children as VNode[]);
-    } else {
-      this.stackList = slots;
-    }
-  }
-  mounted() {
-    this.init();
+  handleEnter(el: HTMLElement, done: () => void) {
+    const delay = Number(el.getAttribute("dataindex")) * 100;
+    setTimeout(() => {
+      el.setAttribute("style", `
+        opacity: 1;
+        transition: opacity ${this.duration}ms;
+        animation: ${this.animationType}-one-by-one ${this.duration}ms infinite;
+        animation-iteration-count: 1;
+      `);
+      done();
+    }, delay);
   }
   render() {
+    const slots = this.getSlots() as any;
+    const children = slots && slots[0] && slots[0].children;
     return h("div", { class: ["vg-animation-list"] }, {
       default: () => [
-        h(VgFlex,
-          { flexDirection: "column" },
-          {
-            default: () => Array.apply(null, this.stackList).map((item: any, key: number, arr: any[]) => {
-              return h(VgFlexItem, { key }, { default: () => [item] });
-            })
-          }
-        )
+        h(VgFlex, { flexDirection: "column" }, {
+          default: () => [
+            h(TransitionGroup,
+              { css: false, onEnter: (e: any, fun: any) => this.handleEnter(e, fun), onBeforeEnter: (e: any) => this.handleBeforeEnter(e) },
+              {
+                default: () => Array.apply(null, children as any).map((item: any, key: number, arr: any[]) => {
+                  return h(VgFlexItem, { key, dataindex: key }, { default: () => [item] });
+                })
+              }
+            )
+          ]
+        })
       ]
     });
   }

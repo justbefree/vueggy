@@ -2,7 +2,26 @@
 * @Author: Just be free
 * @Date:   2020-11-19 17:54:00
 * @Last Modified by:   Just be free
-* @Last Modified time: 2020-11-20 11:18:49
+* @Last Modified time: 2021-07-07 15:10:30
 */
 .vg-animation-list {
+}
+@keyframes list-one-by-one {
+  from {
+    padding-top: 100px;
+    height: 0%;
+  }
+  to {
+    padding-top: 0px;
+    height: 100%;
+  }
+}
+
+@keyframes paragraph-one-by-one {
+  from {
+    padding-left: 100%;
+  }
+  to {
+    padding-left: 0%;
+  }
 }
