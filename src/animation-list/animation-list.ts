@@ -2,7 +2,7 @@
 * @Author: Just be free
 * @Date:   2020-11-19 17:53:44
 * @Last Modified by:   Just be free
-* @Last Modified time: 2021-07-07 15:23:56
+* @Last Modified time: 2021-07-07 15:40:44
 * @E-mail: justbefree@126.com
 */
 import VueGgy, { mixins, prop, Options } from "../component/VueGgy";
@@ -12,7 +12,7 @@ import VgFlexItem from "../flex-item";
 export type animationTypes = "list" | "paragraph";
 class Props {
   animationType = prop<animationTypes>({ default: "list" })
-  duration = prop<number>({ default: 400 })
+  duration = prop<number>({ default: 600 })
 }
 @Options({
   name: "VgAnimationList"
@@ -23,7 +23,7 @@ export default class VgAnimationList extends mixins(VueGgy).with(Props) {
     el.style.opacity = "0";
   }
   handleEnter(el: HTMLElement, done: () => void) {
-    const delay = Number(el.getAttribute("dataindex")) * 100;
+    const delay = Number(el.getAttribute("dataindex")) * 5 + 100;
     setTimeout(() => {
       el.setAttribute("style", `
         opacity: 1;
