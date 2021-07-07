@@ -2,7 +2,7 @@
 * @Author: Just be free
 * @Date:   2020-09-22 15:24:16
 * @Last Modified by:   Just be free
-* @Last Modified time: 2021-04-14 14:27:54
+* @Last Modified time: 2021-07-07 14:15:36
 * @E-mail: justbefree@126.com
 */
 import { version } from "../package.json";
@@ -65,7 +65,7 @@ const install = (app: any, options: any) => {
   app.config.globalProperties.Toast = VgToast;
   app.config.globalProperties.Dialog = Dialog;
   app.config.globalProperties.Indicator = VgIndicator;
-  app.config.isCustomElement = (tag: string) => tag.startsWith("vg-");
+  app.config.compilerOptions.isCustomElement = (tag: string) => tag.startsWith("vg-");
 };
 const config = (options: VueggyConfigOptions) => {
   Object.keys(options).forEach((attr: string) => {
