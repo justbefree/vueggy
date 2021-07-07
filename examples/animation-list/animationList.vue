@@ -40,7 +40,7 @@ export default class AnimationList extends Vue {
     console.log("getData");
     const timer = setTimeout(() => {
       const result = [];
-      for (let i = 0; i < 20; i++) {
+      for (let i = 0; i < 200; i++) {
         result.push({ index: i });
       }
       // this.asyncData = [{ index: 1 }, { index: 2 }, { index: 3 }, { index: 4 }];
